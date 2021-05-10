@@ -1,0 +1,14 @@
+#song{
+    margin:auto;
+    padding: 2em;
+    width: 80%;
+
+}
+.list{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#selected{
+    padding: 3em;
+}
