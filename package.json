@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/AnirudhM1/Music-Player#readme",
   "dependencies": {
+    "dotenv": "^9.0.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
+    "mongoose": "^5.12.8",
     "nodemon": "^2.0.7"
   }
 }
