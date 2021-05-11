@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="/selectorpage.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous"> -->
+    <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <title>Songs</title>
 </head>
 
@@ -15,9 +14,21 @@
     <div class="box">
         <nav class="nav">
             <div class="nav-center">
-                <h1 class="title is-2">Music Player</h1>
+                <a class="icon" href="#">
+                    <i class="fab fa-itunes-note" id="music"></i>
+                </a>
             </div>
         </nav>
+    </div>
+
+    <div id="header">
+        <div class="title is-3 has-text-left">
+            Click to add.
+        </div>
+    </div>
+
+    <div id="notification" style="display:none">
+        has been added to your playlist.
     </div>
 
     <div id="song" class="block">
@@ -25,49 +36,94 @@
             <article class="message" onclick="pick('<%= song.name %>')" onmouseover="hoverin('<%= song.name %>')"
                 onmouseout="hoverout('<%= song.name %>')">
                 <div class="message-header ">
-                    <div class="title is-3" style="color: white; padding: 3px; cursor: pointer;"
+                    <div class="title is-4 is-bold" style="color: white; padding: 3px; cursor: pointer;"
                         id=<%=`name_${song.name}` %>>
                         <%= song.name %>
                     </div>
                 </div>
                 <div id="artist" class="message-body songartist">
-                    <h1 class="subtitle is-5">Artist : <%= song.artist %>
-                    </h1>
+                    <div class="columns">
+                        <div class="subtitle is-5 column has-text-left">Artist : <%= song.artist %>
+                        </div>
+                        <div class="subtitle is-5 column has-text-right">Length : <%= song.duration %>
+                        </div>
+                    </div>
+                    <!-- <span class="has-text-right" id="selected"></span> -->
                 </div>
             </article>
             <% }) %>
-                <div class="message is-primary" id="selected">
-                    <div class="message-header">
-                        <div class="title is-3" style="padding: 3px; color: white;">Selected Songs:</div>
+                <article class="block id=" selectedlist">
+                    <!-- <div class="title is-5">Selected Songs:</div> -->
+                    <div class="subtitle is-4 list" style="color: rgb(78, 76, 76);">
                     </div>
-                    <div class="message-body list">
-                    </div>
-                </div>
-</body>
-<script>
+                </article>
+    </div>
+    <script>
+        function hoverin(song_name) {
+            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
+            messageBox.classList.add("is-primary");
+        }
+        function hoverout(song_name) {
+            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
+            messageBox.classList.remove("is-primary");
 
-    function pick(song_name) {
-        let list = document.querySelector('.list');
-        let item = document.createElement('div');
-        let songName = document.getElementById(`name_${song_name}`).innerText;
-        let addedSong = document.createTextNode(songName);
-        item.appendChild(addedSong);
-        list.insertBefore(item, list.childNodes[0]);
-        document.getElementById(`name_${song_name}`).parentNode.parentNode.removeAttribute("onclick");
-    }
+        }
 
-    function hoverin(song_name) {
-        let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
-        messageBox.classList.add("is-success");
-    }
 
-    function hoverout(song_name) {
-        let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
-        messageBox.classList.remove("is-success");
+        function pick(song_name) {
+            // add to playlist
+            let list = document.querySelector('.list');
+            let item = document.createElement('span');
+            let songName = document.getElementById(`name_${song_name}`).innerText;
+            let addedSong = document.createTextNode(songName);
+            item.appendChild(addedSong);
+            item.classList.add("has-text-centered");
+            list.insertBefore(item, list.childNodes[0]);
+            document.getElementById(`name_${song_name}`).parentNode.parentNode.removeAttribute("onclick");
+            // change color on selection
+            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
+            messageBox.removeAttribute("onmouseover");
+            messageBox.removeAttribute("onmouseout");
+            messageBox.classList.add("is-success");
+            // notification of addition
+            let notif = document.querySelector('#notification');
+            notif.style.display = null;
+            let popup = document.createElement('span');
+            let notiftext = document.createTextNode(songName);
+            popup.appendChild(notiftext);
+            notif.classList.add('notification', 'has-text-centered', 'is-notif');
+            notif.insertBefore(popup, notif.childNodes[0]);
+            setTimeout(() => {
+                popup.style.display = 'none';
+                notif.style.display = 'none';
 
-    }
+            }, 2000);
+            // add selected
+            /*let spanner = document.createElement('span');
+            let value = document.createTextNode('Selected');
+            let artist = document.getElementById('artist');
+            spanner.appendChild(value);
+            spanner.classList.add("has-text-right", "has-text-success");
+            artist.insertBefore(spanner, artist.childNodes[1]);
+            */
 
-</script>
+
+        }
+
+        // function playlistin() {
+        //     let selected = document.getElementById('selected');
+        //     selected.classList.remove("is-primary");
+        //     selected.classList.add("is-danger");
+        // }
+
+        // function playlistout() {
+        //     let selected = document.getElementById('selected');
+        //     selected.classList.remove("is-danger");
+        //     selected.classList.add("is-primary");
+        // }
+
+
+    </script>
 
 </body>
 
