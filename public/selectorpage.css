@@ -36,3 +36,10 @@
     width:4em;
     height: 4em;
 }
+#search{
+    display: block;
+    margin: auto;
+    padding: 1em;
+    width: 60%;
+    max-width: 70%;
+}
