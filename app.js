@@ -20,17 +20,15 @@ dotenv.config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(methodOverride('_method'));
+
 
 let gfs;
 
-/* mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false
+        /* useCreateIndex: true,
+        useFindAndModify: false */
     })
     .then(() => {
         console.log('Connection Open!');
@@ -43,7 +41,7 @@ let gfs;
     .catch((e) => {
         console.log('ERROR!');
         console.log(e);
-    }) */
+    })
 
 const songs = [
 
@@ -77,6 +75,11 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+
+app.use(express.urlencoded({'extended': true}));
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(session(sessionConfig));
 app.use(passport.initialize());
