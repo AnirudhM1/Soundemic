@@ -1,8 +1,16 @@
 const express = require('express');
+const session = require('express-session');
 const dotenv = require('dotenv');
 const path = require('path');
+const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
+const User = require('./models/User');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+
+const testRoutes = require('./routes/Test'); // These are routes used for testing
+const userRoutes = require('./routes/User');
 
 
 const app = express();
@@ -12,11 +20,17 @@ dotenv.config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(methodOverride('_method'));
+
 let gfs;
 
-mongoose.connect(process.env.MONGODB_URI, {
+/* mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
     })
     .then(() => {
         console.log('Connection Open!');
@@ -29,7 +43,7 @@ mongoose.connect(process.env.MONGODB_URI, {
     .catch((e) => {
         console.log('ERROR!');
         console.log(e);
-    })
+    }) */
 
 const songs = [
 
@@ -53,7 +67,24 @@ const songs = [
 ]
 
 
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
 
+app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -61,10 +92,8 @@ app.get('/', (req, res) => {
     res.render('index', {songs});
 });
 
-
-app.get('/test', (req, res) => {
-    res.render('test');
-});
+app.use('/', userRoutes);
+app.use('/test', testRoutes);
 
 app.get('/audio/:filename', (req, res) => {
 
