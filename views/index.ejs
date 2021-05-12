@@ -21,6 +21,15 @@
         </nav>
     </div>
 
+    <div class="field" id="search">
+        <p class="control has-icons-left">
+            <input type="text" class="input is-hovered is-medium" placeholder="Search here.">
+            <span class="icon is-medium is-left">
+                <i class="fas fa-record-vinyl"></i>
+        </p>
+        </span>
+    </div>
+
     <div id="header">
         <div class="title is-3 has-text-left">
             Click to add.
@@ -33,11 +42,10 @@
 
     <div id="song" class="block">
         <% songs.forEach(song=> { %>
-            <article class="message" onclick="pick('<%= song.name %>')" onmouseover="hoverin('<%= song.name %>')"
-                onmouseout="hoverout('<%= song.name %>')">
+            <article class="message">
                 <div class="message-header ">
                     <div class="title is-4 is-bold" style="color: white; padding: 3px; cursor: pointer;"
-                        id=<%=`name_${song.name}` %>>
+                        id=<%=`id_${song.id}` %>>
                         <%= song.name %>
                     </div>
                 </div>
@@ -45,50 +53,42 @@
                     <div class="columns">
                         <div class="subtitle is-5 column has-text-left">Artist : <%= song.artist %>
                         </div>
+                        <button class="button is-black is-outlined has-text-right" onclick="pick('<%= song.button %>')"
+                            id=<%=`button_${song.button}` %> style=" margin: 1em;">
+                            Add to playlist</button>
                         <div class="subtitle is-5 column has-text-right">Length : <%= song.duration %>
                         </div>
                     </div>
-                    <!-- <span class="has-text-right" id="selected"></span> -->
                 </div>
             </article>
             <% }) %>
-                <article class="block id=" selectedlist">
-                    <!-- <div class="title is-5">Selected Songs:</div> -->
-                    <div class="subtitle is-4 list" style="color: rgb(78, 76, 76);">
-                    </div>
-                </article>
     </div>
     <script>
-        function hoverin(song_name) {
-            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
-            messageBox.classList.add("is-primary");
-        }
-        function hoverout(song_name) {
-            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
-            messageBox.classList.remove("is-primary");
 
-        }
-
-
-        function pick(song_name) {
+        function pick(song_button) {
             // add to playlist
-            let list = document.querySelector('.list');
-            let item = document.createElement('span');
-            let songName = document.getElementById(`name_${song_name}`).innerText;
-            let addedSong = document.createTextNode(songName);
-            item.appendChild(addedSong);
-            item.classList.add("has-text-centered");
-            list.insertBefore(item, list.childNodes[0]);
-            document.getElementById(`name_${song_name}`).parentNode.parentNode.removeAttribute("onclick");
+            document.getElementById(`button_${song_button}`).innerText = "Added to playlist";
+            document.getElementById(`button_${song_button}`).classList.remove("is-outlined");
+            if (song_button % 2 == 0) {
+                document.getElementById(`button_${song_button}`).classList.add("is-primary");
+                let messageBox = document.getElementById(`button_${song_button}`).parentNode.parentNode.parentNode;
+                messageBox.classList.add("is-primary");
+
+            }
+            else if (song_button % 2 == 1) {
+                document.getElementById(`button_${song_button}`).classList.add("is-danger");
+                let messageBox = document.getElementById(`button_${song_button}`).parentNode.parentNode.parentNode;
+                messageBox.classList.add("is-danger");
+
+            }
+            document.getElementById(`button_${song_button}`).removeAttribute("onclick");
             // change color on selection
-            let messageBox = document.getElementById(`name_${song_name}`).parentNode.parentNode;
-            messageBox.removeAttribute("onmouseover");
-            messageBox.removeAttribute("onmouseout");
-            messageBox.classList.add("is-success");
+
             // notification of addition
             let notif = document.querySelector('#notification');
             notif.style.display = null;
             let popup = document.createElement('span');
+            let songName = document.getElementById(`button_${song_button}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
             let notiftext = document.createTextNode(songName);
             popup.appendChild(notiftext);
             notif.classList.add('notification', 'has-text-centered', 'is-notif');
@@ -98,30 +98,8 @@
                 notif.style.display = 'none';
 
             }, 2000);
-            // add selected
-            /*let spanner = document.createElement('span');
-            let value = document.createTextNode('Selected');
-            let artist = document.getElementById('artist');
-            spanner.appendChild(value);
-            spanner.classList.add("has-text-right", "has-text-success");
-            artist.insertBefore(spanner, artist.childNodes[1]);
-            */
-
 
         }
-
-        // function playlistin() {
-        //     let selected = document.getElementById('selected');
-        //     selected.classList.remove("is-primary");
-        //     selected.classList.add("is-danger");
-        // }
-
-        // function playlistout() {
-        //     let selected = document.getElementById('selected');
-        //     selected.classList.remove("is-danger");
-        //     selected.classList.add("is-primary");
-        // }
-
 
     </script>
 
