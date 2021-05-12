@@ -9,7 +9,7 @@ router.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/signup.html'));
 });
 
-router.post('/register', async (req,res) => {
+router.post('/', async (req, res) => {
     try {
         const {email, Firstname, Lastname/*, username*/, password} = req.body;
         const name = `${Firstname} ${Lastname}`;
@@ -27,5 +27,11 @@ router.post('/register', async (req,res) => {
         console.log(e);
     }
 });
+
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    const data = await User.findOneAndDelete({ _id: id});
+    res.send(data);
+})
 
 module.exports = router;

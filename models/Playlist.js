@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Scheme = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const playlistSchema = new Schema({
     title: {
         type: String,
         required: true
     },
-    Songs: [{type: Schema.Types.ObjectId, ref: 'Song'}]
+    songs: [{type: Schema.Types.ObjectId, ref: 'Song', required: true}]
 });
 
 const Playlist = mongoose.model('Playlist', playlistSchema);

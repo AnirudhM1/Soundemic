@@ -11,6 +11,7 @@ const LocalStrategy = require('passport-local');
 
 const testRoutes = require('./routes/Test'); // These are routes used for testing
 const userRoutes = require('./routes/User');
+const playlistRoutes = require('./routes/Playlist');
 
 
 const app = express();
@@ -95,8 +96,11 @@ app.get('/', (req, res) => {
     res.render('index', {songs});
 });
 
-app.use('/', userRoutes);
+app.use('/users', userRoutes);
+app.use('/users', playlistRoutes);
 app.use('/test', testRoutes);
+
+// Route to stream music
 
 app.get('/audio/:filename', (req, res) => {
 
