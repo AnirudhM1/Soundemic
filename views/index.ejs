@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS.load('particles-js', 'particles.json', function () {
-            console.log('particles.json loaded...');
+    <!-- <script>
+        particlesJS.load('particles-js', '/particles.json', function () {
+            console.log('callback - particles.js config loaded');
         });
     </script> -->
+    <script src="https://unpkg.com/scrollreveal"></script>
     <title>Songs</title>
 </head>
 
@@ -28,18 +28,16 @@
     </div>
 
 
-    <!-- <div id="particles-js"> -->
-
-    <div class="field" id="search">
+    <div class=" field" id="search">
         <p class="control has-icons-left">
             <input type="text" class="input is-hovered is-medium" placeholder="Search here.">
             <span class="icon is-medium is-left">
                 <i class="fas fa-record-vinyl"></i>
+            </span>
         </p>
-        </span>
     </div>
 
-    <div id="header">
+    <div id="header" class="header">
         <div class="title is-3 has-text-left">
             Click to add.
         </div>
@@ -52,24 +50,24 @@
 
     <div id="song" class="block">
         <% songs.forEach(song=> { %>
-            <article class="message">
+            <article class="message is-dark">
                 <div class="message-header ">
-                    <div class="title is-4 is-bold" style="color: white; padding: 3px; cursor: pointer;"
-                        id=<%=`id_${song.id}` %>>
+                    <div class="title is-4 is-bold" style="color: white; padding: 3px;" id=<%=`id_${song.id}` %>>
                         <%= song.name %>
                     </div>
                 </div>
-                <div id="artist" class="message-body songartist">
+                <div id="artist" class="message-body">
                     <div class="columns">
-                        <div class="subtitle is-5 column is-one-third has-text-left">Artist : <%= song.artist %>
+                        <div class="title is-5 column is-7 has-text-left" style="color: #111111;">Artist : <%=
+                                song.artist %>
                         </div>
-                        <button class="button is-black is-outlined has-text-centered "
+                        <button class="button is-black is-outlined column is-2 has-text-centered playlist"
                             onclick="pick1('<%= song.button %>')" id=<%=`button1_${song.button}` %> style="
                             margin:
                             1em;">
                             Add to playlist</button>
-                        <button class="button is-black is-outlined has-text-right" onclick="pick2('<%= song.button %>')"
-                            id=<%=`button2_${song.button}` %> style="
+                        <button class="button is-black is-outlined column is-2 has-text-right"
+                            onclick="pick2('<%= song.button %>')" id=<%=`button2_${song.button}` %> style="
                             margin:
                             1em;">
                             Play</button>
@@ -82,10 +80,12 @@
             </article>
             <% }) %>
     </div>
-    <!-- </div> -->
-
 
     <script>
+        ScrollReveal().reveal('.header', { delay: 30 });
+        ScrollReveal().reveal('.is-7', { delay: 100 });
+        ScrollReveal().reveal('.playlist', { delay: 130 });
+        ScrollReveal().reveal('.has-text-right', { delay: 180 });
         let audio = document.getElementById("audio");
 
 
@@ -117,6 +117,7 @@
             // play
             let value = document.getElementById(`button2_${song_button}`).innerText;
             if (value === "Pause") {
+
                 audio.pause()
                 document.getElementById(`button2_${song_button}`).innerText = "Play";
                 //play
@@ -141,7 +142,7 @@
             }
 
 
-        }
+        };
     </script>
 
 </body>
