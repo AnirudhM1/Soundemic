@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# mp3 files
+*.mp3
+
+# Dev/Test files
+addSongs.js
+test.ejs
+routes/Test.js
