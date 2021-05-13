@@ -1,3 +1,6 @@
+#particles-js{
+    background-color:white;
+}
 #song{
     margin:auto;
     padding: 2em;
@@ -12,8 +15,20 @@
     margin: 2em;
 }
 
-#notification{
+.is-playing{
+    background-color: #f8b8cb;
+    color: #f7196e;
+    border: 0.8px solid #830d2b;
+
+}
+
+#notification1 {
     width: 60%;
+    margin: auto;
+}
+#notification2{
+    width: 60%;
+    height: 5em;
     margin: auto;
 }
 .is-notif{
