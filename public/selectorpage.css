@@ -12,10 +12,18 @@
     margin: 2em;
 }
 
-#notification{
+.is-playing{
+    background-color: #f8b8cb;
+    color: #f7196e;
+    border: 0.8px solid #830d2b;
+
+}
+
+#notification1 {
     width: 60%;
     margin: auto;
 }
+
 .is-notif{
     background-color: #dfb7f7;
     color: #280e30;
