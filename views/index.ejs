@@ -50,9 +50,9 @@
 
     <div id="song" class="block">
         <% songs.forEach(song=> { %>
-            <article class="message is-dark">
+            <article class="message">
                 <div class="message-header ">
-                    <div class="title is-4 is-bold" style="color: white; padding: 3px;" id=<%=`id_${song.id}` %>>
+                    <div class="title is-4 is-bold" style="color: white; padding: 3px;">
                         <%= song.name %>
                     </div>
                 </div>
@@ -62,12 +62,12 @@
                                 song.artist %>
                         </div>
                         <button class="button is-black is-outlined column is-2 has-text-centered playlist"
-                            onclick="pick1('<%= song.button %>')" id=<%=`button1_${song.button}` %> style="
+                            onclick="pick1('<%= song.id %>')" id=<%=`button1_${song.id}` %> style="
                             margin:
                             1em;">
                             Add to playlist</button>
                         <button class="button is-black is-outlined column is-2 has-text-right"
-                            onclick="pick2('<%= song.button %>')" id=<%=`button2_${song.button}` %> style="
+                            onclick="pick2('<%= song.id %>')" id=<%=`button2_${song.id}` %> style="
                             margin:
                             1em;">
                             Play</button>
@@ -82,25 +82,25 @@
     </div>
 
     <script>
-        ScrollReveal().reveal('.header', { delay: 30 });
+        ScrollReveal().reveal('.header', { delay: 40 });
         ScrollReveal().reveal('.is-7', { delay: 100 });
-        ScrollReveal().reveal('.playlist', { delay: 130 });
+        ScrollReveal().reveal('.playlist', { delay: 140 });
         ScrollReveal().reveal('.has-text-right', { delay: 180 });
         let audio = document.getElementById("audio");
 
 
-        function pick1(song_button) {
+        function pick1(song_id) {
             // add to playlist
-            document.getElementById(`button1_${song_button}`).innerText = "Added to playlist";
-            let messageBox = document.getElementById(`button1_${song_button}`).parentNode.parentNode.parentNode;
-            document.getElementById(`button1_${song_button}`).removeAttribute("onclick");
+            document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
+            let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
+            document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
 
             // notification of addition
             let notif = document.querySelector('#notification1');
             notif.style.display = null;
             let popup = document.createElement('span');
             let songName =
-                document.getElementById(`button1_${song_button}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
+                document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
             let notiftext = document.createTextNode(songName);
             popup.appendChild(notiftext);
             notif.classList.add('notification', 'has-text-centered', 'is-notif');
@@ -113,30 +113,30 @@
 
         }
 
-        function pick2(song_button) {
+        function pick2(song_id) {
             // play
-            let value = document.getElementById(`button2_${song_button}`).innerText;
+            let value = document.getElementById(`button2_${song_id}`).innerText;
             if (value === "Pause") {
 
                 audio.pause()
-                document.getElementById(`button2_${song_button}`).innerText = "Play";
+                document.getElementById(`button2_${song_id}`).innerText = "Play";
                 //play
-                document.getElementById(`button2_${song_button}`).classList.remove("is-outlined");
-                document.getElementById(`button2_${song_button}`).classList.remove("is-primary");
-                document.getElementById(`button2_${song_button}`).classList.add("is-danger");
-                let messageBox = document.getElementById(`button2_${song_button}`).parentNode.parentNode.parentNode;
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
+                document.getElementById(`button2_${song_id}`).classList.add("is-danger");
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
                 messageBox.classList.remove("is-primary");
                 messageBox.classList.add("is-danger");
             }
             if (value === "Play") {
                 audio.play()
-                document.getElementById(`button2_${song_button}`).innerText = "Pause";
+                document.getElementById(`button2_${song_id}`).innerText = "Pause";
 
                 //pause
-                document.getElementById(`button2_${song_button}`).classList.remove("is-outlined");
-                document.getElementById(`button2_${song_button}`).classList.remove("is-danger");
-                document.getElementById(`button2_${song_button}`).classList.add("is-primary");
-                let messageBox = document.getElementById(`button2_${song_button}`).parentNode.parentNode.parentNode;
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
+                document.getElementById(`button2_${song_id}`).classList.add("is-primary");
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
                 messageBox.classList.remove("is-danger");
                 messageBox.classList.add("is-primary");
             }
