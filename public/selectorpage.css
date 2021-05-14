@@ -1,6 +1,8 @@
 #song{
-    margin:auto;
-    padding: 2em;
+    margin-left:auto;
+    margin-right: auto;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
     width: 80%;
 }
 .list{
@@ -44,10 +46,25 @@
     width:4em;
     height: 4em;
 }
+@media only screen and (max-width:600px){
+#search{
+    display: block;
+    margin: auto;
+    padding: 0.5em;
+    width: 85%;
+    max-width: 90%;
+}
+}
+@media only screen and (min-width:600px){
 #search{
     display: block;
     margin: auto;
     padding: 1em;
     width: 60%;
     max-width: 70%;
-}
+}}
+
+  .progress {
+    background-color: rgb(39, 39, 39);
+    transition: width 0.1s linear;
+  }
