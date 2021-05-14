@@ -6,8 +6,6 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
 const User = require('./models/User');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
 
 const testRoutes = require('./routes/Test'); // These are routes used for testing
 const userRoutes = require('./routes/User');
@@ -87,13 +85,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(session(sessionConfig));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 
 
 app.get('/', (req, res) => {
@@ -103,6 +94,19 @@ app.get('/', (req, res) => {
 app.use('/users', userRoutes);
 app.use('/users', playlistRoutes);
 app.use('/test', testRoutes);
+
+
+// Route create for debugging only
+
+app.get('/secret', (req, res) => { 
+    if(req.session.user_id) {
+        res.send('User is logged in!')
+    }
+    else {
+        res.redirect('/users/login');
+    }
+})
+
 
 // Route to stream music
 
