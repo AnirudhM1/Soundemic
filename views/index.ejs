@@ -62,16 +62,16 @@
                                 song.artist %>
                         </div>
                         <button class="button is-black is-outlined column is-2 has-text-centered playlist"
-                            onclick="pick1('<%= song.id %>')" id=<%=`button1_${song.id}` %> style="
+                            onclick="pick1('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
                             margin:
                             1em;">
                             Add to playlist</button>
                         <button class="button is-black is-outlined column is-2 has-text-right"
-                            onclick="pick2('<%= song.id %>')" id=<%=`button2_${song.id}` %> style="
+                            onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
                             margin:
                             1em;">
                             Play</button>
-                        <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg">
+                        <audio id="audio" src="/audio/song.mp3" type="audio/mpeg">
                         </audio>
 
 
@@ -114,6 +114,7 @@
         }
 
         function pick2(song_id) {
+            console.log('reached here!');
             // play
             let value = document.getElementById(`button2_${song_id}`).innerText;
             if (value === "Pause") {

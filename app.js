@@ -44,26 +44,30 @@ mongoose.connect(process.env.MONGODB_URI, {
         console.log(e);
     })
 
-const songs = [
+    const songs = [
 
-    {
-        name: 'a',
-        artist: 'aa'
-    },
-    {
-        name: 'bb',
-        artist: 'bb'
-    },
-    {
-        name: 'c',
-        artist: 'cc'
-    },
-    {
-        name: 'd',
-        artist: 'dd'
-    }
-
-]
+        {
+            _id: '1',
+            name: 'Lateralus',
+            artist: 'Tool'
+        },
+        {
+            _id: '2',
+            name: 'New Divide',
+            artist: 'Linkin Park'
+        },
+        {
+            _id: '3',
+            name: 'song3',
+            artist: 'artist3'
+        },
+        {
+            _id: '4',
+            name: 'song4',
+            artist: 'artist4'
+        }
+    
+    ]
 
 
 const sessionConfig = {
@@ -104,11 +108,7 @@ app.use('/test', testRoutes);
 
 app.get('/audio/:filename', (req, res) => {
 
-    console.log('Audio request recieved!');
-
    const readstream = gfs.createReadStream({filename: req.params.filename})
-
-    console.log(`Girdfs readstream created with ${req.params.filename}`);
     
    readstream.on('error', (error) => {
         res.sendStatus(500)
