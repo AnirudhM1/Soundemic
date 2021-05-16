@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/selectorpage.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+    <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Playlist</title>
+</head>
+
+<body style="font-family: 'Quicksand';">
+
+    <div class="box">
+        <nav class="nav">
+            <div class="nav-center">
+                <a class="icon" href="#">
+                    <i class="fab fa-itunes-note" id="icon"></i>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <br>
+
+
+    <div class=" field" id="search">
+        <center>
+            <input type="text" class="input is-hovered is-medium" placeholder="Search."
+                style="font-family: 'Quicksand';width: 70vw;">
+        </center>
+        <center>
+
+            <button class="button is-medium is-dark" id="submit" style="margin:1em;">Submit</button>
+        </center>
+    </div>
+
+    <div id="header" class="header">
+        <div class="title is-3 has-text-left">
+            Top Results
+        </div>
+    </div>
+
+    <div id="notification1" style="display:none">
+        has been added to your playlist.
+    </div>
+
+    <div id="song" class="block">
+        <% songs.forEach(song=> { %>
+            <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
+                <div class="message-header ">
+                    <div class="title is-4 is-bold" style="color: white; padding: 3px;">
+                        <%= song.name %>
+                    </div>
+                </div>
+                <div id="artist" class="message-body">
+                    <div class="columns">
+                        <div class="subtitle column is-3 has-text-left" style="color: #111111;
+                        margin:
+                        0.5em;font-size: 1.3em;">
+                            <%= song.artist %>
+                        </div>
+                        <div class="column progress-container" id=<%=`button3_${song._id}` %> style="
+                            margin: 1.5em 1.5em 1.5em 1em;
+                            height: fit-content;
+                            padding: 0;
+
+                            ">
+                            <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                "height: 0.6rem;
+                                border-radius:5px;
+                                width:0%;
+                                margin:0.5em;
+                                padding:0;">
+                            </div>
+                        </div>
+
+                        <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
+                        </audio>
+
+                        <button class="column is-2 button is-black is-outlined has-text-centered"
+                            onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
+                            margin:
+                            1em; width:fit-content;">
+                            Add to playlist
+                        </button>
+
+
+                        <button class="column button is-2 is-black is-outlined  has-text-left"
+                            onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                            margin:
+                            1em;width:fit-content;">
+                            Play
+                        </button>
+                    </div>
+                </div>
+            </article>
+            <% }) %>
+    </div>
+
+
+
+    <script>
+        function pick2(song_id) {
+            // document.getElementById(`button4_${song_id}`).style.display = null;
+            function updateProgress(e) {
+                let progress = document.getElementById(`button4_${song_id}`);
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+
+            }
+
+            let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+            audio.addEventListener('timeupdate', updateProgress);
+
+            let value = document.getElementById(`button2_${song_id}`).innerText;
+            if (value === "Pause") {
+
+                audio.pause()
+                document.getElementById(`button2_${song_id}`).innerText = "Play";
+                //play
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
+                document.getElementById(`button2_${song_id}`).classList.add("is-danger");
+
+
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                messageBox.classList.remove("is-primary");
+                messageBox.classList.add("is-danger");
+                let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.backgroundColor = "#FF3860";
+                // progress.style.borderColor = "#FF3860";
+
+            }
+            if (value === "Play") {
+                audio.play()
+                document.getElementById(`button2_${song_id}`).innerText = "Pause";
+
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
+
+
+                document.getElementById(`button2_${song_id}`).classList.add("is-primary");
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                messageBox.classList.remove("is-danger");
+                messageBox.classList.add("is-primary");
+                let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.backgroundColor = "#00D1B2";
+                // progress.style.borderColor = "#00D1B2";
+            }
+
+
+
+        };
+        function playlist(song_id) {
+
+            document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
+            let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
+            document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
+
+            let notif = document.querySelector('#notification1');
+            notif.style.display = null;
+            let popup = document.createElement('span');
+            let songName =
+                document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
+            let notiftext = document.createTextNode(songName);
+            popup.appendChild(notiftext);
+            notif.classList.add('notification', 'has-text-centered', 'is-notif');
+            notif.insertBefore(popup, notif.childNodes[0]);
+            setTimeout(() => {
+                popup.style.display = 'none';
+                notif.style.display = 'none';
+
+            }, 2000);
+        }
+
+    </script>
+</body>
