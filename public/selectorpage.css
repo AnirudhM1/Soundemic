@@ -1,0 +1,70 @@
+#song{
+    margin-left:auto;
+    margin-right: auto;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    width: 80%;
+}
+.list{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#selectedlist{
+    margin: 2em;
+}
+
+.is-playing{
+    background-color: #f8b8cb;
+    color: #f7196e;
+    border: 0.8px solid #830d2b;
+
+}
+
+#notification1 {
+    width: 60%;
+    margin: auto;
+}
+
+.is-notif{
+    background-color: #dfb7f7;
+    color: #280e30;
+    border: 0.8px solid #280e30;
+}
+#header{
+    margin-bottom: 2.5%;
+    display: block;
+    padding: 1em;
+    width: 80%;
+    margin-left:2em;
+    margin-right:2em;
+}
+#music{
+    padding-bottom: 0.5em;
+    padding-top:0.2em;
+    margin: auto;
+    width:4em;
+    height: 4em;
+}
+@media only screen and (max-width:600px){
+#search{
+    display: block;
+    margin: auto;
+    padding: 0.5em;
+    width: 85%;
+    max-width: 90%;
+}
+}
+@media only screen and (min-width:600px){
+#search{
+    display: block;
+    margin: auto;
+    padding: 1em;
+    width: 60%;
+    max-width: 70%;
+}}
+
+  .progress {
+    background-color: rgb(39, 39, 39);
+    transition: width 0.1s linear;
+  }
