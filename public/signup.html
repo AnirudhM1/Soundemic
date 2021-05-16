@@ -7,7 +7,7 @@
     <title>Bootstrap Forms</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="sign.css">
+    <link rel="stylesheet" href="./sign.css">
 </head>
 
 <body>
@@ -15,11 +15,13 @@
         <h1 class="display-2">Sign Up</h1>
         <form action="/users" method="POST">
             <div class="row g-3">
-                    <label for="Firstname" class="form-label">First Name</label>
-                    <input type="text" name="Firstname" class="form-control" id="Firstname" placeholder="Enter your first name" required>
+                <label for="Firstname" class="form-label">First Name</label>
+                <input type="text" name="Firstname" class="form-control" id="Firstname"
+                    placeholder="Enter your first name" required>
                 <div class="col-md-6">
                     <label for="Lastname" class="form-label">Last Name</label>
-                    <input type="text" name="Lastname" class="form-control" id="Lastname" placeholder="Enter your last name" required>
+                    <input type="text" name="Lastname" class="form-control" id="Lastname"
+                        placeholder="Enter your last name" required>
                 </div>
             </div>
             <div class="row g-3">
@@ -29,7 +31,8 @@
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Don't make it too easy">
+                    <input type="password" name="password" class="form-control" id="password"
+                        placeholder="Don't make it too easy">
                 </div>
             </div>
 

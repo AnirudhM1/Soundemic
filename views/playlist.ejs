@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/selectorpage.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <!-- <link rel="stylesheet" href="/landing.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+    <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <title>Playlist</title>
+</head>
+
+<body style="font-family: 'Quicksand';">
+    <div class="box">
+        <nav class="nav">
+            <div class="nav-center">
+                <a class="icon" href="#">
+                    <i class="fab fa-itunes-note" id="icon"></i>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="card-top" style="display: none;" id="darkicon">
+        <center class="icon">
+            <i class=" fab fa-itunes-note" id="itunes"></i>
+        </center>
+    </div>
+
+    <div id="particles-js" style="width: 100%;height: 100vh; position: fixed;"></div>
+
+    <div class="main">
+
+        <div class=" field" id="search">
+            <center>
+                <input type="text" class="input is-link is-medium" placeholder="Search." style="width:70vw;">
+            </center>
+            <center>
+                <button class="button is-medium is-dark" id="submit"
+                    style="margin:1em;font-family: 'Quicksand';">Submit</button>
+                <div class="subtitle is-5" id="announce">Why is the page so</div>
+                <button class="button is-medium is-dark" id="dark" onclick="change1()"
+                    style="cursor: pointer;">Bright?</button>
+                <button class="button is-medium is-light" id="light" onclick="change2()"
+                    style="display:none;cursor: pointer;">Dark?</button>
+            </center>
+
+        </div>
+
+        <div id="header" class="header">
+            <div class="title is-3 has-text-left">
+                Playlist Title
+            </div>
+        </div>
+
+        <div id="song" class="block">
+            <% songs.forEach(song=> { %>
+                <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
+                    <div class="message-header ">
+                        <div class="title is-4 is-bold" style="color: white; padding: 3px;">
+                            <%= song.name %>
+                        </div>
+                    </div>
+                    <div id="artist" class="message-body">
+                        <div class="columns">
+                            <div class="subtitle column is-3 has-text-left" style="color: #111111;
+                        margin:
+                        0.5em;font-size: 1.3em;">
+                                <%= song.artist %>
+                            </div>
+                            <div class="column is-5 progress-container" id=<%=`button3_${song._id}` %> style="
+                                margin: 1.5em 1.5em 1.5em 1em;
+                                height: fit-content;
+                                padding: 0;
+
+                                ">
+                                <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                    "height: 0.6rem;
+                                    border-radius:5px;
+                                    width:0%;
+                                    margin:0.5em;
+                                    padding:0;">
+                                </div>
+                            </div>
+
+                            <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
+                            </audio>
+
+
+                            <button class="column button is-2 is-black is-outlined  has-text-left"
+                                onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                                margin:
+                                1em;width:fit-content;">
+                                Play
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                <% }) %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" crossorigin="anonymous"></script>
+
+    <script>
+
+        particlesJS.load('particles-js', 'playlist.json', function () {
+            console.log('playlist.json loaded...');
+        })
+            ;
+
+        function change1() {
+            document.getElementById("submit").classList.remove("is-dark");
+            document.getElementById("darkicon").style.display = null;
+            document.getElementById("announce").style.color = "white";
+            document.getElementById("particles-js").style.top = 0;
+            document.getElementById("submit").classList.add("is-light");
+            document.querySelector(".box").style.display = "none";
+            document.getElementById("particles-js").style.backgroundColor = "black";
+            document.getElementById("header").firstElementChild.style.color = "white";
+            particlesJS.load('particles-js', 'dark.json', function () {
+                console.log('dark.json loaded...');
+            });
+            document.querySelector("#dark").style.display = "none";
+            document.querySelector("#light").style.display = null;
+
+        }
+        function change2() {
+            document.getElementById("darkicon").style.display = "none";
+            document.getElementById("submit").classList.remove("is-light");
+            document.getElementById("announce").style.color = "black";
+            document.getElementById("submit").classList.add("is-dark");
+            document.querySelector(".box").removeAttribute("style");
+            document.getElementById("particles-js").style.backgroundColor = "white";
+            document.getElementById("header").firstElementChild.style.color = "black";
+            particlesJS.load('particles-js', 'playlist.json', function () {
+                console.log('playlist.json loaded...');
+            });
+            document.querySelector("#dark").style.display = null;
+            document.querySelector("#light").style.display = "none";
+
+        }
+
+    </script>
+
+    <script>
+
+        // ScrollReveal().reveal('.message-header', { delay: 50 });
+        ScrollReveal().reveal('.message-header', { delay: 50 });
+        ScrollReveal().reveal('.subtitle', { delay: 200 });
+
+
+        function pick2(song_id) {
+            // document.getElementById(`button4_${song_id}`).style.display = null;
+            function updateProgress(e) {
+                let progress = document.getElementById(`button4_${song_id}`);
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+
+            }
+
+            let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+            audio.addEventListener('timeupdate', updateProgress);
+
+            let value = document.getElementById(`button2_${song_id}`).innerText;
+            if (value === "Pause") {
+
+                audio.pause()
+                document.getElementById(`button2_${song_id}`).innerText = "Play";
+                //play
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
+                document.getElementById(`button2_${song_id}`).classList.add("is-danger");
+
+
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                messageBox.classList.remove("is-primary");
+                messageBox.classList.add("is-danger");
+                let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.backgroundColor = "#FF3860";
+                // progress.style.borderColor = "#FF3860";
+
+            }
+            if (value === "Play") {
+                audio.play()
+                document.getElementById(`button2_${song_id}`).innerText = "Pause";
+
+                document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
+
+
+                document.getElementById(`button2_${song_id}`).classList.add("is-primary");
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                messageBox.classList.remove("is-danger");
+                messageBox.classList.add("is-primary");
+                let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.backgroundColor = "#00D1B2";
+                // progress.style.borderColor = "#00D1B2";
+            }
+
+
+
+        };
+    </script>
+
+</body>
+
+</html>

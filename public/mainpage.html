@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./landing.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Landing Page</title>
+</head>
+
+<body style="font-family: 'Quicksand';">
+    <div id="particles-js">
+    </div>
+    <div class="card-1">
+        <div style="display: block;margin: auto;">
+            <div class="is-centered" style="display: block;margin: 1em 4em;">
+                <a class="icon">
+                    <i class="fab fa-itunes-note" style=" height: 10em; width: 10em;display: block;margin: auto;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" id="Music">
+        <h1 class="title is-1 is-black" style="font-family: 'Quicksand';">
+            Music.
+        </h1>
+    </div>
+
+    <div class="card-3" onclick="hide()">
+        <h1 class="title is-3 is-black" style="font-family: 'Quicksand';">
+            Get started.
+        </h1>
+    </div>
+
+    <div class="card-2" style="display:none">
+        <div style="display: block;margin: auto;">
+            <div class="is-centered" style="display: block;margin: 1em; height: fit-content;">
+                <button class="button is-outlined is-black" id="signup" style="width: 100%;
+                margin: auto;
+                display: block;
+                font-family: 'Quicksand';">
+                    SignUp
+                </button>
+                <br>
+                <button class="button is-outlined is-primary" id="login" style="width: 100%;
+                margin: auto;
+                display: block;
+                font-family: 'Quicksand';">
+                    Login
+                </button>
+                <br>
+                <button class="button is-outlined is-danger" id="now" style="width: 100%;
+                margin: auto;
+                display: block;
+                font-family: 'Quicksand';">Listen Now</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" crossorigin="anonymous"></script>
+
+    <script>
+
+        particlesJS.load('particles-js', 'mainpage.json', function () {
+            console.log('particles.json loaded...');
+        })
+            ;
+    </script>
+    <script>
+        ScrollReveal().reveal('.card-1', { delay: 100 });
+        ScrollReveal().reveal('#Music', { delay: 600 });
+        ScrollReveal().reveal('.card-3', { delay: 1500 });
+
+
+        function hide() {
+
+            document.querySelector(".card-3").style.display = "none";
+            document.querySelector(".card-2").style.display = null;
+            document.querySelector("#Music").style.display = "none";
+            ScrollReveal().reveal('.card-2', { delay: 200 });
+            ScrollReveal().reveal('#signup', { delay: 400 });
+            ScrollReveal().reveal('#login', { delay: 800 });
+            ScrollReveal().reveal('#now', { delay: 1600 });
+
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
