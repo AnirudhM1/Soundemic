@@ -19,7 +19,7 @@
     <div class="box">
         <nav class="nav">
             <center class="nav-center">
-                <a class="icon" href="#">
+                <a class="icon">
                     <i class="fab fa-itunes-note" id="icon"></i>
                 </a>
             </center>
@@ -37,8 +37,8 @@
     <div class="main">
         <br>
         <center>
-            <nav class="breadcrumb has-succeeds-separator" style="padding:3%;">
-                <ul>
+            <nav class="breadcrumb has-succeeds-separator">
+                <ul style="align-items:center;justify-content:center">
                     <li id="link"><a href="/home">Home</a></li>
                     <li id="link"><a href="/profile">Profile</a></li>
                     <li id="link" class="is-active"><a href="/profile/playlist">Playlist</a></li>
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div id="song" class="block">
+        <div id="songs" class="block">
             <% songs.forEach(song=> { %>
                 <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
                     <div class="message-header ">
@@ -134,9 +134,9 @@
             document.getElementById("darkicon").style.display = null;
             document.getElementById("itunes").style.color = "white";
             document.getElementById("announce").style.color = "white";
-            document.getElementById("particles-js").style.top = 0;
             document.getElementById("submit").classList.add("is-light");
             document.querySelector(".box").style.display = "none";
+            document.querySelector(".is-active").style.color = "white";
             document.getElementById("particles-js").style.backgroundColor = "black";
             document.getElementById("header").firstElementChild.style.color = "white";
             particlesJS.load('particles-js', '/dark.json', function () {
@@ -147,9 +147,10 @@
 
         }
         function change2() {
-            document.getElementById("darkicon").style.display = null;
-            document.getElementById("itunes").style.color = "black";
+            document.querySelector(".is-active").style.color = "black";
+            document.getElementById("darkicon").style.display = "none";
             document.getElementById("submit").classList.remove("is-light");
+            document.querySelector(".box").style.display = null;
             document.getElementById("announce").style.color = "black";
             document.getElementById("submit").classList.add("is-dark");
             document.getElementById("particles-js").style.backgroundColor = "white";
