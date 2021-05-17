@@ -5,10 +5,38 @@
     padding-right: 1.5em;
     width: 80%;
 }
-.list{
-    display: flex;
-    flex-direction: column-reverse;
+.main{
+    position: absolute;
+    top: 20%;
+    left: 4%;
+    width: 92%;
+    height: fit-content;
 }
+
+center > nav > ul > li{
+    font-size: 1.5em;
+}
+
+.card-top{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 50%;
+    left:50%;
+    margin:-19.5em 0 0 -1em;
+    border-radius: 4px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+#itunes{
+    height: 6em; width: 6em;display: block;margin: auto;color: white;
+}
+
+#itunes:hover{
+    color: #00d1b2;
+}
+
+
 
 #selectedlist{
     margin: 2em;
@@ -39,32 +67,24 @@
     margin-left:2em;
     margin-right:2em;
 }
-#music{
-    padding-bottom: 0.5em;
-    padding-top:0.2em;
+#icon{
+    color: #00d1b2;
+    padding-top:0;
     margin: auto;
-    width:4em;
-    height: 4em;
+    width:5em;
+    height: 5em;
 }
-@media only screen and (max-width:600px){
-#search{
-    display: block;
-    margin: auto;
-    padding: 0.5em;
-    width: 85%;
-    max-width: 90%;
+#icon:hover{
+    color: black;
 }
-}
-@media only screen and (min-width:600px){
-#search{
-    display: block;
-    margin: auto;
-    padding: 1em;
-    width: 60%;
-    max-width: 70%;
-}}
 
-  .progress {
-    background-color: rgb(39, 39, 39);
-    transition: width 0.1s linear;
-  }
+#search{
+    padding: 0.5em;
+    width: 100%;
+}
+
+
+.progress {
+  background-color: rgb(39, 39, 39);
+  transition: width 0.1s linear;
+}
