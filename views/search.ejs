@@ -18,99 +18,132 @@
     <div class="box">
         <nav class="nav">
             <center class="nav-center">
-                <a class="icon" href="#">
+                <a class="icon">
                     <i class="fab fa-itunes-note" id="icon"></i>
                 </a>
             </center>
         </nav>
     </div>
 
-    <div class="section" style="padding:3%;">
-        <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-            <ul>
-                <li id="link" class="subtitle is-4"><a href="/home">Home</a></li>
-                <li id="link" class="subtitle is-4"><a href="/profile">Profile</a></li>
-                <li id="link" class="subtitle is-4 is-active"><a href="/profile/search" aria-current="page">Search</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <div class="add" style="display: none; position: fixed; top: 35%; left:5% ;width:20vw;margin:-4em 0 0 0; ">
+        <div class="title is-4 has-text-left">
+            To which one?
+            <br>
+            <br>
+            <div class="subtitle">
+                <% playlist.forEach(playlist=> { %>
+                    <button class="button is-outlined is-primary" id="login"
+                        style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;">
+                        <%= playlist.title %>
+                    </button>
+                    <br>
+                    <% }) %>
+                        <br>
+                        <a href="/profile">
+                            <button class="button is-dark is-centered" id="submit">I'm done
+                                now.</button>
+                        </a>
+                        <button class="button is-dark is-centered" id="submit" onclick="back()">Add more</button>
 
-    <br>
-
-
-    <div class=" field" id="search">
-        <center>
-            <input type="text" class="input is-hovered is-medium" placeholder="Search."
-                style="font-family: 'Quicksand';width: 70vw;">
-        </center>
-        <center>
-
-            <button class="button is-medium is-dark" id="submit" style="margin:1em;">Submit</button>
-        </center>
-    </div>
-
-    <div id="header" class="header">
-        <div class="title is-3 has-text-left">
-            Top Results
+            </div>
         </div>
     </div>
 
-    <div id="notification1" style="display:none">
-        has been added to your playlist.
-    </div>
+    <div class="main">
+        <br>
 
-    <div id="song" class="block">
-        <% songs.forEach(song=> { %>
-            <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
-                <div class="message-header ">
-                    <div class="title is-4 is-bold" style="color: white; padding: 3px;">
-                        <%= song.name %>
+        <center>
+            <nav class="breadcrumb has-succeeds-separator">
+                <ul style="align-items:center;justify-content:center">
+                    <li id="link"><a href="/home">Home</a></li>
+                    <li id="link"><a href="/profile">Profile</a></li>
+                    <li id="link" class="is-active"><a href="/profile/search">Search</a>
+                    </li>
+                </ul>
+            </nav>
+        </center>
+        <br>
+
+
+
+
+
+
+        <div class=" field" id="search">
+            <center>
+                <input type="text" class="input is-hovered is-medium" placeholder="Search."
+                    style="font-family: 'Quicksand';width: 70vw;">
+            </center>
+            <center>
+
+                <button class="button is-medium is-dark" id="submit" style="margin:1em;">Submit</button>
+            </center>
+        </div>
+
+        <div id="header" class="header">
+            <div class="title is-3 has-text-left">
+                Top Results
+            </div>
+        </div>
+
+        <div id="notification1" style="display:none">
+            has been added to your playlist.
+        </div>
+
+
+
+        <div id="song" class="block">
+            <% songs.forEach(song=> { %>
+                <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
+                    <div class="message-header ">
+                        <div class="title is-4 is-bold" style="color: white; padding: 3px;">
+                            <%= song.name %>
+                        </div>
                     </div>
-                </div>
-                <div id="artist" class="message-body">
-                    <div class="columns">
-                        <div class="subtitle column is-3 has-text-left" style="color: #111111;
+                    <div id="artist" class="message-body">
+                        <div class="columns">
+                            <div class="subtitle column is-2 has-text-left" style="color: #111111;
                         margin:
                         0.5em;font-size: 1.3em;">
-                            <%= song.artist %>
-                        </div>
-                        <div class="column progress-container" id=<%=`button3_${song._id}` %> style="
-                            margin: 1.5em 1.5em 1.5em 1em;
-                            height: fit-content;
-                            padding: 0;
-
-                            ">
-                            <div id=<%=`button4_${song._id}` %> class="progress" style=
-                                "height: 0.6rem;
-                                border-radius:5px;
-                                width:0%;
-                                margin:0.5em;
-                                padding:0;">
+                                <%= song.artist %>
                             </div>
+                            <div class="column progress-container" id=<%=`button3_${song._id}` %> style="
+                                margin: 1.5em 1.5em 1.5em 1em;
+                                height: fit-content;
+                                padding: 0;
+
+                                ">
+                                <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                    "height: 0.6rem;
+                                    border-radius:5px;
+                                    width:0%;
+                                    margin:0.5em;
+                                    padding:0;">
+                                </div>
+                            </div>
+
+                            <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
+                            </audio>
+
+                            <button class="column is-2 button is-black is-outlined has-text-left"
+                                onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
+                                margin:
+                                0.5em; width:fit-content;height:fit-content;font-family: 'Quicksand';">
+                                Add to playlist
+                            </button>
+
+
+                            <button class="column is-2 button is-black is-outlined  has-text-left"
+                                onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                                margin:
+                                0.5em;width:fit-content;height:fit-content;font-family: 'Quicksand';">
+                                Play
+                            </button>
                         </div>
-
-                        <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
-                        </audio>
-
-                        <button class="column is-2 button is-black is-outlined has-text-centered"
-                            onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
-                            margin:
-                            1em; width:fit-content;height:fit-content;font-family: 'Quicksand';">
-                            Add to playlist
-                        </button>
-
-
-                        <button class="column button is-2 is-black is-outlined  has-text-left"
-                            onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
-                            margin:
-                            1em;width:fit-content;height:fit-content;font-family: 'Quicksand';">
-                            Play
-                        </button>
                     </div>
-                </div>
-            </article>
-            <% }) %>
+                </article>
+                <% }) %>
+        </div>
     </div>
 
 
@@ -169,25 +202,38 @@
 
         };
         function playlist(song_id) {
+            document.querySelector(".main").style.display = "none";
+            document.querySelector(".add").style.display = null;
 
             document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
+            document.getElementById(`button1_${song_id}`).classList.remove("is-outlined");
+
             let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
             document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
 
-            let notif = document.querySelector('#notification1');
-            notif.style.display = null;
-            let popup = document.createElement('span');
-            let songName =
-                document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
-            let notiftext = document.createTextNode(songName);
-            popup.appendChild(notiftext);
-            notif.classList.add('notification', 'has-text-centered', 'is-notif');
-            notif.insertBefore(popup, notif.childNodes[0]);
-            setTimeout(() => {
-                popup.style.display = 'none';
-                notif.style.display = 'none';
+            // let notif = document.querySelector('#notification1');
+            // notif.style.display = null;
+            // let popup = document.createElement('span');
+            // let songName =
+            //     document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
+            // let notiftext = document.createTextNode(songName);
+            // popup.appendChild(notiftext);
+            // notif.classList.add('notification', 'has-text-centered', 'is-notif');
+            // notif.insertBefore(popup, notif.childNodes[0]);
+            // setTimeout(() => {
+            //     popup.style.display = 'none';
+            //     notif.style.display = 'none';
 
-            }, 2000);
+            // }, 4000);
+        }
+
+        function back() {
+            document.querySelector(".main").style.display = null;
+            document.querySelector(".add").style.display = "none";
+
+
+
+
         }
 
     </script>
