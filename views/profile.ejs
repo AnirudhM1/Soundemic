@@ -3,13 +3,103 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="/selectorpage.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Profile</title>
 </head>
 
-<body>
+<body style="font-family: 'Quicksand';">
+    <div class="box">
+        <nav class="nav">
+            <center class="nav-center">
+                <a class="icon">
+                    <i class="fab fa-itunes-note" id="icon"></i>
+                </a>
+            </center>
+        </nav>
+    </div>
+    <center>
+        <nav class="breadcrumb has-succeeds-separator">
+            <ul style="align-items:center;justify-content:center">
+                <li id="link"><a href="/home">Home</a></li>
+                <li id="link" class="is-active"><a href="/profile">Profile</a></li>
 
+            </ul>
+        </nav>
+        <br>
+    </center>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column has-text-left">
+                <div class="yourPlaylist">
+                    <div class="title is-4 has-text-centered">
+                        <% if (playlist.length===0) { %>
+                            No playlists to display.
+                            <% } else {%>
+                                Choose your playlist
+                                <% } %>
+
+                                    <br>
+
+                                    <% playlist.forEach(playlist=> { %>
+                                        <div class="subtitle is-5 has-text-centered"
+                                            style="margin:1em;cursor: pointer;">
+                                            <%= playlist._id %>. <%= playlist.title %>
+                                        </div>
+                                        <% }) %>
+                    </div>
+
+                </div>
+            </div>
+            <div class="column is-4">
+                <div class="otherOptions">
+                    <a href="/profile/search" style="text-decoration: none; color: black;">
+                        <button class="button is-outlined is-medium is-primary" id="login" style="width: fit-content;
+                margin: auto;
+                display: block;
+                font-family: 'Quicksand';">
+                            Search for songs
+
+                        </button>
+                    </a>
+                    <br>
+                    <button class="button is-outlined is-medium is-danger" id="now" style="width: fit-content;
+                margin: auto;
+                display: block;
+                font-family: 'Quicksand';" onclick="make()">
+                        New playlist
+                    </button>
+                    <input type="text" class="input" style="display: none; margin: 1em;"
+                        placeholder="Name your playlist.">
+                    <center>
+                        <a href="/profile/search">
+                            <button class="button is-danger is-outlined is-centered" id="submit"
+                                style="display:none;margin: 1em;">Select Songs</button>
+                        </a>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        function make() {
+            document.querySelector(".input").style.display = null;
+            document.querySelector("#now").style.display = "none";
+            document.querySelector("#submit").style.display = null;
+        }
+        ScrollReveal().reveal('.yourPlaylist', { delay: 100 });
+        ScrollReveal().reveal('#login', { delay: 400 });
+        ScrollReveal().reveal('#now', { delay: 800 });
+    </script>
 </body>
 
 </html>

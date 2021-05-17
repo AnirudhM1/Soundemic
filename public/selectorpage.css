@@ -3,18 +3,35 @@
     margin-right: auto;
     padding-left: 1.5em;
     padding-right: 1.5em;
-    width: 80%;
+    width: 87%;
+}
+
+#songs{
+    margin-left:auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 82%;
+
 }
 .main{
     position: absolute;
     top: 20%;
     left: 4%;
-    width: 92%;
+    width: 95%;
     height: fit-content;
 }
 
 center > nav > ul > li{
     font-size: 1.5em;
+}
+
+.otherOptions{
+    display: block;
+    margin: auto;
+    padding: 1em;
+    width: 80%;
+    max-width: 85%;
 }
 
 .card-top{
@@ -66,6 +83,13 @@ center > nav > ul > li{
     width: 80%;
     margin-left:2em;
     margin-right:2em;
+}
+.yourPlaylist{
+    display: block;
+    max-width: 85%;
+    width: 80%;
+    margin: auto;
+    padding: 1em;
 }
 #icon{
     color: #00d1b2;
