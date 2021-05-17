@@ -10,6 +10,7 @@ const User = require('./models/User');
 const testRoutes = require('./routes/Test'); // These are routes used for testing
 const userRoutes = require('./routes/User');
 const playlistRoutes = require('./routes/Playlist');
+const searchRoutes = require('./routes/Search');
 
 
 const app = express();
@@ -30,12 +31,12 @@ mongoose.connect(process.env.MONGODB_URI, {
         useFindAndModify: false
     })
     .then(() => {
-        console.log('Connection Open!');
-        const conn = mongoose.connection;
+        console.log('Mongoose Connection Open!');
+        /* const conn = mongoose.connection;
 
         gfs = Grid(conn.db, mongoose.mongo);
 
-        console.log('Gridfs-mongo connection Open');
+        console.log('Gridfs-mongo connection Open'); */
     })
     .catch((e) => {
         console.log('ERROR!');
@@ -88,11 +89,12 @@ app.use(session(sessionConfig));
 
 
 app.get('/', (req, res) => {
-    res.render('index', {songs});
+    res.sendFile(path.join(__dirname, './public/mainpage.html'));
 });
 
 app.use('/users', userRoutes);
 app.use('/users', playlistRoutes);
+app.use('/search', searchRoutes);
 app.use('/test', testRoutes);
 
 
@@ -110,7 +112,7 @@ app.get('/secret', (req, res) => {
 
 // Route to stream music
 
-app.get('/audio/:filename', (req, res) => {
+/* app.get('/audio/:filename', (req, res) => {
 
    const readstream = gfs.createReadStream({filename: req.params.filename})
     
@@ -119,7 +121,7 @@ app.get('/audio/:filename', (req, res) => {
    })
    res.type('audio/mpeg');
    readstream.pipe(res)
-});
+}); */
 
 
 

@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 
 router.get('/register', (req, res) => { //To register user
-    res.sendFile(path.join(__dirname, '../views/signup.html'));
+    res.sendFile(path.join(__dirname, '../public/signup.html'));
 });
 
 router.post('/', async (req, res) => {
@@ -41,6 +41,12 @@ router.post('/login', async (req, res) => { // To login user
 router.get('/logout', (req, res) => { // This is set to get for debugging purposes and needs to be changed to post
     req.session.destroy();
     res.redirect('/users/login')
+})
+
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const user = await User.findById(id).populate('Playlist') || false;
+    res.render('profile', user);
 })
 
 router.delete('/:id', async (req, res) => {
