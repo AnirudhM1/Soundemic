@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/selectorpage.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-    <!-- <link rel="stylesheet" href="/landing.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
 
@@ -17,11 +18,11 @@
 <body style="font-family: 'Quicksand';">
     <div class="box">
         <nav class="nav">
-            <div class="nav-center">
+            <center class="nav-center">
                 <a class="icon" href="#">
                     <i class="fab fa-itunes-note" id="icon"></i>
                 </a>
-            </div>
+            </center>
         </nav>
     </div>
 
@@ -34,6 +35,18 @@
     <div id="particles-js" style="width: 100%;height: 100vh; position: fixed;"></div>
 
     <div class="main">
+        <br>
+        <center>
+            <nav class="breadcrumb has-succeeds-separator" style="padding:3%;">
+                <ul>
+                    <li id="link"><a href="/home">Home</a></li>
+                    <li id="link"><a href="/profile">Profile</a></li>
+                    <li id="link" class="is-active"><a href="/profile/playlist">Playlist</a></li>
+                </ul>
+            </nav>
+        </center>
+
+        <br>
 
         <div class=" field" id="search">
             <center>
@@ -52,7 +65,7 @@
         </div>
 
         <div id="header" class="header">
-            <div class="title is-3 has-text-left">
+            <div class="subtitle is-3 has-text-left">
                 Playlist Title
             </div>
         </div>
@@ -61,7 +74,7 @@
             <% songs.forEach(song=> { %>
                 <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
                     <div class="message-header ">
-                        <div class="title is-4 is-bold" style="color: white; padding: 3px;">
+                        <div class="title is-5 is-bold" style="color: white; padding: 3px;">
                             <%= song.name %>
                         </div>
                     </div>
@@ -69,7 +82,7 @@
                         <div class="columns">
                             <div class="subtitle column is-3 has-text-left" style="color: #111111;
                         margin:
-                        0.5em;font-size: 1.3em;">
+                        0.5em;font-size: 1.2em;">
                                 <%= song.artist %>
                             </div>
                             <div class="column is-5 progress-container" id=<%=`button3_${song._id}` %> style="
@@ -91,10 +104,10 @@
                             </audio>
 
 
-                            <button class="column button is-2 is-black is-outlined  has-text-left"
-                                onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                            <button class="column is-2 button is-black is-outlined" onclick="pick2('<%= song._id %>')"
+                                id=<%=`button2_${song._id}` %> style="
                                 margin:
-                                1em;width:fit-content;">
+                                1em;width:fit-content; height:fit-content;">
                                 Play
                             </button>
                         </div>
@@ -108,21 +121,25 @@
 
     <script>
 
-        particlesJS.load('particles-js', 'playlist.json', function () {
-            console.log('playlist.json loaded...');
+        setTimeout(() => {
+            particlesJS.load('particles-js', '/playlist.json', function () {
+                console.log('playlist.json loaded...');
+
+            }, 2000);
         })
             ;
 
         function change1() {
             document.getElementById("submit").classList.remove("is-dark");
             document.getElementById("darkicon").style.display = null;
+            document.getElementById("itunes").style.color = "white";
             document.getElementById("announce").style.color = "white";
             document.getElementById("particles-js").style.top = 0;
             document.getElementById("submit").classList.add("is-light");
             document.querySelector(".box").style.display = "none";
             document.getElementById("particles-js").style.backgroundColor = "black";
             document.getElementById("header").firstElementChild.style.color = "white";
-            particlesJS.load('particles-js', 'dark.json', function () {
+            particlesJS.load('particles-js', '/dark.json', function () {
                 console.log('dark.json loaded...');
             });
             document.querySelector("#dark").style.display = "none";
@@ -130,14 +147,14 @@
 
         }
         function change2() {
-            document.getElementById("darkicon").style.display = "none";
+            document.getElementById("darkicon").style.display = null;
+            document.getElementById("itunes").style.color = "black";
             document.getElementById("submit").classList.remove("is-light");
             document.getElementById("announce").style.color = "black";
             document.getElementById("submit").classList.add("is-dark");
-            document.querySelector(".box").removeAttribute("style");
             document.getElementById("particles-js").style.backgroundColor = "white";
             document.getElementById("header").firstElementChild.style.color = "black";
-            particlesJS.load('particles-js', 'playlist.json', function () {
+            particlesJS.load('particles-js', '/playlist.json', function () {
                 console.log('playlist.json loaded...');
             });
             document.querySelector("#dark").style.display = null;
