@@ -8,10 +8,15 @@
 .main{
     position: absolute;
     top: 20%;
-    left: 4.5%;
+    left: 4%;
     width: 92%;
     height: fit-content;
 }
+
+center > nav > ul > li{
+    font-size: 1.5em;
+}
+
 .card-top{
     position: absolute;
     width: 130px;
@@ -63,11 +68,14 @@
     margin-right:2em;
 }
 #icon{
-    padding-bottom: 1em;
+    color: #00d1b2;
     padding-top:0;
     margin: auto;
     width:5em;
     height: 5em;
+}
+#icon:hover{
+    color: black;
 }
 
 #search{
