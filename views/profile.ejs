@@ -78,6 +78,7 @@
                     <input type="text" class="input" style="display: none; margin: 1em;"
                         placeholder="Name your playlist.">
                     <center>
+                        <small class="has-text-danger" style="display: none;">Please add a valid name</small>
                         <a href="/profile/search">
                             <button class="button is-danger is-outlined is-centered" id="submit"
                                 style="display:none;margin: 1em;">Select Songs</button>
@@ -94,8 +95,14 @@
         function make() {
             document.querySelector(".input").style.display = null;
             document.querySelector("#now").style.display = "none";
-            document.querySelector("#submit").style.display = null;
+            document.getElementById("submit").style.display = null;
+
         }
+        let input = document.querySelector(".input");
+        // if (input.value.length == 0) {
+        //     document.getElementById("submit").style.display = "none";
+        // }
+
         ScrollReveal().reveal('.yourPlaylist', { delay: 100 });
         ScrollReveal().reveal('#login', { delay: 400 });
         ScrollReveal().reveal('#now', { delay: 800 });
