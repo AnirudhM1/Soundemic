@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/selectorpage.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
@@ -25,30 +24,34 @@
         </nav>
     </div>
 
-    <div class="add" style="display: none; position: fixed; top: 35%; left:5% ;width:20vw;margin:-4em 0 0 0; ">
-        <div class="title is-4 has-text-left">
-            To which one?
-            <br>
-            <br>
-            <div class="subtitle">
-                <% playlist.forEach(playlist=> { %>
-                    <button class="button is-outlined is-primary" id="login"
-                        style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;">
-                        <%= playlist.title %>
-                    </button>
-                    <br>
-                    <% }) %>
+    <div class="container">
+        <div class="add" style="display: none; position: fixed; top: 35%; left:5% ;width:20vw;margin:-4em 0 0 0; ">
+            <div class="title is-5 has-text-left">
+                To which one?
+                <br>
+                <br>
+                <div class="subtitle">
+                    <% playlist.forEach(playlist=> { %>
+                        <button class="button is-outlined is-primary" id="login"
+                            style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;">
+                            <%= playlist.title %>
+                        </button>
                         <br>
-                        <a href="/profile">
-                            <button class="button is-dark is-centered" id="submit">I'm done
-                                now.</button>
-                        </a>
-                        <button class="button is-dark is-centered" id="submit" onclick="back()">Add more</button>
+                        <% }) %>
+                            <br>
+                            <a href="/profile">
+                                <button class="button is-link is-outlined is-centered" id="submit"
+                                    style="margin-bottom: 1em;">I'm
+                                    done
+                                    adding.</button>
+                            </a>
+                            <button class="button is-link is-centered is-outlined" id="submit" onclick="back()">Add more
+                                songs.</button>
 
+                </div>
             </div>
         </div>
     </div>
-
     <div class="main">
         <br>
 
@@ -64,11 +67,6 @@
         </center>
         <br>
 
-
-
-
-
-
         <div class=" field" id="search">
             <center>
                 <input type="text" class="input is-hovered is-medium" placeholder="Search."
@@ -76,7 +74,8 @@
             </center>
             <center>
 
-                <button class="button is-medium is-dark" id="submit" style="margin:1em;">Submit</button>
+                <button class="button is-medium is-dark is-outlined" id="submit"
+                    style="font-family: 'Quicksand';margin: 1em;">Submit</button>
             </center>
         </div>
 
@@ -104,12 +103,16 @@
                         <div class="columns">
                             <div class="subtitle column is-2 has-text-left" style="color: #111111;
                         margin:
-                        0.5em;font-size: 1.3em;">
+                        0.5em 0.1em;font-size: 1.3em;">
                                 <%= song.artist %>
                             </div>
                             <div class="column progress-container" id=<%=`button3_${song._id}` %> style="
-                                margin: 1.5em 1.5em 1.5em 1em;
+                                margin: 1.8em 1em;
                                 height: fit-content;
+                                border-width:0.4px;
+                                border-color:#111111;
+                                border-style:solid;
+                                border-radius:5px;
                                 padding: 0;
 
                                 ">
@@ -117,7 +120,6 @@
                                     "height: 0.6rem;
                                     border-radius:5px;
                                     width:0%;
-                                    margin:0.5em;
                                     padding:0;">
                                 </div>
                             </div>
@@ -128,15 +130,15 @@
                             <button class="column is-2 button is-black is-outlined has-text-left"
                                 onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
                                 margin:
-                                0.5em; width:fit-content;height:fit-content;font-family: 'Quicksand';">
+                                1em; width:fit-content;height:fit-content;font-family: 'Quicksand';padding:6px 13px">
                                 Add to playlist
                             </button>
 
 
-                            <button class="column is-2 button is-black is-outlined  has-text-left"
-                                onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                            <button class="column is-2 button is-black is-outlined" onclick="pick2('<%= song._id %>')"
+                                id=<%=`button2_${song._id}` %> style="
                                 margin:
-                                0.5em;width:fit-content;height:fit-content;font-family: 'Quicksand';">
+                                1em;width:fit-content; height:fit-content;padding:6px 13px;font-family: 'Quicksand';">
                                 Play
                             </button>
                         </div>
@@ -150,7 +152,6 @@
 
     <script>
         function pick2(song_id) {
-            // document.getElementById(`button4_${song_id}`).style.display = null;
             function updateProgress(e) {
                 let progress = document.getElementById(`button4_${song_id}`);
                 const { duration, currentTime } = e.srcElement;
@@ -162,6 +163,17 @@
             let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
             audio.addEventListener('timeupdate', updateProgress);
 
+            function setProgress(e) {
+                let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+
+                audio.currentTime = (clickX / width) * duration;
+            }
+
+            document.getElementById(`button3_${song_id}`).addEventListener('click', setProgress);
+
             let value = document.getElementById(`button2_${song_id}`).innerText;
             if (value === "Pause") {
 
@@ -171,6 +183,8 @@
                 document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
                 document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
                 document.getElementById(`button2_${song_id}`).classList.add("is-danger");
+                document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
+
 
 
                 let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
@@ -178,7 +192,6 @@
                 messageBox.classList.add("is-danger");
                 let progress = document.getElementById(`button4_${song_id}`);
                 progress.style.backgroundColor = "#FF3860";
-                // progress.style.borderColor = "#FF3860";
 
             }
             if (value === "Play") {
@@ -187,6 +200,8 @@
 
                 document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
                 document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
+                document.getElementById(`button3_${song_id}`).style.borderColor = "#00D2B1";
+
 
 
                 document.getElementById(`button2_${song_id}`).classList.add("is-primary");
@@ -195,7 +210,6 @@
                 messageBox.classList.add("is-primary");
                 let progress = document.getElementById(`button4_${song_id}`);
                 progress.style.backgroundColor = "#00D1B2";
-                // progress.style.borderColor = "#00D1B2";
             }
 
 
@@ -207,6 +221,8 @@
 
             document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
             document.getElementById(`button1_${song_id}`).classList.remove("is-outlined");
+            document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
+
 
             let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
             document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
