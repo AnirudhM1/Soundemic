@@ -6,11 +6,14 @@ const songSchema = new Schema({
         type: String,
         required: true
     },
-    author: {
+    artist: {
         type: String,
         required: true
     },
-    length: Number
+    url: {
+        type: String,
+        required: true
+    }
 });
 
 const Song = mongoose.model('Song', songSchema);
