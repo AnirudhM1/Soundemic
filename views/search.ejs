@@ -31,7 +31,8 @@
                 <br>
                 <br>
                 <div class="subtitle">
-                    <% playlist.forEach(playlist=> { %>
+                    <% var playlists = []; %> 
+                    <% playlists.forEach(playlist=> { %>
                         <button class="button is-outlined is-primary" id="login"
                             style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;">
                             <%= playlist.title %>
@@ -39,7 +40,7 @@
                         <br>
                         <% }) %>
                             <br>
-                            <a href="/profile">
+                            <a href="/users">
                                 <button class="button is-link is-outlined is-centered" id="submit"
                                     style="margin-bottom: 1em;">I'm
                                     done
@@ -58,9 +59,9 @@
         <center>
             <nav class="breadcrumb has-succeeds-separator">
                 <ul style="align-items:center;justify-content:center">
-                    <li id="link"><a href="/home">Home</a></li>
-                    <li id="link"><a href="/profile">Profile</a></li>
-                    <li id="link" class="is-active"><a href="/profile/search">Search</a>
+                    <li id="link"><a href="/">Home</a></li>
+                    <li id="link"><a href="/users">Profile</a></li>
+                    <li id="link" class="is-active"><a href="/search">Search</a>
                     </li>
                 </ul>
             </nav>
@@ -89,63 +90,33 @@
             has been added to your playlist.
         </div>
 
+        <! Display songs >
 
-
-        <div id="song" class="block">
-            <% songs.forEach(song=> { %>
-                <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
-                    <div class="message-header ">
-                        <div class="title is-4 is-bold" style="color: white; padding: 3px;">
-                            <%= song.name %>
-                        </div>
+        <% console.log(songs) %> 
+        
+        <div class="tile is-ancestor">
+            <! Column 1>
+            <div class="tile is-vertical">
+                <% for(let i=0;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song = songs[i] %> 
+                        <%- include('partials/songCard', {song}) %> 
                     </div>
-                    <div id="artist" class="message-body">
-                        <div class="columns">
-                            <div class="subtitle column is-2 has-text-left" style="color: #111111;
-                        margin:
-                        0.5em 0.1em;font-size: 1.3em;">
-                                <%= song.artist %>
-                            </div>
-                            <div class="column progress-container" id=<%=`button3_${song._id}` %> style="
-                                margin: 1.8em 1em;
-                                height: fit-content;
-                                border-width:0.4px;
-                                border-color:#111111;
-                                border-style:solid;
-                                border-radius:5px;
-                                padding: 0;
-
-                                ">
-                                <div id=<%=`button4_${song._id}` %> class="progress" style=
-                                    "height: 0.6rem;
-                                    border-radius:5px;
-                                    width:0%;
-                                    padding:0;">
-                                </div>
-                            </div>
-
-                            <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
-                            </audio>
-
-                            <button class="column is-2 button is-black is-outlined has-text-left"
-                                onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
-                                margin:
-                                1em; width:fit-content;height:fit-content;font-family: 'Quicksand';padding:6px 13px">
-                                Add to playlist
-                            </button>
-
-
-                            <button class="column is-2 button is-black is-outlined" onclick="pick2('<%= song._id %>')"
-                                id=<%=`button2_${song._id}` %> style="
-                                margin:
-                                1em;width:fit-content; height:fit-content;padding:6px 13px;font-family: 'Quicksand';">
-                                Play
-                            </button>
-                        </div>
+                <% } %>
+            </div>
+            <! Column 2>
+            <div class="tile is-vertical">
+                <% for(let i=1;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song = songs[i] %> 
+                        <%- include('partials/songCard', {song}) %> 
                     </div>
-                </article>
-                <% }) %>
+                <% } %>
+            </div>
         </div>
+        
+
+
     </div>
 
 
