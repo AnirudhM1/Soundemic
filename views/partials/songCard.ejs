@@ -1,23 +1,35 @@
 <% const {_id, name, artist, img_url} = song %> 
-
-<div class="columns">
-    <div class="column">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<section class="section">
+    <div class="container">  
         <div class="columns">
-            <div class="column is-one-quarter has-background-danger">
-                <figure class="image is-64x64">
-                    <image src="<%= img_url %>"></image>
-                </figure>
-            </div>
-            <div class="column">
-                <section class="section">
-                    <h1 class="title"><%= name %> </h1>
-                    <h2 class="subtitle"><%= artist %> </h2>
-                </section>
+            <div class="column is-5 is-offset-1" id="source">               
+                    <div class="card px-3">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <image src="<%= img_url %>"></image>
+                            </figure>
+                        </div>
+                    
+                        <div class="card-content">
+                            <div class="content">
+                                <p class="title has-text-centered is-size-3-dekstop is-size-5-tablet"><%= name %> </p>
+                                <p class="subtitle has-text-centered is-size-6-desktop"><%= _id %> </p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="button"></button>
+                        </div>    
+                    </div>               
             </div>
         </div>
-        
-    </div>
-    <div class="column">
-        CONTROLS
-    </div>
-</div>
+    </div>    
+</section>
+<style>
+    #source{
+        width:350px;
+
+    }
+    
+
+</style>
