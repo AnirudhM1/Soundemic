@@ -18,8 +18,8 @@ const userSchema = new Schema({
         required: true
     },
     email: String,
-    playlists: [{type: Schema.Types.ObjectId, ref: 'Playlist', required: true}],
-    Recents: [{type: Schema.Types.ObjectId, ref: 'Song', required: true}]
+    playlists: [{type: Schema.Types.ObjectId, ref: 'Playlist', required: true }],
+    recents: [{type: Schema.Types.ObjectId, ref: 'Song', required: true}]
 });
 
 userSchema.statics.findAndValidate = async function(username, password) {
