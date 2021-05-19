@@ -1,82 +1,228 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
 
-#particles-js{
-    background:#fff;
-    height:100vh;
-    width: 100%;
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
   }
-
-
-#music{
-    padding: 1em;
-    height: 10px;
+  to{
+    transform: rotate(359deg);
+  }
 }
-.card-3{
-  position: absolute;
-  width: fit-content;
-  height: fit-content;
-  top: 50%;
-  left: 50%;
-  margin: 10em 0 0 -6.5em;
-  padding: 20px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  z-index: 100;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(231, 227, 227, 0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  cursor: pointer;
 
+@keyframes spin3D {
+  from {
+    transform: rotate3d(.5,.5,.5, 360deg);
+  }
+  to{
+    transform: rotate3d(0deg);
+  }
+}
+
+@keyframes configure-clockwise {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes configure-xclockwise {
+  0% {
+    transform: rotate(45deg);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-135deg);
+  }
+  75% {
+    transform: rotate(-225deg);
+  }
+  100% {
+    transform: rotate(-315deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: .5;
+    transform: scale(.75);
+  }
+}
+
+/* #signup{
+  background-color: transparent;
+  color: #747474;
+  border: 1px solid #0D6EFD;
+
+}
+
+#signup:hover{
+  background-color: #0D6EFD;
+  color: white;
+
+} */
+
+#now{
+  background-color: transparent;
+  color: #E35D6A;
+  border: 1px solid #E35D6A;
+}
+
+#now:hover{
+  background-color: #E35D6A;
+  color: white;
+}
+#login{
+  background-color: transparent;
+  color: #348d72;
+  border: 1px solid #348d72;
+}
+
+#login:hover{
+  background-color: #348d72;
+  color: white;
+}
+
+#btn-group{
+  transition: 1s linear;
+}
+.spinner-box {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.blue-orbit {
+	width: 300px;
+	height: 300px;
+  border: 1px solid #000f3f;
+  animation: spin3D 3s linear .2s infinite;
+}
+
+.green-orbit {
+	width: 250px;
+	height: 250px;
+  border: 1px solid #00240f;
+  animation: spin3D 2s linear 0s infinite;
+}
+
+.red-orbit {
+	width: 180px;
+	height: 180px;
+  border: 1px solid #a10000;
+  animation: spin3D 4s linear 0s infinite;
+}
+
+.white-orbit {
+	width: 100px;
+	height: 100px;
+  border: 2px solid #000000;
+  animation: spin3D 10s linear 0s infinite;
+}
+
+.leo {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	border-radius: 50%;
+}
+
+
+.w1 {
+  transform: rotate3D(1, 1, 1, 90deg);
+}
+
+.w2 {
+  transform: rotate3D(1, 2, .5, 90deg);
+}
+
+.w3 {
+  transform: rotate3D(.5, 1, 2, 90deg);
+}
+
+
+#Music{
+    transition: 2s linear ;
+}
+
+#icon{
+  color:black;
 }
 
 .card-1  {
-    position: absolute;
-    width: 200px;
-    height: 230px;
-    top: 50%;
-    left: 50%;
-    margin:-20em 0 0 -6.5em;
     padding: 20px;
     border-radius: 4px;
     box-sizing: border-box;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(231, 227, 227, 0.24);
+    box-shadow: 0 1px 3px rgba(27, 27, 27, 0.12), 0 1px 2px rgba(31, 31, 31, 0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   }
   
   .card-1:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
+  
+
+#itunes:hover{
+  color:#4DD4AC;
+
+}
+
+
+
+  .card-2{
+    bottom: 10%;
+    padding: 5px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    z-index: 80;
+    transition: 0.5s linear;
+  }
+
+  .card-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    border-radius: 4px;
+    box-sizing: border-box;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(231, 227, 227, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+  
+  }
+
+  #animation{
+    transition: 2s linear;
+  }
+
   .card-3:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
 
-
-  #Music{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -3em 0 0 -4em;
-
-  }
-
-  .card-2{
-    position: absolute;
-    width: 228px;
-    height: 228px;
-    top: 50%;
-    left:50%;
-    margin: 3em 0 0 -7em;
-    padding: 15px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    z-index: 80;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(231, 227, 227, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  }
-
- 
-
-  .card-2:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  #icon{
+    transition: 2s linear;
   }
