@@ -41,7 +41,7 @@
             <div class="column has-text-left">
                 <div class="yourPlaylist">
                     <div class="title is-4 has-text-centered">
-                        <% if (playlists.length===0) { %>
+                        <% if (playlist.length===0) { %>
                             No playlists to display.
                             <% } else {%>
                                 Choose your playlist
@@ -49,7 +49,7 @@
 
                                     <br>
 
-                                    <% playlists.forEach(playlist => { %>
+                                    <% playlist.forEach(playlist=> { %>
                                         <div class="subtitle is-5 has-text-centered"
                                             style="margin:1em;cursor: pointer;">
                                             <%= playlist.title %>
@@ -98,26 +98,11 @@
             document.getElementById("submit").style.display = null;
         }
         let input = document.querySelector(".input");
-        // if (input.value.length == 0) {
-        //     document.getElementById("submit").style.display = "none";
-        // }
-        async function selectSongs() {
-            let user_id = "<%=user_id%>";
-            const title = input.value || "unnamed";
-            try {
-                url = `/users/${user_id}/playlists`;
-                console.log(`URL=${url}`);
-                const response = await axios.post(url, {
-                    title
-                });
-            } catch(e) {
-                console.error(e);
-            }
-        }
 
-        ScrollReveal().reveal('.yourPlaylist', { delay: 100 });
-        ScrollReveal().reveal('#login', { delay: 400 });
-        ScrollReveal().reveal('#now', { delay: 800 });
+        ScrollReveal().reveal('#link', { delay: 200 });
+        ScrollReveal().reveal('.yourPlaylist', { delay: 600 });
+        ScrollReveal().reveal('#login', { delay: 1000 });
+        ScrollReveal().reveal('#now', { delay: 1600 });
     </script>
 </body>
 
