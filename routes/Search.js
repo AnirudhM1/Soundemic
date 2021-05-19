@@ -1,8 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const Song = require('../models/Song');
 
 router.get('/', (req, res) => {
-    res.render('Search', { songs });
+    res.render('Search', { songs: [] });
+})
+
+router.post('/', async (req, res) => {
+    try {
+        const song = await Song.findOne({name: req.body.search});
+        if(song) {
+            const artist = song.artist;
+            const SONGS_BY_ARTISTS = await Song.find({artist: artist});
+            res.render('Search', { songs: [song].concat(SONGS_BY_ARTISTS) });
+        }
+        else {
+            const SIMILAR_SONGS = await Song.findSimilarSongs(req.body.search);
+            res.render('Search', { songs: SIMILAR_SONGS })
+        }
+    } catch(e) {
+        console.error(e);
+    }
+})
+
+router.get('/all', async (req, res) => {
+    const allSongs = await Song.find({});
+    res.send(allSongs);
 })
 
 // For testing

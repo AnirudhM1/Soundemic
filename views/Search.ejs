@@ -9,10 +9,14 @@
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/autocomplete.js"></script>
     <title>Playlist</title>
 </head>
 
 <body style="font-family: 'Quicksand';">
+
+    
 
     <div class="box">
         <nav class="nav">
@@ -68,17 +72,17 @@
         </center>
         <br>
 
-        <div class=" field" id="search">
+        <form action="/search" method="POST" autocomplete="off" class="field">
             <center>
-                <input type="text" class="input is-hovered is-medium" placeholder="Search."
+                <div class="autocomplete">
+                    <input type="text" id="search" name="search" class="input is-hovered is-medium" placeholder="Search."
                     style="font-family: 'Quicksand';width: 70vw;">
-            </center>
-            <center>
-
+                </div>
                 <button class="button is-medium is-dark is-outlined" id="submit"
                     style="font-family: 'Quicksand';margin: 1em;">Submit</button>
             </center>
-        </div>
+        </form>
+
 
         <div id="header" class="header">
             <div class="title is-3 has-text-left">
@@ -92,7 +96,6 @@
 
         <! Display songs >
 
-        <% console.log(songs) %> 
         
         <div class="tile is-ancestor">
             <! Column 1>
@@ -122,6 +125,7 @@
 
 
     <script>
+
         function pick2(song_id) {
             function updateProgress(e) {
                 let progress = document.getElementById(`button4_${song_id}`);
