@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Playlist = require('../models/Playlist');
+const Song = require('../models/Song');
 const User = require('../models/User');
 
 // Routes to /users
@@ -9,7 +10,7 @@ router.get('/:id/playlists', async (req, res) => {
     try {
         const user = await User.findById(req.params.id).populate('playlists');
         if(user.playlists) {
-            res.send(user);
+            res.send(user.playlists);
         }
         else {
             res.send([]);
@@ -22,23 +23,47 @@ router.get('/:id/playlists', async (req, res) => {
 router.post('/:id/playlists', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        console.log(req.body);
         const title = req.body.title || 'unnamed';
-        console.log(title);
         const playlist = new Playlist({ title });
         user.playlists.push(playlist);
-        playlist.save();
-        user.save();
-        res.redirect('/search');
+        await playlist.save();
+        await user.save();
+        res.send('Playlist created!!');
     } catch(e) {
-        console.log(e);
+        console.error(e);
     }
 })
 
 router.get('/:id/playlists/:playlistId', async (req, res) => {
     try {
-        const playlist = await Playlist.findById(req.params.playlistId);
-        res.send(playlist);
+        if(!req.session.user_id || req.session.user_id !== req.params.id) {
+            res.redirect('/users/login');
+        }
+        else {
+            const playlist = await Playlist.findById(req.params.playlistId).populate('songs');
+            res.render('playlist', { playlist })
+        }    
+    } catch(e) {
+        console.error(e);
+    }
+})
+
+router.post('/:id/playlists/:playlistId', async (req, res) => {
+    try {
+        if(!req.session.user_id || req.session.user_id !== req.params.id) {
+            res.redirect('/users/login');
+        }
+        else {
+            const playlist = await Playlist.findById(req.params.playlistId);
+            console.log(`Found playlist = ${playlist}`)
+            console.log(`Song_id=${req.body.song_id}`)
+            const song = await Song.findById(req.body.song_id);
+            console.log('Found song: ')
+            console.log(song)
+            playlist.songs.push(song);
+            await playlist.save();
+            res.send('Song added!!');
+        }    
     } catch(e) {
         console.error(e);
     }

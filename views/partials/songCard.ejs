@@ -1,54 +1,175 @@
-<% const {_id, title, artist, img_url} = song %> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<section class="section">
-    <div class="container">  
-        <div class="columns">
-            <div class="column is-5 is-offset-1" id="source">               
-                    <div class="card px-3">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
+<% const {_id, title, artist, img_url}=song %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6" id="source" style="display: block;margin: auto;">
+                    <div class="card p-4">
+                        <div class="card-image py-5 px-4 mx-1">
+                            <figure class="image is-5by4">
                                 <image src="<%= img_url %>"></image>
                             </figure>
                         </div>
-                    
+
                         <div class="card-content">
                             <div class="content">
-                                <p class="title has-text-centered is-size-3-dekstop is-size-5-tablet"><%= title %> </p>
-                                <p class="subtitle has-text-centered is-size-6-desktop"><%= artist %> </p>
+                                <p class="title has-text-centered is-size-3-dekstop is-size-5-tablet">
+                                    <%= title %>
+                                </p>
+                                <p class="subtitle has-text-centered is-size-6-desktop">
+                                    <%= artist %>
+                                </p>
                             </div>
                         </div>
-                        <div class="container is-centered" id="pain">
-                            <div class="card-footer">
-                                <div class="field is-grouped">
-                                    <p class="control">
-                                        <button class="button is-focused">
-                                            <i class="fa fa-fast-backward" aria-hidden="true"></i>
-                                        </button>
-                                    </p>  
-                                    <p class="control">
-                                        <button class="button is-focused">
-                                            <i class="fa fa-play" aria-hidden="true"></i>
-                                        </button>
-                                    </p>
-                                    <p class="control">
-                                        <button class="button is-focused">
-                                            <i class="fa fa-fast-forward" aria-hidden="true"></i>
-                                        </button>
-                                    </p>      
-                                </div>    
+                        <div class="card-footer py-1" style="display:block;margin:auto;">
+
+
+                            <div class="progress-container" id=<%=`button3_${song._id}` %> style="
+                                margin:1em 1em 0.5em 1em;
+                                height: fit-content;
+                                border-width:0.4px;
+                                border-color:#111111;
+                                border-style:solid;
+                                border-radius:5px;
+                                padding: 0;
+                                ">
+                                <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                    "height: 0.7rem;
+                                    border-radius:5px;
+                                    width:0%;
+                                    padding:0;">
+                                </div>
                             </div>
-                        </div>        
-                    </div>               
+                            <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
+                            </audio>
+                            <center>
+                                <button class="button is-black is-medium is-outlined" onclick="pick2('<%= song._id %>')"
+                                    id=<%=`button2_${song._id}` %>
+                                    style="
+                                    width:fit-content; height:fit-content;font-family:
+                                    'Quicksand';margin:
+                                    0.5em;padding:0.6em;">
+                                    Play
+                                </button>
+                                <br>
+                                <button class="column is-2 button is-black is-medium is-outlined"
+                                    onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
+                                    margin:
+                                    0.5em; width:fit-content;height:fit-content;font-family:
+                                    'Quicksand';padding:0.8em;">
+                                    Add to playlist
+                                </button>
+                            </center>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>    
-</section>
-<style>
-    #source{
-        width:350px;
-    }
-    #pain{
-        position: relative;
-        left:21%;
-    }
-</style>
+    </section>
+
+
+
+    <style>
+        #source {
+            width: 480px;
+
+        }
+
+
+
+
+
+
+        figure {
+            border-radius: 100%;
+        }
+
+        .card {
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(27, 27, 27, 0.12), 0 1px 2px rgba(31, 31, 31, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .card:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+        }
+    </style>
+
+    <script>
+        function pick2(song_id) {
+            function updateProgress(e) {
+                let progress = document.getElementById(`button4_${song_id}`);
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+            }
+            let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+            audio.addEventListener('timeupdate', updateProgress);
+            function setProgress(e) {
+                let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                audio.currentTime = (clickX / width) * duration;
+            }
+
+            document.getElementById(`button3_${song_id}`).addEventListener('click', setProgress);
+            let value = document.getElementById(`button2_${song_id}`).innerText;
+
+            if (value === "Pause") {
+                audio.pause()
+                document.getElementById(`button2_${song_id}`).innerText = "Play";
+                //play
+                // document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                // document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
+                // document.getElementById(`button2_${song_id}`).classList.add("is-danger");
+                // document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
+                // let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                // messageBox.classList.remove("is-primary");
+                // messageBox.classList.add("is-danger");
+                // let progress = document.getElementById(`button4_${song_id}`);
+                // progress.style.backgroundColor = "#FF3860";
+            }
+            if (value === "Play") {
+                audio.play()
+                document.getElementById(`button2_${song_id}`).innerText = "Pause";
+                // document.getElementById(`button3_${song_id}`).parentElement.previousElementSibling.previousElementSibling.style.display = "none";
+
+                // document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
+                // document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
+                // document.getElementById(`button3_${song_id}`).style.borderColor = "#00D2B1";
+                // document.getElementById(`button2_${song_id}`).classList.add("is-primary");
+                // let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                // messageBox.classList.remove("is-danger");
+                // messageBox.classList.add("is-primary");
+                // let progress = document.getElementById(`button4_${song_id}`);
+                // progress.style.backgroundColor = "#00D1B2";
+            }
+        };
+        function playlist(song_id) {
+            selectedSong = song_id;
+            document.querySelector(".maine").style.display = "none";
+            document.querySelector(".add").style.display = null;
+            document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
+            document.getElementById(`button1_${song_id}`).classList.remove("is-outlined");
+            // document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
+            // let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
+            document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
+            // let notif = document.querySelector('#notification1');
+            // notif.style.display = null;
+            // let popup = document.createElement('span');
+            // let songName =
+            //     document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText;
+            // let notiftext = document.createTextNode(songName);
+            // popup.appendChild(notiftext);
+            // notif.classList.add('notification', 'has-text-centered', 'is-notif');
+            // notif.insertBefore(popup, notif.childNodes[0]);
+            // setTimeout(() => {
+            //     popup.style.display = 'none';
+            //     notif.style.display = 'none';
+            // }, 4000);
+        }
+
+    </script>

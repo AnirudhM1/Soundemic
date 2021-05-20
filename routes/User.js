@@ -11,8 +11,6 @@ router.get('/register', (req, res) => { //To register user
 router.get('/', async (req, res) => {
     const id = req.session.user_id;
     const user = await User.findById(id).populate('playlists') || false;
-    console.log(user);
-    console.log(user.playlists);
     res.render('profile', {
         user_id: id,
         playlists: user.playlists
