@@ -1,23 +1,54 @@
 <% const {_id, title, artist, img_url} = song %> 
-
-<div class="columns">
-    <div class="column">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<section class="section">
+    <div class="container">  
         <div class="columns">
-            <div class="column is-one-quarter has-background-danger">
-                <figure class="image is-64x64">
-                    <image src="<%= img_url %>"></image>
-                </figure>
-            </div>
-            <div class="column">
-                <section class="section">
-                    <h1 class="title"><%= title %> </h1>
-                    <h2 class="subtitle"><%= artist %> </h2>
-                </section>
+            <div class="column is-5 is-offset-1" id="source">               
+                    <div class="card px-3">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <image src="<%= img_url %>"></image>
+                            </figure>
+                        </div>
+                    
+                        <div class="card-content">
+                            <div class="content">
+                                <p class="title has-text-centered is-size-3-dekstop is-size-5-tablet"><%= title %> </p>
+                                <p class="subtitle has-text-centered is-size-6-desktop"><%= artist %> </p>
+                            </div>
+                        </div>
+                        <div class="container is-centered" id="pain">
+                            <div class="card-footer">
+                                <div class="field is-grouped">
+                                    <p class="control">
+                                        <button class="button is-focused">
+                                            <i class="fa fa-fast-backward" aria-hidden="true"></i>
+                                        </button>
+                                    </p>  
+                                    <p class="control">
+                                        <button class="button is-focused">
+                                            <i class="fa fa-play" aria-hidden="true"></i>
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <button class="button is-focused">
+                                            <i class="fa fa-fast-forward" aria-hidden="true"></i>
+                                        </button>
+                                    </p>      
+                                </div>    
+                            </div>
+                        </div>        
+                    </div>               
             </div>
         </div>
-        
-    </div>
-    <div class="column">
-        CONTROLS
-    </div>
-</div>
+    </div>    
+</section>
+<style>
+    #source{
+        width:350px;
+    }
+    #pain{
+        position: relative;
+        left:21%;
+    }
+</style>
