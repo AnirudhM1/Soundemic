@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.sendFile(path.join(__dirname, '../public/login.html'));
 })
 
 router.post('/login', async (req, res) => { // To login user
