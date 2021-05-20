@@ -149,6 +149,7 @@
             }
         };
         function playlist(song_id) {
+            selectedSong = song_id;
             document.querySelector(".maine").style.display = "none";
             document.querySelector(".add").style.display = null;
             document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";

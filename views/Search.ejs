@@ -99,10 +99,13 @@
                 <br>
                 <br>
                 <div class="subtitle">
-                    <% var playlists=[]; %>
+                    
                         <% playlists.forEach(playlist=> { %>
-                            <button class="button is-outlined is-dark" id="login"
-                                style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;">
+                            <button 
+                                class="button is-outlined is-dark" id="login"
+                                style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
+                                onclick="addSongToPlaylist('<%= playlist._id %>')"
+                            >
                                 <%= playlist.title %>
                             </button>
                             <br>
@@ -127,9 +130,20 @@
 
 
     <script>
+
         function back() {
             document.querySelector(".maine").style.display = null;
             document.querySelector(".add").style.display = "none";
+        }
+
+        async function addSongToPlaylist(playlist_id) {
+            // TODO use axios to add song to playlist
+
+            const URL = `users/<%= user_id%>/playlists/${playlist_id}`;
+            console.log(selectedSong);
+            await axios.post(URL, {
+                song_id: selectedSong
+            });
         }
     </script>
 </body>
