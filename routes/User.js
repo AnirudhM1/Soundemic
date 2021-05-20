@@ -19,12 +19,12 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {email, Firstname, Lastname/* , username */, password} = req.body;
+        const {email, Firstname, Lastname, username, password} = req.body;
         const name = `${Firstname} ${Lastname}`;
-        const username = `${Firstname}_${Lastname}`; // This is temp username. Actual username to be used will be imported from the form
         const user = new User({name, email, username, password});
         await user.save();
-        res.send('User created!');
+        req.session.user_id = user._id;
+        res.redirect('/users')
 
     } catch(e) {
         console.log(e);
