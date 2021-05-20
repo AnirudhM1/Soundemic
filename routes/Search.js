@@ -39,26 +39,26 @@ module.exports = router;
 const songs = [
 
     {
-        _id: 'song',
-        name: 'Lateralus',
+        _id: 'song1',
+        title: 'Lateralus',
         artist: 'Tool',
         img_url: 'https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg'
     },
     {
         _id: 'song2',
-        name: 'New Divide',
+        title: 'New Divide',
         artist: 'Linkin Park',
         img_url: 'https://upload.wikimedia.org/wikipedia/en/b/b1/New_Divide_%28Linkin_Park_single_-_cover_art%29.jpg'
     },
     {
-        _id: 'song',
-        name: 'song3',
+        _id: 'song3',
+        title: 'song3',
         artist: 'artist3',
         img_url: 'https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg'
     },
     {
-        _id: 'song2',
-        name: 'song4',
+        _id: 'song4',
+        title: 'song4',
         artist: 'artist4',
         img_url: 'https://upload.wikimedia.org/wikipedia/en/b/b1/New_Divide_%28Linkin_Park_single_-_cover_art%29.jpg'
     }
