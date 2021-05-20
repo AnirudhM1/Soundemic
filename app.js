@@ -25,11 +25,11 @@ app.set('view engine', 'ejs');
 let gfs;
 
 mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false
-    })
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
     .then(() => {
         console.log('Mongoose Connection Open!');
         /* const conn = mongoose.connection;
@@ -43,30 +43,30 @@ mongoose.connect(process.env.MONGODB_URI, {
         console.log(e);
     })
 
-    const songs = [
+const songs = [
 
-        {
-            _id: '1',
-            name: 'Lateralus',
-            artist: 'Tool'
-        },
-        {
-            _id: '2',
-            name: 'New Divide',
-            artist: 'Linkin Park'
-        },
-        {
-            _id: '3',
-            name: 'song3',
-            artist: 'artist3'
-        },
-        {
-            _id: '4',
-            name: 'song4',
-            artist: 'artist4'
-        }
-    
-    ]
+    {
+        _id: '1',
+        name: 'Lateralus',
+        artist: 'Tool'
+    },
+    {
+        _id: '2',
+        name: 'New Divide',
+        artist: 'Linkin Park'
+    },
+    {
+        _id: '3',
+        name: 'song3',
+        artist: 'artist3'
+    },
+    {
+        _id: '4',
+        name: 'song4',
+        artist: 'artist4'
+    }
+
+]
 
 
 const sessionConfig = {
@@ -80,7 +80,7 @@ const sessionConfig = {
     }
 }
 
-app.use(express.urlencoded({'extended': true}));
+app.use(express.urlencoded({ 'extended': true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -101,8 +101,8 @@ app.use('/test', testRoutes);
 
 // Route create for debugging only
 
-app.get('/secret', (req, res) => { 
-    if(req.session.user_id) {
+app.get('/secret', (req, res) => {
+    if (req.session.user_id) {
         res.send('User is logged in!')
     }
     else {

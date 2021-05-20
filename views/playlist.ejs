@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/selectorpage.css" type="text/css">
+    <link rel="stylesheet" href="/playlist.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,12 +34,14 @@
     <div id="particles-js" style="width: 100%;height: 100vh; position: fixed;"></div>
 
     <div class="main">
+        <br>
         <center style="margin: 4.8px 0;">
             <nav class="breadcrumb has-succeeds-separator">
                 <ul style="align-items:center;justify-content:center">
-                    <li id="link"><a href="/home">Home</a></li>
-                    <li id="link"><a href="/profile">Profile</a></li>
-                    <li id="link" class="is-active"><a href="/profile/playlist">Playlist</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href=" /profile">Profile</a></li>
+                    <li class=" is-active"><a href="/profile/playlist" style="color: #7a7a7a;">Playlist</a>
+                    </li>
                 </ul>
             </nav>
         </center>
@@ -122,9 +124,10 @@
 
     <script>
 
-        ScrollReveal().reveal('#link', { delay: 50 });
+        // ScrollReveal().reveal('#link', { delay: 50 });
         ScrollReveal().reveal('#search', { delay: 200 });
         ScrollReveal().reveal('.message', { delay: 300 });
+
 
 
 
@@ -140,9 +143,10 @@
             document.getElementById("announce").style.color = "white";
             document.getElementById("submit").classList.add("is-light");
             document.querySelector(".box").style.display = "none";
-            document.querySelector(".is-active").style.color = "white";
+            document.querySelector(".is-active").firstElementChild.style.color = "white";
             document.getElementById("particles-js").style.backgroundColor = "#111111";
             document.getElementById("header").firstElementChild.style.color = "white";
+            // document.getElementsByClassName("inactive").firstElementChild.style.color = "white";
             particlesJS.load('particles-js', '/dark.json', function () {
                 console.log('dark.json loaded...');
             });
@@ -151,7 +155,8 @@
 
         }
         function change2() {
-            document.querySelector(".is-active").style.color = "black";
+            // document.querySelectorAll(".inactive").firstElementChild.style.color = "black";
+            document.querySelector(".is-active").firstElementChild.style.color = "#7a7a7a";
             document.getElementById("darkicon").style.display = "none";
             document.getElementById("submit").classList.remove("is-light");
             document.querySelector(".box").style.display = null;
