@@ -39,8 +39,8 @@
             <nav class="breadcrumb has-succeeds-separator">
                 <ul style="align-items:center;justify-content:center">
                     <li><a href="/">Home</a></li>
-                    <li><a href=" /profile">Profile</a></li>
-                    <li class=" is-active"><a href="/profile/playlist" style="color: #7a7a7a;">Playlist</a>
+                    <li><a href=" /users">Profile</a></li>
+                    <li class=" is-active"><div style="color: #7a7a7a;">Playlist</div>
                     </li>
                 </ul>
             </nav>
@@ -66,12 +66,12 @@
 
         <div id="header" class="header">
             <div class="subtitle is-3 has-text-left">
-                Playlist Title
+                <%= playlist.title %>
             </div>
         </div>
 
         <div id="songs" class="block">
-            <% songs.forEach(song=> { %>
+            <% playlist.songs.forEach(song=> { %>
                 <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
                     <div class="message-header ">
                         <div class="title is-5 is-bold" style="color: white; padding: 3px;">

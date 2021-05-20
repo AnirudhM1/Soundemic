@@ -37,8 +37,13 @@ router.post('/:id/playlists', async (req, res) => {
 
 router.get('/:id/playlists/:playlistId', async (req, res) => {
     try {
-        const playlist = await Playlist.findById(req.params.playlistId);
-        res.send(playlist);
+        if(!req.session.user_id || req.session.user_id !== req.params.id) {
+            res.redirect('/users/login');
+        }
+        else {
+            const playlist = await Playlist.findById(req.params.playlistId);
+            res.render('playlist', { playlist })
+        }    
     } catch(e) {
         console.error(e);
     }
