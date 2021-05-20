@@ -37,6 +37,10 @@
         text-align: center;
         padding-bottom: 0.5em;
     }
+    .required
+    {
+        color: red;
+    }
 </style>
 
 <body>
@@ -46,7 +50,7 @@
         <form action="/users" method="POST">
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="Firstname" class="form-label">First Name</label>
+                    <label for="Firstname" class="form-label">First Name</label><span class="required">*</span>
                     <input type="text" name="Firstname" class="form-control" id="Firstname"
                         placeholder="Enter your first name" required>
                 </div>
@@ -58,7 +62,7 @@
             </div>
             <div class="row g-3">
                 <div class="mb-3 col-md-4">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username</label><span class="required">*</span>
                     <input type="text" name="username" class="form-control" id="username"
                         placeholder="Create your username" reqired>
                 </div>
@@ -70,7 +74,7 @@
 
             <div class="row g-3">
                 <div class="mb-3 col-md-6">
-                    <label for="password1" class="form-label">Password</label>
+                    <label for="password1" class="form-label">Password</label><span class="required">*</span>
                     <input type="password" class="form-control" id="password1" placeholder="Don't make it too easy"
                         required name="password">
                     <input class="form-check-input" type="checkbox" onclick="showPass1()">
@@ -78,7 +82,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="password2" class="form-label">Confirm Password</label>
+                    <label for="password2" class="form-label">Confirm Password</label><span class="required">*</span>
                     <input type="password" class="form-control" id="password2" placeholder="Re-type your password"
                         required>
                     <input class="form-check-input" type="checkbox" onclick="showPass2()">
@@ -95,7 +99,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="tos" required>
                 <label class="form-check-label" for="tos">
                     I agree to the Terms of Service
-                </label>
+                </label><span class="required">*</span>
             </div>
 
             <button type="submit" class="btn btn-success" id="btnSubmit" value="Submit"
@@ -105,7 +109,7 @@
     </div>
 
     <footer>
-        <a href="">Already have an account? Login instead</a>
+        <a href="/users/login">Already have an account? Login instead</a>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
