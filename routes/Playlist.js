@@ -28,7 +28,7 @@ router.post('/:id/playlists', async (req, res) => {
         user.playlists.push(playlist);
         await playlist.save();
         await user.save();
-        res.redirect('/search');
+        res.send('Playlist created!!');
     } catch(e) {
         console.error(e);
     }

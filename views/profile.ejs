@@ -85,7 +85,7 @@
                     <center>
                         <small class="has-text-danger" style="display: none;">Please add a valid name</small>
                         <button class="button is-danger is-outlined is-centered" id="submit"
-                            style="display:none;margin: 1em;" onclick="selectSongs()">Select Songs</button>
+                            style="display:none;margin: 1em;" onclick="selectSongs()">Create</button>
                     </center>
                 </div>
             </div>
@@ -101,6 +101,20 @@
             window.location.href = PLAYLIST_URL;
         }
 
+        async function selectSongs() {
+            let user_id = "<%=user_id%>";
+            const title = input.value || "unnamed";
+            try {
+                url = `/users/${user_id}/playlists`;
+                console.log(`URL=${url}`);
+                const response = await axios.post(url, {
+                    title
+                });
+                window.location.href = '/users';
+            } catch(e) {
+                console.error(e);
+            }
+        }
 
         function make() {
             document.querySelector(".input").style.display = null;
