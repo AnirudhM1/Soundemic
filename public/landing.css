@@ -67,18 +67,6 @@
   }
 }
 
-/* #signup{
-  background-color: transparent;
-  color: #747474;
-  border: 1px solid #0D6EFD;
-
-}
-
-#signup:hover{
-  background-color: #0D6EFD;
-  color: white;
-
-} */
 
 #now{
   background-color: transparent;
@@ -117,7 +105,7 @@
 	width: 300px;
 	height: 300px;
   border: 1px solid #000f3f;
-  animation: spin3D 3s linear .2s infinite;
+  animation: spin3D 5s linear .2s infinite;
 }
 
 .green-orbit {
@@ -130,7 +118,7 @@
 .red-orbit {
 	width: 180px;
 	height: 180px;
-  border: 1px solid #a10000;
+  border: 1px solid #ad8989;
   animation: spin3D 4s linear 0s infinite;
 }
 
@@ -138,7 +126,7 @@
 	width: 100px;
 	height: 100px;
   border: 2px solid #000000;
-  animation: spin3D 10s linear 0s infinite;
+  animation: spin3D 8s linear 0s infinite;
 }
 
 .leo {
@@ -182,6 +170,8 @@
   
   .card-1:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 2px;
+    padding: 20px 0px;
   }
   
 
@@ -215,7 +205,7 @@
   
   }
 
-  #animation{
+  .animation{
     transition: 2s linear;
   }
 
