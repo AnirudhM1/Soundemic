@@ -1,23 +1,27 @@
-<% const {_id, title, artist, img_url} = song %> 
+<% const {_id, title, artist, img_url}=song %>
 
-<div class="columns">
-    <div class="column">
-        <div class="columns">
-            <div class="column is-one-quarter has-background-danger">
-                <figure class="image is-64x64">
-                    <image src="<%= img_url %>"></image>
-                </figure>
+    <div class="columns">
+        <div class="column">
+            <div class="columns">
+                <div class="column is-one-quarter has-background-danger">
+                    <figure class="image is-64x64">
+                        <image src="<%= img_url %>"></image>
+                    </figure>
+                </div>
+                <div class="column">
+                    <section class="section">
+                        <h1 class="title">
+                            <%= title %>
+                        </h1>
+                        <h2 class="subtitle">
+                            <%= artist %>
+                        </h2>
+                    </section>
+                </div>
             </div>
-            <div class="column">
-                <section class="section">
-                    <h1 class="title"><%= title %> </h1>
-                    <h2 class="subtitle"><%= artist %> </h2>
-                </section>
-            </div>
+
         </div>
-        
+        <div class="column">
+            CONTROLS
+        </div>
     </div>
-    <div class="column">
-        CONTROLS
-    </div>
-</div>
