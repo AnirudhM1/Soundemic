@@ -1,88 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <title>Transparent Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <title>Login Form Demo</title>
 </head>
-
 <style>
-    body{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: url(.\bg.jpg) no-repeat;
-    background-size: cover;
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.login-box{
-    width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+body {
+  background: url("http://wallsdesk.com/wp-content/uploads/2016/08/White-Abstract-Wallpaper.jpg") no-repeat center;
+  background-size: cover;
+  font-family: sans-serif;
 }
-.login-box h1{
-    float: left;
-    font-size: 35px;
-    border-bottom: 6px #7df9ff solid;
-    margin-bottom: 50px;
-    padding: 12px;
-    color: white;
+.login-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.textbox{
-    width: 100%;
-    overflow: hidden;
-    font-size: 20px;
-    padding: 8px 0;
-    margin: 8px 0;
-    border-bottom: 1px solid #7df9ff ;
+.form {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 80px 40px 40px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.5);
 }
-.textbox i{
-    width: 26px;
-    float: left;
-    text-align: center;
+
+
+.form img {
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  background: rgba(255,255,255, 0.8);
+  border-radius: 50%;
 }
-.textbox input{
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 16px;
-    width: 80px;
-    float: left;
-    margin: 2px 10px;
-    color: white;
+.form h1 {
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  color: #7df9ff;
+}
+.form .input-group {
+  position: relative;
+}
+.form .input-group input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+}
+.form .input-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: .3s ease-out;
+}
+.form .input-group input:focus + label,
+.form .input-group input:valid + label {
+  transform: translateY(-18px);
+  color: rgba(255,255,255);
+  font-size: .8rem;
 }
 .btn{
-    width: 100%;
-    border: 2px solid #7df9ff;
+  display: block;
+  margin-left: auto;
+  border: none;
+  outline: none;
+  background: #7df9ff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#username{
     color: white;
-    padding: 5px;
-    font-size: 18px;
-    background: none;
-    cursor: pointer;
-    margin: 12px 0;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1em;
 }
 </style>
-
 <body>
-
-    <div class="login-box">
-        <h1>Login</h1>
-
-        <div class="textbox">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            <input type="text" name="username" placeholder="Username" required>
-        </div>
-
-        <div class="textbox">
-            <i class="fas fa-lock" aria-hidden="true"></i>
-            <input type="password" placeholder="Password" required>
-        </div>
-
-        <input type="button" class="btn" value="Log In">
-    </div>
-
+  <div class="login-wrapper">
+        <form action="" class="form">
+            <img src="https://www.logolynx.com/images/logolynx/4b/4beebce89d681837ba2f4105ce43afac.png" alt="">
+            <h1>Log In</h1>
+            <div class="input-group">
+                <input type="text" name="username" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" id="password1" required>
+                <label for="password1">Password</label>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Log In</button>
+            <footer>
+                <a href="">Don't have an account? Sign Up now</a>
+            </footer>
+        </form>
+  </div>
 </body>
 </html>
