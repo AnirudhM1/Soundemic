@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Forms</title>
+    <title>SignUp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="./sign.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 </head>
 <style>
     div {
@@ -31,28 +32,49 @@
         background-size: cover;
         background-position: center center;
         background-attachment: fixed;
+        font-family: 'Quicksand';
     }
 
     footer {
         text-align: center;
-        padding-bottom: 0.5em;
+        padding: 1em 0.5em;
     }
-    .required
-    {
+
+    footer>a {
+        text-decoration: none;
+        color: black;
+        font-size: 1.1em;
+    }
+
+    footer>a:hover {
+        color: black;
+        text-decoration: underline;
+
+    }
+
+    .required {
         color: red;
+    }
+
+    #show {
+        font-size: 1em;
     }
 </style>
 
 <body>
 
     <div class="container">
-        <h1 class="display-2">Sign Up</h1>
+        <center>
+            <h1 class="display-2">SignUp</h1>
+        </center>
+        <br>
+        <br>
         <form action="/users" method="POST">
             <div class="row g-3">
-                <div class="col-md-8">
+                <div class="col-md-8 mb-1">
                     <label for="Name" class="form-label">Name</label><span class="required">*</span>
-                    <input type="text" name="Name" class="form-control" id="Name"
-                        placeholder="Enter your Name" required>
+                    <input type="text" name="Name" class="form-control" id="Name" placeholder="Enter your Name"
+                        required>
                 </div>
                 <div class="col-md-4">
                     <label for="username" class="form-label">Username</label><span class="required">*</span>
@@ -63,19 +85,20 @@
 
             <div class="row g-3">
                 <div class="mb-3 col-md-6">
-                    <label for="password1" class="form-label">Password</label><span class="required">*</span>
-                    <input type="password" class="form-control" id="password1" placeholder="Don't make it too easy"
+                    <label for="password1" class="form-label mb-2">Password</label><span class="required">*</span>
+                    <input type="password" class="form-control mb-2" id="password1" placeholder="Don't make it too easy"
                         required name="password">
                     <input class="form-check-input" type="checkbox" onclick="showPass1()">
-                    <label class="form-check-label" for="password1">Show password</label>
+                    <label class="form-check-label" for="password1" id="show">Show password</label>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="password2" class="form-label">Confirm Password</label><span class="required">*</span>
-                    <input type="password" class="form-control" id="password2" placeholder="Re-type your password"
+                    <label for="password2" class="form-label mb-1">Confirm Password</label><span
+                        class="required">*</span>
+                    <input type="password" class="form-control mb-1" id="password2" placeholder="Re-type your password"
                         required>
                     <input class="form-check-input" type="checkbox" onclick="showPass2()">
-                    <label class="form-check-label" for="password2">Show password</label>
+                    <label class="form-check-label" for="password2" id="show">Show password</label>
                 </div>
             </div>
 
@@ -83,13 +106,13 @@
                 <strong>Password and Confirm Password do not match!</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-
-            <button type="submit" class="btn btn-success" id="btnSubmit" value="Submit"
-                onclick="return Validate()">Register</button>
+            <center>
+                <button type="submit" class="btn btn-dark btn-lg mt-2" id="btnSubmit" value="Submit"
+                    onclick="return Validate()">Register</button>
+            </center>
 
         </form>
     </div>
-
     <footer>
         <a href="/users/login">Already have an account? Login instead</a>
     </footer>
