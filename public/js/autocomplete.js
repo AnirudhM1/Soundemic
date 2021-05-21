@@ -116,6 +116,7 @@ const getDistance = (str1 = '', str2 = '') => {
 }
 
 window.onload = async function (e) {
+    var selectedSong = null;
     try {
         const response = await axios.get('/search/all');
         const data = response.data;

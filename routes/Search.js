@@ -1,13 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const Song = require('../models/Song');
+const User = require('../models/User');
 
-router.get('/', (req, res) => {
-    res.render('Search', { songs });
+router.get('/', async (req, res) => {
+    const user_id = (req.session.user_id) ? req.session.user_id : "guest";
+    res.render('Search', { user_id, playlists: [], songs: [] });
 })
 
 router.post('/', async (req, res) => {
     try {
+        const user_id = (req.session.user_id) ? req.session.user_id : "guest";
+        let playlists = [];
+        if (user_id !== "guest") {
+            const user = await User.findById(user_id).populate('playlists');
+            if (user.playlists) {
+                playlists = user.playlists;
+            }
+        }
         const song = await Song.findOne({ name: req.body.search });
         if (song) {
             const artist = song.artist;
@@ -16,7 +26,7 @@ router.post('/', async (req, res) => {
         }
         else {
             const SIMILAR_SONGS = await Song.findSimilarSongs(req.body.search);
-            res.render('Search', { songs: SIMILAR_SONGS })
+            res.render('Search', { user_id, playlists, songs: SIMILAR_SONGS })
         }
     } catch (e) {
         console.error(e);
