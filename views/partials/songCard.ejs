@@ -30,12 +30,12 @@
                                 border-width:0.4px;
                                 border-color:#111111;
                                 border-style:solid;
-                                border-radius:5px;
+                                border-radius:10px;
                                 padding: 0;
                                 ">
                                 <div id=<%=`button4_${song._id}` %> class="progress" style=
                                     "height: 0.7rem;
-                                    border-radius:5px;
+                                    border-radius:10px;
                                     width:0%;
                                     padding:0;">
                                 </div>
@@ -46,17 +46,17 @@
                                 <button class="button is-black is-medium is-outlined" onclick="pick2('<%= song._id %>')"
                                     id=<%=`button2_${song._id}` %>
                                     style="
-                                    width:fit-content; height:fit-content;font-family:
+                                    width:50%; height:fit-content;font-family:
                                     'Quicksand';margin:
-                                    0.5em;padding:0.6em;">
+                                    0.5em;padding:0.5em;">
                                     Play
                                 </button>
                                 <br>
                                 <button class="column is-2 button is-black is-medium is-outlined"
                                     onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
                                     margin:
-                                    0.5em; width:fit-content;height:fit-content;font-family:
-                                    'Quicksand';padding:0.8em;">
+                                    0.5em; width:70%;height:fit-content;font-family:
+                                    'Quicksand';padding:0.6em;">
                                     Add to playlist
                                 </button>
                             </center>
@@ -71,28 +71,18 @@
 
 
     <style>
-<<<<<<< HEAD
-        #source {
-            width: 400px;
-=======
->>>>>>> 7dd800102b11ef28ef3aa7bcec7f8ced7e55770e
-
         @media(min-width: 1000px) {
             #source {
                 width: 480px;
             }
         }
-        
+
         @media(max-width: 1000px) {
             #source {
                 width: 350px;
             }
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7dd800102b11ef28ef3aa7bcec7f8ced7e55770e
         figure {
             border-radius: 100%;
         }
@@ -134,31 +124,10 @@
             if (value === "Pause") {
                 audio.pause()
                 document.getElementById(`button2_${song_id}`).innerText = "Play";
-                //play
-                // document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
-                // document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
-                // document.getElementById(`button2_${song_id}`).classList.add("is-danger");
-                // document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
-                // let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
-                // messageBox.classList.remove("is-primary");
-                // messageBox.classList.add("is-danger");
-                // let progress = document.getElementById(`button4_${song_id}`);
-                // progress.style.backgroundColor = "#FF3860";
             }
             if (value === "Play") {
                 audio.play()
                 document.getElementById(`button2_${song_id}`).innerText = "Pause";
-                // document.getElementById(`button3_${song_id}`).parentElement.previousElementSibling.previousElementSibling.style.display = "none";
-
-                // document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
-                // document.getElementById(`button2_${song_id}`).classList.remove("is-danger");
-                // document.getElementById(`button3_${song_id}`).style.borderColor = "#00D2B1";
-                // document.getElementById(`button2_${song_id}`).classList.add("is-primary");
-                // let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
-                // messageBox.classList.remove("is-danger");
-                // messageBox.classList.add("is-primary");
-                // let progress = document.getElementById(`button4_${song_id}`);
-                // progress.style.backgroundColor = "#00D1B2";
             }
         };
         function playlist(song_id) {
