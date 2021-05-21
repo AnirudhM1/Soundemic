@@ -50,11 +50,8 @@
                                     <br>
 
                                     <% playlists.forEach(playlist=> { %>
-                                        <div
-                                            class="subtitle is-5 has-text-centered"
-                                            style="margin:1em;cursor: pointer;"
-                                            onclick="selectPlaylist('<%= playlist._id %>')"
-                                        >
+                                        <div class="subtitle is-5 has-text-centered" style="margin:1em;cursor: pointer;"
+                                            onclick="selectPlaylist('<%= playlist._id %>')">
                                             <%= playlist.title %>
                                         </div>
                                         <% }) %>
@@ -111,7 +108,7 @@
                     title
                 });
                 window.location.href = '/users';
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         }
