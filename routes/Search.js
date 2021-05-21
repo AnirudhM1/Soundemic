@@ -5,16 +5,16 @@ const User = require('../models/User');
 
 router.get('/', async (req, res) => {
     const user_id = (req.session.user_id) ? req.session.user_id : "guest";
-    res.render('Search', { user_id, playlists: [],  songs: [] });
+    res.render('Search', { user_id, playlists: [], songs: [] });
 })
 
 router.post('/', async (req, res) => {
     try {
         const user_id = (req.session.user_id) ? req.session.user_id : "guest";
         let playlists = [];
-        if(user_id !== "guest") {
+        if (user_id !== "guest") {
             const user = await User.findById(user_id).populate('playlists');
-            if(user.playlists) {
+            if (user.playlists) {
                 playlists = user.playlists;
             }
         }
