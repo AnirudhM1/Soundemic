@@ -3,7 +3,7 @@ const router = express.Router();
 const Song = require('../models/Song');
 
 router.get('/', (req, res) => {
-    res.render('Search', { songs: [] });
+    res.render('Search', { songs });
 })
 
 router.post('/', async (req, res) => {
