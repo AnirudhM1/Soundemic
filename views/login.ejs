@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <title>LogIn</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand';
+  }
+
+  body {
+    background: url("http://wallsdesk.com/wp-content/uploads/2016/08/White-Abstract-Wallpaper.jpg") no-repeat center;
+    background-size: cover;
+  }
+
+  .login-wrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.425);
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .form h1 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: #e9e9e9;
+  }
+
+  .form .input-group {
+    position: relative;
+  }
+
+  .form .input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+
+  .form .input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .3s ease-out;
+  }
+
+  .form .input-group input:focus+label,
+  .form .input-group input:valid+label {
+    transform: translateY(-18px);
+    color: rgba(255, 255, 255);
+    font-size: .8rem;
+  }
+
+  .btn {
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: #000000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+  }
+
+  #username {
+    color: white;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1em;
+  }
+
+  footer>a {
+    text-decoration: none;
+    color: white;
+  }
+
+  footer>a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  #icon {
+    height: 5em;
+    width: 5em;
+    color: black;
+
+  }
+
+  #icon:hover {
+    color: #00d2b1;
+  }
+</style>
+
+<body>
+  <div class="login-wrapper">
+    <form action="/users/login" method="POST" class="form">
+      <center>
+        <span>
+          <i class="fab fa-itunes-note" id="icon"></i>
+        </span>
+      </center>
+
+      <br>
+      <h1>LogIn</h1>
+      <div class="input-group">
+        <input type="text" name="username" id="username" required>
+        <label for="username">Username</label>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password1" required>
+        <label for="password1">Password</label>
+      </div>
+      <%- include('partials/flash') %> 
+      <button type="submit" class="btn btn-outline-dark">Login</button>
+      <footer>
+        <a href="/users/register">Don't have an account? SignUp now</a>
+      </footer>
+    </form>
+  </div>
+</body>
+
+</html>
