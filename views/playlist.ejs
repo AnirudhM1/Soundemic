@@ -31,16 +31,16 @@
         </center>
     </div>
 
-    <div id="particles-js" style="width: 100%;height: 100vh; position: fixed;"></div>
-
+    <div id="particles-js">
+    </div>
     <div class="main">
         <br>
         <center style="margin: 4.8px 0;">
             <nav class="breadcrumb has-succeeds-separator">
                 <ul style="align-items:center;justify-content:center">
-                    <li><a href="/">Home</a></li>
-                    <li><a href=" /users">Profile</a></li>
-                    <li class=" is-active"><div style="color: #7a7a7a;">Playlist</div>
+                    <li id="link1"><a href="/">Home</a></li>
+                    <li id="link2"><a href=" /users">Profile</a></li>
+                    <li class="is-active"><a> Playlist</a>
                     </li>
                 </ul>
             </nav>
@@ -50,16 +50,14 @@
 
         <div class=" field" id="search">
             <center>
-                <input type="text" class="input is-hovered is-medium" placeholder="Search." style="width:70vw;">
+                <input type="text" class="input is-hovered is-medium" placeholder="Search."
+                    style="width:70vw;font-family: 'Quicksand';">
             </center>
             <center>
-                <button class="button is-medium is-dark" id="submit"
-                    style="margin:1em;font-family: 'Quicksand';">Submit</button>
+                <button class="button is-medium is-hovered" id="submit">Submit</button>
                 <div class="subtitle is-5" id="announce">Why is the page so</div>
-                <button class="button is-medium is-dark" id="dark" onclick="change1()"
-                    style="cursor: pointer;font-family: 'Quicksand';">Bright?</button>
-                <button class="button is-medium is-light" id="light" onclick="change2()"
-                    style="display:none;cursor: pointer;font-family: 'Quicksand';">Dark?</button>
+                <button class="button is-medium is-hovered" id="dark" onclick="change1()">Bright?</button>
+                <button class="button is-medium is-hovered" id="light" onclick="change2()">Dark?</button>
             </center>
 
         </div>
@@ -72,52 +70,56 @@
 
         <div id="songs" class="block">
             <% playlist.songs.forEach(song=> { %>
-                <% console.log(song) %> 
-                <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
-                    <div class="message-header ">
-                        <div class="title is-5 is-bold" style="color: white; padding: 3px;">
-                            <%= song.title %>
-                        </div>
-                    </div>
-                    <div id="artist" class="message-body">
-                        <div class="columns">
-                            <div class="subtitle column is-3 has-text-left" style="color: #111111;
-                        margin:
-                        0.5em 0.1em;font-size: 1.3em;">
-                                <%= song.artist %>
+                <% console.log(song) %>
+                    <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
+                        <div class="message-header ">
+                            <div class="title is-5 is-bold" style="color: white; padding: 3px;">
+                                <%= song.title %>
                             </div>
-                            <div class="column is-5 progress-container" id=<%=`button3_${song._id}` %> style="
-                                margin: 1.8em 1em;
-                                height: fit-content;
-                                border-width:0.4px;
-                                border-color:#111111;
-                                border-style:solid;
-                                border-radius:5px;
-                                padding: 0;
-
-                                ">
-                                <div id=<%=`button4_${song._id}` %> class="progress" style=
-                                    "height: 0.5rem;
-                                    border-radius:5px;
-                                    width:0%;
-                                    padding:0;">
+                        </div>
+                        <div id="artist" class="message-body" style="background:transparent;">
+                            <div class="columns">
+                                <div class="subtitle column is-3 has-text-left"
+                                    style="color: #111111;margin:0.5em 0.1em;font-size: 1.3em;">
+                                    <%= song.artist %>
                                 </div>
+                                <div class="column" id=<%=`button3_${song._id}` %> style="
+                                    margin: 1.8em 1em;
+                                    height: fit-content;
+                                    border-width:0.4px;
+                                    border-color:#111111;
+                                    border-style:solid;
+                                    border-radius:5px;
+                                    padding: 0;">
+                                    <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                        "height: 0.5rem;
+                                        border-radius:5px;
+                                        width:0%;
+                                        padding:0;">
+                                    </div>
+                                </div>
+
+                                <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
+                                </audio>
+
+                                <button class="column is-3 button is-black is-outlined"
+                                    onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                                    margin:
+                                    1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                    'Quicksand';">
+                                    Play
+                                </button>
+                                <button class="column is-3 button is-black is-outlined" id=<%=`button1_${song._id}` %>
+                                    style="
+                                    margin:
+                                    1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                    'Quicksand';">
+                                    Remove
+                                </button>
                             </div>
-
-                            <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
-                            </audio>
-
-
-                            <button class="column is-3 button is-black is-outlined" onclick="pick2('<%= song._id %>')"
-                                id=<%=`button2_${song._id}` %> style="
-                                margin:
-                                1em;width:fit-content; height:fit-content;padding:6px 13px;font-family: 'Quicksand';">
-                                Play
-                            </button>
                         </div>
-                    </div>
-                </article>
-                <% }) %>
+                    </article>
+                    <% }) %>
         </div>
     </div>
 
@@ -125,51 +127,58 @@
 
     <script>
 
-        // ScrollReveal().reveal('#link', { delay: 50 });
-        ScrollReveal().reveal('#search', { delay: 200 });
-        ScrollReveal().reveal('.message', { delay: 300 });
+        document.querySelector("#light").style.display = "none";
+        document.querySelector("#link1").firstElementChild.style.color = "black";
+        document.querySelector("#link2").firstElementChild.style.color = "black";
+        document.querySelector(".is-active").firstElementChild.style.color = "grey";
 
 
 
 
-        // particlesJS.load('particles-js', '/playlist.json', function () {
-        //     console.log('playlist.json loaded...');
 
-        // });
+        particlesJS.load('particles-js', '/playlist.json', function () {
+            console.log('playlist.json loaded...');
+
+        });
 
         function change1() {
-            document.getElementById("submit").classList.remove("is-dark");
+            document.querySelector("#dark").style.display = "none";
+            document.querySelector("#light").style.display = null;
+            document.getElementById("submit").style.color = "white";
+            document.getElementById("submit").style.borderColor = "white";
             document.getElementById("darkicon").style.display = null;
             document.getElementById("itunes").style.color = "white";
             document.getElementById("announce").style.color = "white";
-            document.getElementById("submit").classList.add("is-light");
             document.querySelector(".box").style.display = "none";
-            document.querySelector(".is-active").firstElementChild.style.color = "white";
+            document.querySelector("#link1").firstElementChild.style.color = "white";
+            document.querySelector("#link2").firstElementChild.style.color = "white";
+            document.querySelector(".is-active").firstElementChild.style.color = "grey";
             document.getElementById("particles-js").style.backgroundColor = "#111111";
             document.getElementById("header").firstElementChild.style.color = "white";
-            // document.getElementsByClassName("inactive").firstElementChild.style.color = "white";
             particlesJS.load('particles-js', '/dark.json', function () {
                 console.log('dark.json loaded...');
             });
-            document.querySelector("#dark").style.display = "none";
-            document.querySelector("#light").style.display = null;
 
         }
         function change2() {
+            document.querySelector("#dark").style.display = null;
+            document.querySelector("#light").style.display = "none";
+
             // document.querySelectorAll(".inactive").firstElementChild.style.color = "black";
-            document.querySelector(".is-active").firstElementChild.style.color = "#7a7a7a";
+            document.getElementById("submit").style.color = "black";
+            document.getElementById("submit").style.borderColor = "rgb(75, 75, 75)";
+            document.querySelector("#link1").firstElementChild.style.color = "black";
+            document.querySelector("#link2").firstElementChild.style.color = "black";
+            document.querySelector(".is-active").firstElementChild.style.color = "grey";
+
             document.getElementById("darkicon").style.display = "none";
-            document.getElementById("submit").classList.remove("is-light");
             document.querySelector(".box").style.display = null;
             document.getElementById("announce").style.color = "black";
-            document.getElementById("submit").classList.add("is-dark");
             document.getElementById("particles-js").style.backgroundColor = "white";
             document.getElementById("header").firstElementChild.style.color = "black";
             particlesJS.load('particles-js', '/playlist.json', function () {
                 console.log('playlist.json loaded...');
             });
-            document.querySelector("#dark").style.display = null;
-            document.querySelector("#light").style.display = "none";
 
         }
 
