@@ -16,23 +16,57 @@
 </head>
 
 <style>
-    div.scroll{
-        height: 225px;
+    #fancyscroll {
+        scrollbar-width: thin;
+        height: 240px;
         overflow-x: hidden;
         overflow-y: auto;
         text-align: center;
         padding: 20px;
-        background-color: lightblue;
+        background-color: lightsalmon;
+        border-radius: 2%;
     }
     html, body { 
-    min-height: 100%;
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PSLMwOXb6GYbvgE-uBa0ddodztcStmoCFw&usqp=CAU") no-repeat center;
-    background-size: cover;
+        min-width: 100%;
+        min-height: 100%;
+        background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PSLMwOXb6GYbvgE-uBa0ddodztcStmoCFw&usqp=CAU") no-repeat center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
     }
     #logout{
         float: right;
         transform: translateY(-50px);
     }
+    hr{
+        background-color: grey;
+    }
+
+    #fancyscroll::-webkit-scrollbar-track
+    {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    #fancyscroll::-webkit-scrollbar
+    {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+
+    #fancyscroll::-webkit-scrollbar-thumb
+    {
+        background-color: #3b3b3b;
+        border: 2px solid #555555;
+    }
+
+    div.subtitle:hover{
+        transition: transform 0.8s;
+        transform: scale(1.5);
+        color: black;
+    }
+    
 </style>
 
 <body style="font-family: 'Quicksand';">
@@ -44,12 +78,14 @@
                 </a>
             </center>
             <div class="nav-right">
-                <button class="button is-outlined is-medium is-danger" id="logout" style="width: fit-content;
-                                margin: auto;
-                                display: block;
-                                font-family: 'Quicksand';">
-                                            Logout
-                            </button>
+                <form action="/users/logout" class="form" method="POST">
+                    <button class="button is-outlined is-medium is-danger" id="logout" style="width: fit-content;
+                                    margin: auto;
+                                    display: block;
+                                    font-family: 'Quicksand';" type="submit">
+                                                Logout
+                                </button>
+                </form>                
             </div>
         </nav>
     </div>
@@ -66,19 +102,34 @@
 
     <div class="container">
         <div class="columns is-vcentered is-multiline">
-            <div class="column is-one-fourth">
-                <div class="scroll yourPlaylist">
-                    <div class="title is-4 has-text-centered">
-                        <% if (playlists.length===0) { %>
-                            No playlists to display.
-                            <% } else {%>
-                                Choose your playlist
-                                <% } %>
 
-                                    <br>
+            <div class="column is-8">
+                <p class="subtitle is-1 is-spaced has-text-centered">Welcome back <%= username %>!</p>
+                <div class="otherOptions">
+                    <a href="/search" style="text-decoration: none; color: black;">
+                        <button class="button is-outlined is-medium is-primary" id="login" style="width: fit-content;
+                            margin: auto;
+                            display: block;
+                            font-family: 'Quicksand';">
+                                        Search for songs
+                        </button>
+                    </a>
+                </div>    
+            </div>
+
+            <div class="column is-4">
+                <div class="scroll yourPlaylist" id="fancyscroll">
+                    <div class="title is-4 py-4 has-text-centered">
+                            <% if (playlists.length===0) { %>
+                                No playlists to display.
+                                <% } else {%>
+                                    Your Playlists
+                                    <% } %>
+
+                                    <hr>
 
                                     <% playlists.forEach(playlist=> { %>
-                                        <div class="subtitle is-5 has-text-centered" style="margin:1em;cursor: pointer;"
+                                        <div class="subtitle is-5 has-text-centered py-2" style="margin:1em;cursor: pointer;"
                                             onclick="selectPlaylist('<%= playlist._id %>')">
                                             <%= playlist.title %>
                                         </div>
@@ -86,23 +137,8 @@
                     </div>
 
                 </div>
-            </div>
 
-            <div class="column is-6">
-                <p class="subtitle is-1 is-spaced has-text-centered">Welcome back!</p>
-            </div>
-
-            <div class="column is-3">
-                <div class="otherOptions">
-                    <div class="container">
-                        <a href="/search" style="text-decoration: none; color: black;">
-                            <button class="button is-outlined is-medium is-primary" id="login" style="width: fit-content;
-                                margin: auto;
-                                display: block;
-                                font-family: 'Quicksand';">
-                                            Search for songs
-                            </button>
-                        </a>
+                <div class="otherOptions">                       
                         <br>
                         <button class="button is-outlined is-medium is-danger" id="now" style="width: fit-content;
                             margin: auto;
