@@ -17,7 +17,7 @@ const userSchema = new Schema({
         type: String, 
         required: true
     },
-    email: String,
+
     playlists: [{type: Schema.Types.ObjectId, ref: 'Playlist', required: true }],
     recents: [{type: Schema.Types.ObjectId, ref: 'Song', required: true}]
 });

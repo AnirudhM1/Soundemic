@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 
 router.get('/register', (req, res) => { //To register user
-    res.sendFile(path.join(__dirname, '../public/signup.html'));
+    res.render('signup');
 });
 
 router.get('/', async (req, res) => {
@@ -19,15 +19,15 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {email, Firstname, Lastname, username, password} = req.body;
-        const name = `${Firstname} ${Lastname}`;
-        const user = new User({name, email, username, password});
+        const {name, username, password} = req.body;
+        const user = new User({name, username, password});
         await user.save();
         req.session.user_id = user._id;
         res.redirect('/users')
 
     } catch(e) {
-        console.log(e);
+        req.flash('warning', 'Username already taken');
+        res.redirect('/users/register');
     }
 });
 
