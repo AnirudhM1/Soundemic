@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const flash = require('connect-flash')
 const Grid = require('gridfs-stream');
 const User = require('./models/User');
 
@@ -43,32 +44,6 @@ mongoose.connect(process.env.MONGODB_URI, {
         console.log(e);
     })
 
-const songs = [
-
-    {
-        _id: '1',
-        name: 'Lateralus',
-        artist: 'Tool'
-    },
-    {
-        _id: '2',
-        name: 'New Divide',
-        artist: 'Linkin Park'
-    },
-    {
-        _id: '3',
-        name: 'song3',
-        artist: 'artist3'
-    },
-    {
-        _id: '4',
-        name: 'song4',
-        artist: 'artist4'
-    }
-
-]
-
-
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret!',
     resave: false,
@@ -84,10 +59,14 @@ app.use(express.urlencoded({ 'extended': true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 app.use(session(sessionConfig));
+app.use(flash());
 
+//Enabling flash
+app.use((req, res, next) => {
+    res.locals.warning = req.flash('warning');
+    next();
+})
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/mainpage.html'));
