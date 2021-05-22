@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/login.html'));
+    res.render('login');
 })
 
 router.post('/login', async (req, res) => { // To login user
@@ -44,7 +44,8 @@ router.post('/login', async (req, res) => { // To login user
             res.redirect('/users');
         }
         else {
-            res.send('Invalid username or password');
+            req.flash('warning', 'Invalid username or password')
+            res.redirect('/users/login');
         }
     } catch(e) {
         console.error(e);

@@ -60,6 +60,19 @@
             </center>
         </form>
 
+        <!-- notifications -->
+        <center>
+            <div id="SongAddedNotification" class="notification" style="display: none;">
+                <button class="delete" onclick="hide('SongAddedNotification')"></button>
+                Song has been added to your playlist
+            </div>
+        </center>
+        <center>
+            <div id="SongNotAddedNotification" class="notification" style="display: none;">
+                <button class="delete" onclick="hide('SongNotAddedNotification')"></button>
+                Song could not be added to the playlist
+            </div>
+        </center>
 
         <div id="header" class="header">
             <div class="title is-3 has-text-left">
@@ -67,33 +80,29 @@
             </div>
         </div>
 
-        <div id="notification1" style="display:none">
-            has been added to your playlist.
-        </div>
-
-        <! Display songs>
+        <!--Display songs-->
 
 
-            <div class="tile is-ancestor">
-                <! Column 1>
-                    <div class="tile is-vertical">
-                        <% for(let i=0;i<songs.length;i+=2) { %>
-                            <div class="tile is-child">
-                                <% const song=songs[i] %>
-                                    <%- include('partials/songCard', {song}) %>
-                            </div>
-                            <% } %>
+        <div class="tile is-ancestor">
+            <!-- Column 1 -->
+            <div class="tile is-vertical">
+                <% for(let i=0;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song=songs[i] %>
+                            <%- include('partials/songCard', {song}) %>
                     </div>
-                    <! Column 2>
-                        <div class="tile is-vertical">
-                            <% for(let i=1;i<songs.length;i+=2) { %>
-                                <div class="tile is-child">
-                                    <% const song=songs[i] %>
-                                        <%- include('partials/songCard', {song}) %>
-                                </div>
-                                <% } %>
-                        </div>
+                    <% } %>
             </div>
+            <!-- Column 2 -->
+            <div class="tile is-vertical">
+                <% for(let i=1;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song=songs[i] %>
+                            <%- include('partials/songCard', {song}) %>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -124,17 +133,31 @@
     <script>
 
         async function addSongToPlaylist(playlist_id) {
-            // TODO use axios to add song to playlist
 
             const URL = `users/<%= user_id%>/playlists/${playlist_id}`;
             console.log(selectedSong);
-            await axios.post(URL, {
+            const response = await axios.post(URL, {
                 song_id: selectedSong
             });
-            window.location.href = "/search";
+
+            let notification;
+
+            if (response.status = 200) {
+                notification = document.getElementById('SongAddedNotification');
+            }
+            else {
+                notification = document.getElementById('SongNotAddedNotification');
+            }
+
+            notification.style.display = "block";
 
             document.querySelector(".maine").style.display = null;
-            document.querySelector(".add").style.display = "none"
+            document.querySelector(".add").style.display = "none";
+
+        }
+
+        function hide(id) {
+            document.getElementById(id).style.display = "none";
         }
     </script>
 </body>
