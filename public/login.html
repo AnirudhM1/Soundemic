@@ -45,7 +45,6 @@
 
   .form h1 {
     text-align: center;
-    letter-spacing: 1px;
     margin-bottom: 2rem;
     color: #cccccc;
   }
@@ -124,6 +123,10 @@
     height: 5em;
     width: 5em;
     color: #2d0a38;
+  }
+
+  #icon:hover {
+    color: #4d081fa6;
 
   }
 </style>
@@ -138,7 +141,7 @@
       </center>
 
       <br>
-      <h1>LogIn</h1>
+      <h1 class="lead">LogIn</h1>
       <div class="input-group">
         <input type="text" name="username" id="username" required>
         <label for="username">Username</label>
@@ -148,7 +151,7 @@
         <label for="password1">Password</label>
       </div>
       <div id="alert" style="display: none;" class="alert alert-warning">
-          Username or Password incorrect
+        Username or Password incorrect
       </div>
       <button type="submit" class="btn btn-outline-dark">Login</button>
       <footer>
