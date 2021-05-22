@@ -62,10 +62,10 @@ router.post('/:id/playlists/:playlistId', async (req, res) => {
             console.log(song)
             playlist.songs.push(song);
             await playlist.save();
-            res.send('Song added!!');
+            res.status(200).send('Song added!!');
         }    
     } catch(e) {
-        console.error(e);
+        res.status(500).send('Song not added');
     }
 })
 
