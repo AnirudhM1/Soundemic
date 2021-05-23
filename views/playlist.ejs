@@ -15,7 +15,7 @@
 </head>
 
 <body style="font-family: 'Quicksand';">
-    <div class="box">
+    <div class="box" id="iconholder" style="margin-bottom: 0;">
         <nav class="nav">
             <center class="nav-center">
                 <a class="icon">
@@ -23,12 +23,6 @@
                 </a>
             </center>
         </nav>
-    </div>
-
-    <div class="card-top" style="display: none;" id="darkicon">
-        <center class="icon">
-            <i class=" fab fa-itunes-note" id="itunes"></i>
-        </center>
     </div>
 
     <div id="particles-js">
@@ -72,16 +66,18 @@
             <% playlist.songs.forEach(song=> { %>
                 <% console.log(song) %>
                     <article class="message" style="margin-top: 2.2em; margin-bottom: 2.2em;">
-                        <div class="message-header ">
+                        <div class="message-header has-text-left-desktop has-text-centered-mobile">
                             <div class="title is-5 is-bold" style="color: white; padding: 3px;">
                                 <%= song.title %>
                             </div>
                         </div>
                         <div id="artist" class="message-body" style="background:transparent;">
                             <div class="columns">
-                                <div class="subtitle column is-3 has-text-left"
+                                <div class="subtitle column is-3 has-text-centered-mobile has-text-left-desktop"
                                     style="color: #111111;margin:0.5em 0.1em;font-size: 1.3em;">
+
                                     <%= song.artist %>
+
                                 </div>
                                 <div class="column" id=<%=`button3_${song._id}` %> style="
                                     margin: 1.8em 1em;
@@ -101,21 +97,25 @@
 
                                 <audio id="audio" src="/Battle Symphony.mp3" type="audio/mpeg" style="display: none;">
                                 </audio>
-
-                                <button class="column is-3 button is-black is-outlined"
-                                    onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
-                                    margin:
-                                    1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                    'Quicksand';">
-                                    Play
-                                </button>
-                                <button class="column is-3 button is-black is-outlined" id=<%=`button1_${song._id}` %>
-                                    style="
-                                    margin:
-                                    1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                    'Quicksand';">
-                                    Remove
-                                </button>
+                                <center>
+                                    <button class="column is-3 button is-black is-outlined"
+                                        onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
+                                        margin:
+                                        1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                        'Quicksand';">
+                                        Play
+                                    </button>
+                                </center>
+                                <center>
+                                    <button class="column is-3 button is-black is-outlined" id=<%=`button1_${song._id}`
+                                        %>
+                                        style="
+                                        margin:
+                                        1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                        'Quicksand';">
+                                        Remove
+                                    </button>
+                                </center>
                             </div>
                         </div>
                     </article>
@@ -131,14 +131,8 @@
         document.querySelector("#link1").firstElementChild.style.color = "black";
         document.querySelector("#link2").firstElementChild.style.color = "black";
         document.querySelector(".is-active").firstElementChild.style.color = "grey";
-
-
-
-
-
         particlesJS.load('particles-js', '/playlist.json', function () {
             console.log('playlist.json loaded...');
-
         });
 
         function change1() {
@@ -146,10 +140,8 @@
             document.querySelector("#light").style.display = null;
             document.getElementById("submit").style.color = "white";
             document.getElementById("submit").style.borderColor = "white";
-            document.getElementById("darkicon").style.display = null;
-            document.getElementById("itunes").style.color = "white";
+            document.querySelector("#iconholder").style.display = "none";
             document.getElementById("announce").style.color = "white";
-            document.querySelector(".box").style.display = "none";
             document.querySelector("#link1").firstElementChild.style.color = "white";
             document.querySelector("#link2").firstElementChild.style.color = "white";
             document.querySelector(".is-active").firstElementChild.style.color = "grey";
@@ -161,18 +153,14 @@
 
         }
         function change2() {
+            document.querySelector("#iconholder").style.display = null;
             document.querySelector("#dark").style.display = null;
             document.querySelector("#light").style.display = "none";
-
-            // document.querySelectorAll(".inactive").firstElementChild.style.color = "black";
             document.getElementById("submit").style.color = "black";
             document.getElementById("submit").style.borderColor = "rgb(75, 75, 75)";
             document.querySelector("#link1").firstElementChild.style.color = "black";
             document.querySelector("#link2").firstElementChild.style.color = "black";
             document.querySelector(".is-active").firstElementChild.style.color = "grey";
-
-            document.getElementById("darkicon").style.display = "none";
-            document.querySelector(".box").style.display = null;
             document.getElementById("announce").style.color = "black";
             document.getElementById("particles-js").style.backgroundColor = "white";
             document.getElementById("header").firstElementChild.style.color = "black";
@@ -192,7 +180,6 @@
                 const { duration, currentTime } = e.srcElement;
                 const progressPercent = (currentTime / duration) * 100;
                 progress.style.width = `${progressPercent}%`;
-
             }
 
 
@@ -222,7 +209,7 @@
                 document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
 
 
-                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode.parentNode;
                 messageBox.classList.remove("is-primary");
                 messageBox.classList.add("is-danger");
                 let progress = document.getElementById(`button4_${song_id}`);
@@ -241,7 +228,7 @@
                 document.getElementById(`button2_${song_id}`).classList.add("is-primary");
                 document.getElementById(`button3_${song_id}`).style.borderColor = "#00D2B1";
 
-                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode;
+                let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode.parentNode;
                 messageBox.classList.remove("is-danger");
                 messageBox.classList.add("is-primary");
                 let progress = document.getElementById(`button4_${song_id}`);

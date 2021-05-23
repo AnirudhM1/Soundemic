@@ -28,6 +28,33 @@
         </nav>
     </div>
 
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="add" style="display:none;width:30vw;margin: 3em; ">
+                    <div class="title is-4 has-text-left">
+                        To which one?
+                        <br>
+                        <div class="subtitle">
+
+                            <% playlists.forEach(playlist=> { %>
+                                <button class="button is-outlined is-dark" id="login"
+                                    style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
+                                    onclick="addSongToPlaylist('<%= playlist._id %>')">
+                                    <%= playlist.title %>
+                                </button>
+                                <br>
+                                <% }) %>
+                                    <br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 
     <div class="maine">
         <br>
@@ -105,29 +132,7 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="add" style="display:none;position: fixed; top: 30%; left:5% ;width:30vw;margin:-4em 0 0 0; ">
-            <div class="title is-4 has-text-left">
-                To which one?
-                <br>
-                <br>
-                <div class="subtitle">
 
-                    <% playlists.forEach(playlist=> { %>
-                        <button class="button is-outlined is-dark" id="login"
-                            style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
-                            onclick="addSongToPlaylist('<%= playlist._id %>')">
-                            <%= playlist.title %>
-                        </button>
-                        <br>
-                        <% }) %>
-                            <br>
-                            <br>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <script>

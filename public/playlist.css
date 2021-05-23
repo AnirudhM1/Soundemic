@@ -57,12 +57,6 @@ center > nav > ul > li{
 }
 
 .card-top{
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    top: 50%;
-    left:50%;
-    margin:-19.5em 0 0 -1em;
     border-radius: 4px;
     box-sizing: border-box;
     z-index: 100;
@@ -112,17 +106,21 @@ center > nav > ul > li{
     width: 80%;
     margin: auto;
     padding: 1em;
+
 }
+
 #icon{
-    color: #00d1b2;
+    color: #2d0a38;
     padding-top:0;
     margin: auto;
-    width:5em;
-    height: 5em;
+    width:5.1em;
+    height: 5.1em;
 }
 #icon:hover{
-    color: black;
+    color: #00d2b1;
 }
+
+
 
 #search{
     padding: 0.5em;
