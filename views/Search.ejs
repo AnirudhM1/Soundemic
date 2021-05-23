@@ -13,12 +13,46 @@
     <script src="/js/autocomplete.js"></script>
     <title>Search</title>
 </head>
+<style>
+    html,
+    body {
+        min-width: 100%;
+        min-height: 100%;
+        background: url("/image4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+    }
 
+    #header>div {
+        color: #f5f5f5;
+    }
+
+    #link1>a,
+    #link2>a {
+        text-decoration: none;
+        color: white;
+    }
+
+    #link>a {
+        color: grey;
+
+    }
+
+    #submit {
+        color: #f5f5f5;
+        border: 1px solid white;
+        font-family: 'Quicksand';
+        margin: 1em;
+        background-color: transparent;
+    }
+</style>
 
 
 <body style="font-family: 'Quicksand';">
 
-    <div class=" box" style="margin-bottom: 0;">
+    <div class="box" id="iconholder" style="background-color: transparent;">
         <nav class="nav">
             <center class="nav-center">
                 <a class="icon">
@@ -32,7 +66,7 @@
         <div class="columns">
             <div class="column">
                 <div class="add" style="display:none;width:30vw;margin: 3em; ">
-                    <div class="title is-4 has-text-left">
+                    <div class="title is-4 has-text-left" style="color: #f5f5f5;">
                         To which one?
                         <br>
                         <div class="subtitle">
@@ -62,10 +96,10 @@
 
         <center>
             <nav class="breadcrumb has-succeeds-separator">
-                <ul style="align-items:center;justify-content:center">
-                    <li id="link"><a href="/" style="color: black;">Home</a></li>
-                    <li id="link"><a href="/users" style="color: black;">Profile</a></li>
-                    <li id="link" class="is-active"><a href="/search" style="color: rgb(104, 104, 104);">Search</a>
+                <ul style="align-items:center;justify-content:flex-start;margin:-2.5em 0em 0em 2em;">
+                    <li id="link1"><a href="/">Home</a></li>
+                    <li id="link2"><a href="/users">Profile</a></li>
+                    <li id="link" class="is-active"><a href="/search">Search</a>
                     </li>
                 </ul>
             </nav>
@@ -80,10 +114,7 @@
                     <input type="text" id="search" name="search" class="input is-hovered is-medium"
                         placeholder="Search." style="font-family: 'Quicksand';width: 70vw;">
                 </div>
-                <button class="button is-medium is-hovered" id="submit" style="font-family: 'Quicksand';
-                    margin: 1em;
-                    background-color: 
-                    transparent;border: 1px solid rgb(75, 75, 75);">Submit</button>
+                <button class="button is-medium is-hovered" id="submit">Submit</button>
             </center>
         </form>
 

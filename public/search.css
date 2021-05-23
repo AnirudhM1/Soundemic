@@ -1,8 +1,8 @@
-html, body { 
+/* html, body { 
     min-height: 100%;
     background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PSLMwOXb6GYbvgE-uBa0ddodztcStmoCFw&usqp=CAU") no-repeat center;
     background-size: cover;
-}
+} */
 
 center > nav > ul > li{
     font-size: 1.5em;
@@ -85,11 +85,11 @@ center > nav > ul > li{
     padding: 1em;
 }
 #icon{
-    color: #2d0a38;
-    padding-top:0;
+    color: #f3f3f3;
+    width:6em;
+    height: 6em;
+    display: block;
     margin: auto;
-    width:5.1em;
-    height: 5.1em;
 }
 #icon:hover{
     color: #00d2b1;
