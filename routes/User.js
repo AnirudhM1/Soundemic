@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => { // To login user
     }
 })
 
-router.get('/logout', (req, res) => { // This is set to get for debugging purposes and needs to be changed to post
+router.post('/logout', (req, res) => { // This is set to get for debugging purposes and needs to be changed to post
     req.session.destroy();
     res.redirect('/users/login')
 })
