@@ -88,54 +88,53 @@
         <center>
             <h1 class="display-3">SignUp</h1>
         </center>
-        <form action="/users" method="POST">
-            <br>
-            <form action="/users" method="POST" onsubmit="return validate()">
-                <div class="row g-3">
-                    <div class="col-md-8 mb-1">
-                        <label for="Name" class="form-label">Name</label><span class="required">*</span>
-                        <input type="text" name="name" class="form-control" id="Name" placeholder="Enter your Name"
-                            required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="username" class="form-label">Username</label><span class="required">*</span>
-                        <input type="text" name="username" class="form-control" id="username"
-                            placeholder="Create your username" required>
-                    </div>
+        <!-- <form action="/users" method="POST">
+            <br> -->
+        <form action="/users" method="POST" onsubmit="return validate()">
+            <div class="row g-3">
+                <div class="col-md-8 mb-1">
+                    <label for="Name" class="form-label">Name</label><span class="required">*</span>
+                    <input type="text" name="name" class="form-control" id="Name" placeholder="Enter your Name"
+                        required>
+                </div>
+                <div class="col-md-4">
+                    <label for="username" class="form-label">Username</label><span class="required">*</span>
+                    <input type="text" name="username" class="form-control" id="username"
+                        placeholder="Create your username" required>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="password1" class="form-label mb-1">Password</label><span class="required">*</span>
+                    <input type="password" class="form-control mb-1" id="password1" placeholder="Don't make it too easy"
+                        required name="password">
+                    <input class="form-check-input" type="checkbox" onclick="showPass1()">
+                    <label class="form-check-label" for="password1" id="show">Show password</label>
                 </div>
 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="password1" class="form-label mb-1">Password</label><span class="required">*</span>
-                        <input type="password" class="form-control mb-1" id="password1"
-                            placeholder="Don't make it too easy" required name="password">
-                        <input class="form-check-input" type="checkbox" onclick="showPass1()">
-                        <label class="form-check-label" for="password1" id="show">Show password</label>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="password2" class="form-label mb-1">Confirm Password</label><span
-                            class="required">*</span>
-                        <input type="password" class="form-control mb-1" id="password2"
-                            placeholder="Re-type your password" required>
-                        <input class="form-check-input" type="checkbox" onclick="showPass2()">
-                        <label class="form-check-label" for="password2" id="show">Show password</label>
-                    </div>
+                <div class="col-md-6">
+                    <label for="password2" class="form-label mb-1">Confirm Password</label><span
+                        class="required">*</span>
+                    <input type="password" class="form-control mb-1" id="password2" placeholder="Re-type your password"
+                        required>
+                    <input class="form-check-input" type="checkbox" onclick="showPass2()">
+                    <label class="form-check-label" for="password2" id="show">Show password</label>
                 </div>
+            </div>
 
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert"
-                    style="display: none;">
-                    <strong>Password and Confirm Password do not match!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <%- include('partials/flash') %>
-                    <center>
-                        <button type="submit" class="btn btn-dark btn-lg mt-2" id="btnSubmit" value="Submit">
-                            Register
-                        </button>
-                    </center>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert" style="display: none;">
+                <strong>Password and Confirm Password do not match!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <%- include('partials/flash') %>
+                <center>
+                    <button type="submit" class="btn btn-dark btn-lg mt-2" id="btnSubmit" value="Submit">
+                        Register
+                    </button>
+                </center>
 
-            </form>
+        </form>
     </div>
     <footer>
         <a href="/users/login">Already have an account? Login instead</a>
