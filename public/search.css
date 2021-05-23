@@ -1,14 +1,30 @@
-html, body { 
+/* html, body { 
     min-height: 100%;
     background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PSLMwOXb6GYbvgE-uBa0ddodztcStmoCFw&usqp=CAU") no-repeat center;
     background-size: cover;
-}
+} */
 
 center > nav > ul > li{
     font-size: 1.5em;
 }
 
+#SongAddedNotification{
+    background-color: #5cdd7ddc;
+    color: rgb(255, 255, 255);
+    width: 70%;
+    margin: 1em;
+    font-size: 1.4em;
+    border-radius: 10px;
+}
 
+#SongNotAddedNotification{
+    background-color: #f51515b4;
+    color: white;
+    width: 70%;
+    margin: 1em;
+    font-size: 1.4em;
+    border-radius: 10px;
+}
 
 .otherOptions{
     display: block;
@@ -28,13 +44,6 @@ center > nav > ul > li{
     border-radius: 4px;
     box-sizing: border-box;
     z-index: 100;
-}
-#itunes{
-    height: 6em; width: 6em;display: block;margin: auto;color: white;
-}
-
-#itunes:hover{
-    color: #00d1b2;
 }
 
 
@@ -76,14 +85,14 @@ center > nav > ul > li{
     padding: 1em;
 }
 #icon{
-    color: #00d1b2;
-    padding-top:0;
+    color: #f3f3f3;
+    width:6em;
+    height: 6em;
+    display: block;
     margin: auto;
-    width:5em;
-    height: 5em;
 }
 #icon:hover{
-    color: black;
+    color: #00d2b1;
 }
 
 #search{

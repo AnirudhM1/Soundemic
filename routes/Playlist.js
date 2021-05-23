@@ -9,15 +9,15 @@ const User = require('../models/User');
 router.get('/:id/playlists', async (req, res) => {
     try {
         const user = await User.findById(req.params.id).populate('playlists');
-        if(user.playlists) {
+        if (user.playlists) {
             res.send(user.playlists);
         }
         else {
             res.send([]);
         }
-    } catch(e) {
+    } catch (e) {
         console.error(error);
-    } 
+    }
 })
 
 router.post('/:id/playlists', async (req, res) => {
@@ -29,28 +29,28 @@ router.post('/:id/playlists', async (req, res) => {
         await playlist.save();
         await user.save();
         res.send('Playlist created!!');
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
 })
 
 router.get('/:id/playlists/:playlistId', async (req, res) => {
     try {
-        if(!req.session.user_id || req.session.user_id !== req.params.id) {
+        if (!req.session.user_id || req.session.user_id !== req.params.id) {
             res.redirect('/users/login');
         }
         else {
             const playlist = await Playlist.findById(req.params.playlistId).populate('songs');
             res.render('playlist', { playlist })
-        }    
-    } catch(e) {
+        }
+    } catch (e) {
         console.error(e);
     }
 })
 
 router.post('/:id/playlists/:playlistId', async (req, res) => {
     try {
-        if(!req.session.user_id || req.session.user_id !== req.params.id) {
+        if (!req.session.user_id || req.session.user_id !== req.params.id) {
             res.redirect('/users/login');
         }
         else {
@@ -63,22 +63,22 @@ router.post('/:id/playlists/:playlistId', async (req, res) => {
             playlist.songs.push(song);
             await playlist.save();
             res.status(200).send('Song added!!');
-        }    
-    } catch(e) {
+        }
+    } catch (e) {
         res.status(500).send('Song not added');
     }
 })
 
 router.delete('/:id/playlists/:playlistId', async (req, res) => {
     try {
-        const {id, playlistId} = req.params;
+        const { id, playlistId } = req.params;
         await User.findOneAndUpdate(id, { $pull: { playlists: playlistId } });
         await Playlist.findByIdAndDelete(playlistId);
         res.send('Deleted!');
-    } catch(e)  {
+    } catch (e) {
         console.error(e);
     }
-    
+
 })
 
 module.exports = router;

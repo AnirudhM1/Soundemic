@@ -13,12 +13,46 @@
     <script src="/js/autocomplete.js"></script>
     <title>Search</title>
 </head>
+<style>
+    html,
+    body {
+        min-width: 100%;
+        min-height: 100%;
+        background: url("/image4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+    }
 
+    #header>div {
+        color: #f5f5f5;
+    }
+
+    #link1>a,
+    #link2>a {
+        text-decoration: none;
+        color: white;
+    }
+
+    #link>a {
+        color: grey;
+
+    }
+
+    #submit {
+        color: #f5f5f5;
+        border: 1px solid white;
+        font-family: 'Quicksand';
+        margin: 1em;
+        background-color: transparent;
+    }
+</style>
 
 
 <body style="font-family: 'Quicksand';">
 
-    <div class=" box" style="margin-bottom: 0;">
+    <div class="box" id="iconholder" style="background-color: transparent;">
         <nav class="nav">
             <center class="nav-center">
                 <a class="icon">
@@ -28,6 +62,33 @@
         </nav>
     </div>
 
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="add" style="display:none;width:30vw;margin: 3em; ">
+                    <div class="title is-4 has-text-left" style="color: #f5f5f5;">
+                        To which one?
+                        <br>
+                        <div class="subtitle">
+
+                            <% playlists.forEach(playlist=> { %>
+                                <button class="button is-outlined is-dark" id="login"
+                                    style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
+                                    onclick="addSongToPlaylist('<%= playlist._id %>')">
+                                    <%= playlist.title %>
+                                </button>
+                                <br>
+                                <% }) %>
+                                    <br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 
     <div class="maine">
         <br>
@@ -35,10 +96,10 @@
 
         <center>
             <nav class="breadcrumb has-succeeds-separator">
-                <ul style="align-items:center;justify-content:center">
-                    <li id="link"><a href="/" style="color: black;">Home</a></li>
-                    <li id="link"><a href="/users" style="color: black;">Profile</a></li>
-                    <li id="link" class="is-active"><a href="/search" style="color: rgb(104, 104, 104);">Search</a>
+                <ul style="align-items:center;justify-content:flex-start;margin:-2.5em 0em 0em 2em;">
+                    <li id="link1"><a href="/">Home</a></li>
+                    <li id="link2"><a href="/users">Profile</a></li>
+                    <li id="link" class="is-active"><a href="/search">Search</a>
                     </li>
                 </ul>
             </nav>
@@ -53,23 +114,23 @@
                     <input type="text" id="search" name="search" class="input is-hovered is-medium"
                         placeholder="Search." style="font-family: 'Quicksand';width: 70vw;">
                 </div>
-                <button class="button is-medium is-hovered" id="submit" style="font-family: 'Quicksand';
-                    margin: 1em;
-                    background-color: 
-                    transparent;border: 1px solid rgb(75, 75, 75);">Submit</button>
+                <button class="button is-medium is-hovered" id="submit">Submit</button>
             </center>
         </form>
 
         <!-- notifications -->
-
-        <div id="SongAddedNotification" style="display: none;" class="notification is-success">
-            <button class="delete" onclick="hide('SongAddedNotification')" ></button>
-            Song has been added to your playlist
-        </div>
-        <div id="SongNotAddedNotification" style="display: none;" class="notification is-warning">
-            <button class="delete" onclick="hide('SongNotAddedNotification')" ></button>
-            Song could not be added to the playlist
-        </div>
+        <center>
+            <div id="SongAddedNotification" class="notification" style="display: none;">
+                <button class="delete" onclick="hide('SongAddedNotification')"></button>
+                Song has been added to your playlist
+            </div>
+        </center>
+        <center>
+            <div id="SongNotAddedNotification" class="notification" style="display: none;">
+                <button class="delete" onclick="hide('SongNotAddedNotification')"></button>
+                Song could not be added to the playlist
+            </div>
+        </center>
 
         <div id="header" class="header">
             <div class="title is-3 has-text-left">
@@ -77,64 +138,32 @@
             </div>
         </div>
 
-        <!--Display songs--> 
+        <!--Display songs-->
 
 
-            <div class="tile is-ancestor">
-                <!-- Column 1 -->
-                    <div class="tile is-vertical">
-                        <% for(let i=0;i<songs.length;i+=2) { %>
-                            <div class="tile is-child">
-                                <% const song=songs[i] %>
-                                    <%- include('partials/songCard', {song}) %>
-                            </div>
-                            <% } %>
+        <div class="tile is-ancestor">
+            <!-- Column 1 -->
+            <div class="tile is-vertical">
+                <% for(let i=0;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song=songs[i] %>
+                            <%- include('partials/songCard', {song}) %>
                     </div>
-                    <!-- Column 2 -->
-                        <div class="tile is-vertical">
-                            <% for(let i=1;i<songs.length;i+=2) { %>
-                                <div class="tile is-child">
-                                    <% const song=songs[i] %>
-                                        <%- include('partials/songCard', {song}) %>
-                                </div>
-                                <% } %>
-                        </div>
+                    <% } %>
             </div>
-    </div>
-
-    <div class="container">
-        <div class="add" style="display:none;position: fixed; top: 30%; left:5% ;width:30vw;margin:-4em 0 0 0; ">
-            <div class="title is-4 has-text-left">
-                To which one?
-                <br>
-                <br>
-                <div class="subtitle">
-
-                    <% playlists.forEach(playlist=> { %>
-                        <button class="button is-outlined is-dark" id="login"
-                            style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
-                            onclick="addSongToPlaylist('<%= playlist._id %>')">
-                            <%= playlist.title %>
-                        </button>
-                        <br>
-                        <% }) %>
-                            <br>
-                            <br>
-                            <!-- <a href="/users">
-                                <button class="button is-primary is-large is-outlined is-centered" id="submit"
-                                    style="margin-bottom: 1em;font-family: 'Quicksand';">Save.</button>
-                            </a>
-                            <br>
-                            <br>
-                            <button class="button is-danger is-centered is-large is-outlined" id="submit"
-                                style="font-family: 'Quicksand';" onclick="back()">Add
-                                more
-                                songs.</button> -->
-
-                </div>
+            <!-- Column 2 -->
+            <div class="tile is-vertical">
+                <% for(let i=1;i<songs.length;i+=2) { %>
+                    <div class="tile is-child">
+                        <% const song=songs[i] %>
+                            <%- include('partials/songCard', {song}) %>
+                    </div>
+                    <% } %>
             </div>
         </div>
     </div>
+
+
 
 
     <script>
@@ -149,7 +178,7 @@
 
             let notification;
 
-            if(response.status = 200) {
+            if (response.status = 200) {
                 notification = document.getElementById('SongAddedNotification');
             }
             else {
@@ -160,11 +189,11 @@
 
             document.querySelector(".maine").style.display = null;
             document.querySelector(".add").style.display = "none";
-            
+
         }
 
         function hide(id) {
-            document.getElementById(id).style.display="none";
+            document.getElementById(id).style.display = "none";
         }
     </script>
 </body>

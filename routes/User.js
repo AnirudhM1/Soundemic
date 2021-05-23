@@ -21,13 +21,13 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {name, username, password} = req.body;
-        const user = new User({name, username, password});
+        const { name, username, password } = req.body;
+        const user = new User({ name, username, password });
         await user.save();
         req.session.user_id = user._id;
         res.redirect('/users')
 
-    } catch(e) {
+    } catch (e) {
         req.flash('warning', 'Username already taken');
         res.redirect('/users/register');
     }
@@ -39,9 +39,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => { // To login user
     try {
-        const {username, password} = req.body;
+        const { username, password } = req.body;
         const user = await User.findAndValidate(username, password);
-        if(user) {
+        if (user) {
             req.session.user_id = user._id;
             res.redirect('/users');
         }
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => { // To login user
             req.flash('warning', 'Invalid username or password')
             res.redirect('/users/login');
         }
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
 })
@@ -62,12 +62,12 @@ router.post('/logout', (req, res) => { // This is set to get for debugging purpo
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await User.findOneAndDelete({ _id: id});
+        const data = await User.findOneAndDelete({ _id: id });
         res.send(data);
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
-    
+
 })
 
 module.exports = router;

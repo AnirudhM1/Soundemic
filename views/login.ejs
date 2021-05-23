@@ -7,15 +7,11 @@
   <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"
-  >
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
   <title>LogIn</title>
 </head>
 <style>
@@ -130,12 +126,12 @@
   #icon {
     height: 5em;
     width: 5em;
-    color: black;
-
+    color: #2d0a38;
   }
 
   #icon:hover {
     color: #00d2b1;
+
   }
 </style>
 
@@ -158,11 +154,11 @@
         <input type="password" name="password" id="password1" required>
         <label for="password1">Password</label>
       </div>
-      <%- include('partials/flash') %> 
-      <button type="submit" class="btn btn-outline-dark">Login</button>
-      <footer>
-        <a href="/users/register">Don't have an account? SignUp now</a>
-      </footer>
+      <%- include('partials/flash') %>
+        <button type="submit" class="btn btn-outline-dark">Login</button>
+        <footer>
+          <a href="/users/register">Don't have an account? SignUp now</a>
+        </footer>
     </form>
   </div>
 </body>
