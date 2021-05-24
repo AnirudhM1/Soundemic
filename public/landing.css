@@ -67,6 +67,17 @@
   }
 }
 
+#signup{
+  background-color: transparent;
+  color: #f5f5f5;
+  border: 1px solid #f5f5f5;
+}
+
+#signup:hover{
+  background-color: #f5f5f5cc;
+  color: black;
+}
+
 
 #now{
   background-color: transparent;
@@ -80,12 +91,12 @@
 }
 #login{
   background-color: transparent;
-  color: #348d72;
-  border: 1px solid #348d72;
+  color: #66d8b6;
+  border: 1px solid #6cd8b8;
 }
 
 #login:hover{
-  background-color: #348d72;
+  background-color: #62e0ba;
   color: white;
 }
 
@@ -162,24 +173,24 @@ padding: 20px;
  border-radius: 4px;
  box-sizing: border-box;
  z-index: 100;
- box-shadow: 0 1px 3px rgba(27, 27, 27, 0.12), 0 1px 2px rgba(31, 31, 31, 0.24);
+ box-shadow: 0 1px 3px rgba(46, 46, 46, 0.212), 0 1px 2px rgba(31, 31, 31, 0.24);
  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .card-1:hover {
-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+box-shadow: 0 14px 28px rgba(170, 170, 170, 0.37), 0 10px 10px rgba(0,0,0,0.22);
 border-radius: 2px;
 padding: 20px 0px;
 }
 
 
 #itunes{
-  color: #2d0a38 ;
+  color: #f9e6ff ;
 
 }
 
 #itunes:hover{
-  color: #320c3ac2
+  color: #00d2b1;
 }
 
 
