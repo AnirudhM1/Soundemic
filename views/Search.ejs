@@ -14,11 +14,15 @@
     <title>Search</title>
 </head>
 <style>
+    .autocomplete {
+        color: #f5f5f5;
+    }
+
     html,
     body {
         min-width: 100%;
         min-height: 100%;
-        background: url("/image4.jpg");
+        background: url("/image5.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -47,6 +51,24 @@
         margin: 1em;
         background-color: transparent;
     }
+
+    #login {
+        color: #f5f5f5;
+        border: 1px solid white;
+        width: fit-content;
+        height: fit-content;
+        font-family: 'Quicksand';
+        cursor: pointer;
+        margin: 0.5em;
+        background: transparent;
+        font-size: 1.3em;
+
+    }
+
+    #login:hover {
+        background-color: #dddcdcc0;
+        color: black;
+    }
 </style>
 
 
@@ -65,15 +87,15 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <div class="add" style="display:none;width:30vw;margin: 3em; ">
-                    <div class="title is-4 has-text-left" style="color: #f5f5f5;">
+                <div class="add" style="display:none;width:30vw;margin: 2em; ">
+                    <div class="title is-3 has-text-left" style="color: #f5f5f5;">
                         To which one?
+                        <br>
                         <br>
                         <div class="subtitle">
 
                             <% playlists.forEach(playlist=> { %>
-                                <button class="button is-outlined is-dark" id="login"
-                                    style="width: fit-content; height: fit-content;font-family: 'Quicksand';cursor: pointer;margin: 0.5em;"
+                                <button class="button is-outlined" id="login"
                                     onclick="addSongToPlaylist('<%= playlist._id %>')">
                                     <%= playlist.title %>
                                 </button>
@@ -109,11 +131,13 @@
         <br>
 
         <form action="/search" method="POST" autocomplete="off" class="field">
+            <div class="autocomplete">
+                <center>
+                    <input type="text" id="search" name="search" class="input is-medium" placeholder="Search."
+                        style="font-family: 'Quicksand';width: 70vw;">
+                </center>
+            </div>
             <center>
-                <div class="autocomplete">
-                    <input type="text" id="search" name="search" class="input is-hovered is-medium"
-                        placeholder="Search." style="font-family: 'Quicksand';width: 70vw;">
-                </div>
                 <button class="button is-medium is-hovered" id="submit">Submit</button>
             </center>
         </form>
