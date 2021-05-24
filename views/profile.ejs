@@ -22,7 +22,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         text-align: center;
-        padding: 20px;
+        padding: 8px 15px;
         background-color: rgba(248, 244, 255, 0.877);
         border-radius: 2%;
     }
@@ -64,7 +64,7 @@
 
     div.subtitle:hover {
         transition: transform 0.8s;
-        transform: scale(1.5);
+        transform: scale(1.2);
         color: black;
     }
 
@@ -81,6 +81,27 @@
     #link>a {
         color: grey;
 
+    }
+
+    #submit {
+        width: fit-content;
+        margin: auto;
+        font-family: 'Quicksand';
+        border: 1px solid red;
+
+    }
+
+    #submit:hover {
+        border: 1px solid #f5f5f5;
+        color: white;
+
+    }
+
+    #login {
+        width: fit-content;
+        margin: auto;
+        display: block;
+        font-family: 'Quicksand';
     }
 </style>
 
@@ -107,7 +128,7 @@
         </nav>
     </div>
     <center>
-        <nav class="breadcrumb has-succeeds-separator">
+        <nav class="breadcrumb has-succeeds-separator" style="margin: 1em">
             <ul>
                 <li id="link1"><a href="/">Home</a></li>
                 <li id="link" class="is-active"><a href="/users">Profile</a></li>
@@ -117,17 +138,13 @@
     </center>
 
     <div class="container">
-        <div class="columns is-vcentered is-multiline">
-
+        <div class="columns is-multiline">
             <div class="column is-8">
                 <p class="subtitle is-2 is-spaced has-text-centered" id="welcome">Welcome back <%= username %>!</p>
                 <br>
                 <div class="otherOptions">
                     <a href="/search" style="text-decoration: none; color: black;">
-                        <button class="button is-outlined is-medium is-primary" id="login" style="width: fit-content;
-                            margin: auto;
-                            display: block;
-                            font-family: 'Quicksand';">
+                        <button class="button is-outlined is-medium is-primary" id="login">
                             Search for songs
                         </button>
                     </a>
@@ -139,12 +156,10 @@
                     <div class="title is-4 py-4 has-text-centered">
                         <% if (playlists.length===0) { %>
                             No playlists to display.
-                            <% } else {%>
+                            <% } else { %>
                                 Your Playlists
                                 <% } %>
-
                                     <hr>
-
                                     <% playlists.forEach(playlist=> { %>
                                         <div class="subtitle is-5 has-text-centered py-2"
                                             style="margin:1em;cursor: pointer;"
@@ -157,19 +172,18 @@
                 </div>
 
                 <div class="otherOptions">
-                    <br>
                     <button class="button is-outlined is-medium is-danger" id="now" style="width: fit-content;
                             margin: auto;
                             display: block;
                             font-family: 'Quicksand';" onclick="make()">
                         New playlist
                     </button>
-                    <input type="text" class="input" style="display: none; margin: 1em;"
+                    <input type="text" class="input" style="display: none; margin:1em;"
                         placeholder="Name your playlist.">
                     <center>
                         <small class="has-text-danger" style="display: none;">Please add a valid name</small>
-                        <button class="button is-danger is-outlined is-centered" id="submit"
-                            style="display:none;margin: 1em;" onclick="selectSongs()">Create</button>
+                        <button class="button is-outlined is-danger" id="submit" style="display:none;"
+                            onclick="selectSongs()">Create</button>
                     </center>
                 </div>
             </div>
