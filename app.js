@@ -92,7 +92,6 @@ app.get('/', (req, res) => {
 app.use('/users', userRoutes);
 app.use('/users', playlistRoutes);
 app.use('/search', searchRoutes);
-app.use('/test', testRoutes);
 
 
 app.get('*', (req, res) => {
