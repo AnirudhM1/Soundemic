@@ -6,16 +6,21 @@
     <link rel="stylesheet" href="/playlist.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <title>Profile</title>
+    <title>Soundemic - <%= username %>
+    </title>
 </head>
 
 <style>
+    #iconholder {
+        transition: 2s linear;
+    }
+
     #fancyscroll {
         scrollbar-width: thin;
         height: 240px;
@@ -27,10 +32,14 @@
         border-radius: 2%;
     }
 
+    .container {
+        transition: 2s linear;
+    }
+
     html,
     body {
         min-width: 100%;
-        min-height: 100%;
+        min-height: 100vh;
         background: url("/image.jpg");
         background-size: cover;
         background-repeat: no-repeat;
@@ -152,7 +161,7 @@
             </div>
 
             <div class="column is-4">
-                <div class="scroll yourPlaylist" id="fancyscroll">
+                <div class="scroll yourPlaylist my-4" id="fancyscroll">
                     <div class="title is-4 py-4 has-text-centered">
                         <% if (playlists.length===0) { %>
                             No playlists to display.
@@ -162,7 +171,7 @@
                                     <hr>
                                     <% playlists.forEach(playlist=> { %>
                                         <div class="subtitle is-5 has-text-centered py-2"
-                                            style="margin:1em;cursor: pointer;"
+                                            style="margin:0.5em;cursor: pointer;"
                                             onclick="selectPlaylist('<%= playlist._id %>')">
                                             <%= playlist.title %>
                                         </div>
@@ -178,7 +187,7 @@
                             font-family: 'Quicksand';" onclick="make()">
                         New playlist
                     </button>
-                    <input type="text" class="input" style="display: none; margin:1em;"
+                    <input type="text" class="input" style="display: none; margin:1em;font-family: 'Quicksand';"
                         placeholder="Name your playlist.">
                     <center>
                         <small class="has-text-danger" style="display: none;">Please add a valid name</small>
@@ -189,7 +198,6 @@
             </div>
         </div>
 
-    </div>
     </div>
 
 

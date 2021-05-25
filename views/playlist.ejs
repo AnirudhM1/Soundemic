@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <title>Playlist</title>
+    <title>Soundemic - Playlists</title>
 </head>
 
 <body style="font-family: 'Quicksand';">
@@ -41,71 +41,81 @@
 
 
         <div id="header" class="header">
-            <div class="subtitle is-3 has-text-centered">
+            <div class="subtitle is-2 has-text-centered">
                 <%= playlist.title %>
             </div>
         </div>
 
-        <div id="songs" class="block">
-            <% playlist.songs.forEach(song=> { %>
-                    <article class="message" style="margin: 3em 0; ">
-                        <div class="message-header has-text-left-desktop has-text-centered-mobile">
-                            <div class="title is-4 is-bold" style="color: white; padding: 3px;">
-                                <%= song.title %>
-                            </div>
-                        </div>
-                        <div id="artist" class="message-body" style="background:transparent;">
-                            <div class="columns">
-                                <div class="subtitle column is-2 has-text-centered-mobile has-text-left-desktop"
-                                    style="color: #111111;margin:0.7em 0.1em;font-size: 1.35em;">
-
-                                    <%= song.artist %>
-
+        <% if (playlist.songs.length===0) { %>
+            <div class="container mt-5">
+                <div class="subtitle is-4 has-text-centered mx-3 my-3"
+                    style="color: rgb(189, 189, 189);font-family: 'Quicksand';">
+                    No songs to display in this playlist.
+                </div>
+            </div>
+            <% } else { %>
+                <div id="songs" class="block">
+                    <% playlist.songs.forEach(song=> { %>
+                        <article class="message" style="margin: 3em 0; ">
+                            <div class="message-header has-text-left-desktop has-text-centered-mobile">
+                                <div class="title is-4 is-bold" style="color: white; padding: 3px;">
+                                    <%= song.title %>
                                 </div>
-                                <div class="column" id=<%=`button3_${song._id}` %> style="
-                                    margin: 2em 1em;
-                                    height: fit-content;
-                                    border-width:0.4px;
-                                    border-color:#111111;
-                                    border-style:solid;
-                                    border-radius:5px;
-                                    padding: 0;">
-                                    <div id=<%=`button4_${song._id}` %> class="progress" style=
-                                        "height: 0.5rem;
-                                        border-radius:5px;
-                                        width:0%;
-                                        padding:0;">
+                            </div>
+                            <div id="artist" class="message-body" style="background:transparent;">
+                                <div class="columns">
+                                    <div class="subtitle column is-2 has-text-centered-mobile has-text-left-desktop"
+                                        style="color: #111111;margin:0.7em 0.1em;font-size: 1.35em;">
+
+                                        <%= song.artist %>
+
                                     </div>
-                                </div>
+                                    <div class="column" id=<%=`button3_${song._id}` %> style="
+                                        margin: 2em 1em;
+                                        height: fit-content;
+                                        border-width:0.4px;
+                                        border-color:#111111;
+                                        border-style:solid;
+                                        border-radius:5px;
+                                        padding: 0;">
+                                        <div id=<%=`button4_${song._id}` %> class="progress" style=
+                                            "height: 0.5rem;
+                                            border-radius:5px;
+                                            width:0%;
+                                            padding:0;">
+                                        </div>
+                                    </div>
 
-                                <audio id="audio" src="<%= song.url %> " type="audio/mpeg" style="display: none;">
-                                </audio>
-                                <center>
-                                    <button class="column is-3 button is-black is-outlined"
-                                        onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %> style="
-                                        margin:
-                                        1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                        'Quicksand';">
-                                        Play
-                                    </button>
-                                </center>
-                                <center>
-                                    <button class="column is-3 button is-black is-outlined" id=<%=`button1_${song._id}`
-                                        %>
-                                        style="
-                                        margin:
-                                        1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                        'Quicksand';"
-                                        onclick="removeSong('<%= song._id %>')"
-                                        >
-                                        Remove
-                                    </button>
-                                </center>
+                                    <audio id="audio" src="<%= song.url %> " type="audio/mpeg" style="display: none;">
+                                    </audio>
+                                    <center>
+                                        <button class="column is-3 button is-black is-outlined"
+                                            onclick="pick2('<%= song._id %>')" id=<%=`button2_${song._id}` %>
+                                            style="
+                                            margin:
+                                            1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                            'Quicksand';">
+                                            Play
+                                        </button>
+                                    </center>
+                                    <center>
+                                        <button class="column is-3 button is-black is-outlined"
+                                            id=<%=`button1_${song._id}` %>
+                                            style="
+                                            margin:
+                                            1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
+                                            'Quicksand';"
+                                            onclick="removeSong('<%= song._id %>')"
+                                                >
+                                                Remove
+                                        </button>
+                                    </center>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <% }) %>
-        </div>
+                        </article>
+                        <% }) %>
+                </div>
+                <% } %>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" crossorigin="anonymous"></script>
