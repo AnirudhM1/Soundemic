@@ -27,6 +27,7 @@ function autocomplete(input, arr) {
                     match.innerHTML = arr[i].substring(0, loc);
                     match.innerHTML += "<strong>" + arr[i].substring(loc, value.length + loc) + "</strong>";
                     match.innerHTML += arr[i].substring(value.length + loc);
+                    match.style.color = "#d2d2d2";
                 }
 
                 match.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
@@ -125,4 +126,6 @@ window.onload = async function (e) {
     } catch (e) {
         console.error(e)
     }
+
+
 }
