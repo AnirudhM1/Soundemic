@@ -9,9 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Home</title>
+    <title>Soundemic</title>
 </head>
 <style>
     html {
@@ -25,6 +26,25 @@
 
         /* Full height */
         /* background-size: cover; */
+    }
+
+    #Soundemic {
+        font-size: 3.78em;
+        color: white;
+        font-family: 'Satisfy';
+    }
+
+    #yourapp {
+        font-size: 1.8em;
+        color: white;
+        font-family: 'Quicksand';
+        font-weight: lighter;
+    }
+
+    #github {
+        width: 5em;
+        height: 5em;
+        color: white;
     }
 </style>
 
@@ -42,19 +62,23 @@
         </div>
 
     </div>
-    <div class="container">
+    <div class="container" id="Music">
         <div class="row">
             <div class="col-sm-12 col-lg-6 mt-sm-5 mb-sm-5 mt-lg-0 mb-lg-0 pt-lg-0 pb-lg-0 pt-sm-5 pb-sm-5">
                 <center>
-                    <div class="mt-5 mb-5" style="font-size: 2.2em;color: white;font-family: 'Quicksand';">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aut aspernatur, nemo
-                        laborum maiores officia.
+                    <div class="mt-5 mb-sm-5 mb-lg-3 mx-0 my-0" id="Soundemic">
+                        Welcome to Soundemic.
                     </div>
-                    <div class="mt-5 mb-1">
+                    <div class="mt-lg-2 mt-sm-5 mb-sm-5 mb-lg-3" id="yourapp">
+                        Your personalized Music-Player Application.
+                        <br>
+                        To read more, check our GitHub.
+                    </div>
+                    <div class="mt-lg-1 mt-sm-5 mb-sm-5 mb-lg-0">
 
                         <a href="https://github.com/AnirudhM1/Music-Player" style="color: white;">
-                            <span>
-                                <i class="fab fa-github" style="width: 5em;height: 5em; color: white;"></i>
+                            <span class="github">
+                                <i class="fab fa-github" id="github"></i>
                             </span>
                         </a>
                     </div>
@@ -120,11 +144,13 @@
 
     <script>
 
-        ScrollReveal().reveal('#itunes', { delay: 100 });
-        ScrollReveal().reveal('.animation', { delay: 300 });
-        ScrollReveal().reveal('#signup', { delay: 500 });
-        ScrollReveal().reveal('#login', { delay: 700 });
-        ScrollReveal().reveal('#now', { delay: 1000 });
+        ScrollReveal().reveal('.card-1', { delay: 500 });
+        ScrollReveal().reveal('#Soundemic', { delay: 800 });
+        ScrollReveal().reveal('#yourapp', { delay: 800 });
+        ScrollReveal().reveal('.github', { delay: 1900 });
+        ScrollReveal().reveal('#signup', { delay: 3000 });
+        ScrollReveal().reveal('#login', { delay: 3800 });
+        ScrollReveal().reveal('#now', { delay: 4600 });
 
     </script>
 
