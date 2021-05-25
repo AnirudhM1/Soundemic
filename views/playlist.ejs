@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>Playlist</title>
 </head>
@@ -47,7 +48,6 @@
 
         <div id="songs" class="block">
             <% playlist.songs.forEach(song=> { %>
-                <% console.log(song) %>
                     <article class="message" style="margin: 3em 0; ">
                         <div class="message-header has-text-left-desktop has-text-centered-mobile">
                             <div class="title is-4 is-bold" style="color: white; padding: 3px;">
@@ -95,7 +95,9 @@
                                         style="
                                         margin:
                                         1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                        'Quicksand';">
+                                        'Quicksand';"
+                                        onclick="removeSong('<%= song._id %>')"
+                                        >
                                         Remove
                                     </button>
                                 </center>
@@ -219,6 +221,12 @@
 
 
         };
+
+        async function removeSong(songId) {
+            const url = `/users/<%= user_id %>/playlists/<%= playlist._id %>/${songId}`;
+            const response = await axios.delete(url);
+            location.reload(true)
+        }
     </script>
 
 </body>

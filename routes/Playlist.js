@@ -41,7 +41,7 @@ router.get('/:id/playlists/:playlistId', async (req, res) => {
         }
         else {
             const playlist = await Playlist.findById(req.params.playlistId).populate('songs');
-            res.render('playlist', { playlist })
+            res.render('playlist', { playlist, user_id: req.params.id })
         }
     } catch (e) {
         console.error(e);
@@ -55,11 +55,7 @@ router.post('/:id/playlists/:playlistId', async (req, res) => {
         }
         else {
             const playlist = await Playlist.findById(req.params.playlistId);
-            console.log(`Found playlist = ${playlist}`)
-            console.log(`Song_id=${req.body.song_id}`)
             const song = await Song.findById(req.body.song_id);
-            console.log('Found song: ')
-            console.log(song)
             playlist.songs.push(song);
             await playlist.save();
             res.status(200).send('Song added!!');
@@ -74,11 +70,25 @@ router.delete('/:id/playlists/:playlistId', async (req, res) => {
         const { id, playlistId } = req.params;
         await User.findOneAndUpdate(id, { $pull: { playlists: playlistId } });
         await Playlist.findByIdAndDelete(playlistId);
-        res.send('Deleted!');
+        res.redirect('/users');
     } catch (e) {
         console.error(e);
     }
 
+})
+
+router.delete('/:id/playlists/:playlistId/:songId', async (req, res) => {
+    try {
+        const {id, playlistId, songId} = req.params;
+        if (!req.session.user_id || req.session.user_id !== id) {
+            res.redirect('/users/login');
+        } else {
+            await Playlist.findByIdAndUpdate(playlistId, {$pull: { songs: songId } });
+            res.send('Song deleted succesfully');
+        }  
+    } catch(e) {
+        console.error(e);
+    }
 })
 
 module.exports = router;
