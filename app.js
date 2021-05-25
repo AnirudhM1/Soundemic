@@ -4,14 +4,12 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const session = require('express-session');
-const dotenv = require('dotenv');
 const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const flash = require('connect-flash')
 const MongoStore = require('connect-mongo');
 
-const testRoutes = require('./routes/Test'); // These are routes used for testing
 const userRoutes = require('./routes/User');
 const playlistRoutes = require('./routes/Playlist');
 const searchRoutes = require('./routes/Search');
