@@ -57,11 +57,11 @@
                                     margin:
                                     0.5em; width:60%;height:fit-content;font-family:
                                     'Quicksand';padding:0.6em;"
-                                    <% if(user_id == 'guest') { %>
+                                    <% if(user_id=='guest' ) { %>
                                         <%- "disabled" %>
-                                    <% } %>   
-                                    >
-                                    Add to playlist
+                                            <% } %>
+                                                >
+                                                Add to playlist
                                 </button>
                             </center>
 
@@ -109,6 +109,7 @@
         function pick2(song_id) {
             function updateProgress(e) {
                 let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.color = "#000000";
                 const { duration, currentTime } = e.srcElement;
                 const progressPercent = (currentTime / duration) * 100;
                 progress.style.width = `${progressPercent}%`;
