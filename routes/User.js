@@ -9,6 +9,9 @@ router.get('/register', (req, res) => { //To register user
 });
 
 router.get('/', async (req, res) => {
+    if(!req.session.user_id) {
+        res.redirect('/users/login');
+    }
     const id = req.session.user_id;
     const user = await User.findById(id).populate('playlists') || false;
     const username = user.username || "unnamed";
@@ -54,9 +57,9 @@ router.post('/login', async (req, res) => { // To login user
     }
 })
 
-router.post('/logout', (req, res) => { // This is set to get for debugging purposes and needs to be changed to post
+router.post('/logout', (req, res) => {
     req.session.destroy();
-    res.redirect('/users/login')
+    res.redirect('/')
 })
 
 router.delete('/:id', async (req, res) => {

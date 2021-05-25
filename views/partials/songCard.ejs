@@ -56,7 +56,11 @@
                                     onclick="playlist('<%= song._id %>')" id=<%=`button1_${song._id}` %> style="
                                     margin:
                                     0.5em; width:60%;height:fit-content;font-family:
-                                    'Quicksand';padding:0.6em;">
+                                    'Quicksand';padding:0.6em;"
+                                    <% if(user_id == 'guest') { %>
+                                        <%- "disabled" %>
+                                    <% } %>   
+                                    >
                                     Add to playlist
                                 </button>
                             </center>
