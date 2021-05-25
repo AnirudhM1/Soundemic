@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');
 const session = require('express-session');
 const dotenv = require('dotenv');
@@ -5,8 +9,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const flash = require('connect-flash')
-const Grid = require('gridfs-stream');
-const User = require('./models/User');
+const MongoStore = require('connect-mongo');
 
 const testRoutes = require('./routes/Test'); // These are routes used for testing
 const userRoutes = require('./routes/User');
@@ -16,14 +19,13 @@ const searchRoutes = require('./routes/Search');
 
 const app = express();
 
-dotenv.config();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
 
-let gfs;
+//let gfs;
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -31,21 +33,36 @@ mongoose.connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useFindAndModify: false
 })
-    .then(() => {
-        console.log('Mongoose Connection Open!');
-        /* const conn = mongoose.connection;
+.then(() => {
+    console.log('Mongoose Connection Open!');
+    /* const conn = mongoose.connection;
 
-        gfs = Grid(conn.db, mongoose.mongo);
+    gfs = Grid(conn.db, mongoose.mongo);
 
-        console.log('Gridfs-mongo connection Open'); */
-    })
-    .catch((e) => {
-        console.log('ERROR!');
-        console.log(e);
-    })
+    console.log('Gridfs-mongo connection Open'); */
+})
+.catch((e) => {
+    console.log('ERROR!');
+    console.log(e);
+})
+
+const secret = process.env.SECRET || 'SECRET';
+
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    secret,
+    touchAfter: 24 * 60 * 60
+})
+
+store.on('error', function(e) {
+    console.log('SESSION STORE ERROR', e);
+})
+
 
 const sessionConfig = {
-    secret: 'thisshouldbeabettersecret!',
+    store,
+    name: "session",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
