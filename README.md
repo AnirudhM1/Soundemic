@@ -14,6 +14,7 @@ The web-player has been hosted on :- <a href="https://nameless-ravine-34466.hero
 <h2>Landing Page</h2>
 <div>New users can Signup using their name & creating a username and password for their account to access the playlists feature of the website.<br></div>
 <div> The users already having an account can alternatively Login with their username and password. <br> </div>
+<strong> The user can access the landing page directly by clicking the icons on the above mentioned two pages. </strong>
 <div>Users who want to access the songs directly without logging in/ making an account can choose the feature Listen now.</div>
 
 <br>
