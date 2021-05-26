@@ -1,6 +1,6 @@
 
 <h1> Welcome to Soundemic! </h1>
-<p> Soundemic is an Music-Player Web Application which allows you to listen songs online and add them into personalized playlists as per your requirements. </p>
+<p> Soundemic is an Music-Player Web Application which allows you to listen songs online and add them into personalized playlists. </p>
 
 <br>
 
@@ -81,7 +81,7 @@ This page can only be accessed by the Logged in user from the Profile Page. The 
 <br>
 <div>
 This application has been made by :-<div><br>
-1.<a href="https://github.com/AnirudhM1"> Anirudh Mukherjee</a><br><br>
+1.<a href="https://github.com/AnirudhM1"> Anirudh Mukherjee</a><br>
 <div>Learnt:
 MongoDB,
 Gridfs
@@ -125,4 +125,4 @@ Working with ejs files.
 Sign up page,
 Login page,
 Styling and responsiveness of Songcards on Search page,
-Created and edited Profile page.
+Created and edited Profile page, added responsiveness.
