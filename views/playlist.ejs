@@ -92,7 +92,7 @@
                                             style="
                                             margin:
                                             1em;width:fit-content; height:fit-content;padding:6px 13px;font-family:
-                                            'Quicksand';">
+                                            'Quicksand';letter-spacing:0.5px;">
                                             Play
                                         </button>
                                     </center>
@@ -143,6 +143,26 @@
                 const { duration, currentTime } = e.srcElement;
                 const progressPercent = (currentTime / duration) * 100;
                 progress.style.width = `${progressPercent}%`;
+                progress.style.transition = null;
+                if (progressPercent === 100) {
+                    setTimeout(() => {
+                        progress.style.width = "0%";
+                        let button = document.getElementById(`button2_${song_id}`);
+                        button.innerText = "Play";
+                        document.getElementById(`button2_${song_id}`).classList.add("is-outlined");
+                        document.getElementById(`button2_${song_id}`).classList.remove("is-primary");
+                        document.getElementById(`button2_${song_id}`).classList.add("is-dark");
+                        let messageBox = document.getElementById(`button2_${song_id}`).parentNode.parentNode.parentNode.parentNode;
+                        messageBox.classList.remove("is-primary");
+                        messageBox.classList.add("is-dark");
+                        document.getElementById(`button3_${song_id}`).style.borderColor = "#000000";
+                        progress.style.backgroundColor = "#000000";
+                        progress.style.transition = '2s ease-out';
+
+
+                    }, 2500);
+
+                }
             }
             let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
             audio.addEventListener('timeupdate', updateProgress);

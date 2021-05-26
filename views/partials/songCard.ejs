@@ -6,7 +6,7 @@
                 <div class="column is-6" id="source" style="display:block;margin:auto;">
                     <div class="card p-4">
                         <div class="card-image py-5 px-4 mx-1">
-                            <figure class="image is-5by4">
+                            <figure class="image is-4by4">
                                 <image src="<%= song.img_url %>"></image>
                             </figure>
                         </div>
@@ -34,13 +34,14 @@
                                 padding: 0;
                                 ">
                                 <div id=<%=`button4_${song._id}` %> class="progress" style=
-                                    "height: 0.7rem;
+                                    "height: 0.55rem;
                                     border-radius:10px;
                                     width:0%;
                                     padding:0;">
                                 </div>
                             </div>
-                            <audio id="audio" src="<%= song.url %>" type="audio/mpeg" style="display: none;" class="<%= song._id %>">
+                            <audio id="audio" src="<%= song.url %>" type="audio/mpeg" style="display: none;"
+                                class="<%= song._id %>">
                             </audio>
                             <center>
                                 <button class="button is-black is-medium is-outlined" onclick="pick2('<%= song._id %>')"

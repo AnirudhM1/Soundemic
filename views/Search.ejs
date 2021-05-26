@@ -210,6 +210,17 @@
                 const { duration, currentTime } = e.srcElement;
                 const progressPercent = (currentTime / duration) * 100;
                 progress.style.width = `${progressPercent}%`;
+                progress.style.transition = null;
+                if (progressPercent === 100) {
+                    setTimeout(() => {
+                        progress.style.width = "0%";
+                        let button = document.getElementById(`button2_${song_id}`);
+                        button.innerText = "Play";
+                        progress.style.transition = '2s ease-out';
+                    }, 2500);
+
+
+                }
             }
             let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
             audio.addEventListener('timeupdate', updateProgress);
@@ -230,7 +241,7 @@
                 currentlyPlaying = null;
             }
             if (value === "Play") {
-                if(currentlyPlaying) {
+                if (currentlyPlaying) {
                     currentlyPlaying.pause();
                     const audio_id = currentlyPlaying.className;
                     let button = document.getElementById(`button2_${audio_id}`);
