@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
 
-                                    <audio id="audio" src="<%= song.url %> " type="audio/mpeg" style="display: none;">
+                                    <audio id="audio" src="<%= song.url %> " type="audio/mpeg" style="display: none;" class="<%= song._id %>">
                                     </audio>
                                     <center>
                                         <button class="column is-3 button is-black is-outlined"
@@ -168,6 +168,8 @@
 
     <script>
 
+        var currentlyPlaying = null;
+
         function pick2(song_id) {
             function updateProgress(e) {
                 let progress = document.getElementById(`button4_${song_id}`);
@@ -194,7 +196,8 @@
             let value = document.getElementById(`button2_${song_id}`).innerText;
             if (value === "Pause") {
 
-                audio.pause()
+                audio.pause();
+                currentlyPlaying = null;
                 document.getElementById(`button2_${song_id}`).innerText = "Play";
                 //play
                 document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
@@ -211,7 +214,23 @@
 
             }
             if (value === "Play") {
-                audio.play()
+                if(currentlyPlaying) {
+                    currentlyPlaying.pause();
+                    const audio_id = currentlyPlaying.className;
+                    document.getElementById(`button2_${audio_id}`).classList.remove("is-outlined");
+                    document.getElementById(`button2_${audio_id}`).classList.remove("is-primary");
+                    document.getElementById(`button2_${audio_id}`).classList.add("is-dark");
+                    document.getElementById(`button3_${audio_id}`).style.borderColor = "#000000";
+                    document.getElementById(`button2_${audio_id}`).innerText = "Play";
+
+                    let messageBox = document.getElementById(`button2_${audio_id}`).parentNode.parentNode.parentNode.parentNode;
+                    messageBox.classList.remove("is-primary");
+                    messageBox.classList.add("is-dark");
+                    let progress = document.getElementById(`button4_${audio_id}`);
+                    progress.style.backgroundColor = "#000000";
+                }
+                audio.play();
+                currentlyPlaying = audio;
                 document.getElementById(`button2_${song_id}`).innerText = "Pause";
 
                 document.getElementById(`button2_${song_id}`).classList.remove("is-outlined");
@@ -225,7 +244,7 @@
                 messageBox.classList.remove("is-dark");
                 messageBox.classList.add("is-primary");
                 let progress = document.getElementById(`button4_${song_id}`);
-                progress.style.backgroundColor = "#00D1B2";
+                progress.style.backgroundColor = "#00D1B2";  
             }
 
 

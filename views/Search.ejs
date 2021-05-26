@@ -201,6 +201,58 @@
 
     <script>
 
+        var currentlyPlaying = null;
+
+        function pick2(song_id) {
+            function updateProgress(e) {
+                let progress = document.getElementById(`button4_${song_id}`);
+                progress.style.color = "#000000";
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+            }
+            let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+            audio.addEventListener('timeupdate', updateProgress);
+            function setProgress(e) {
+                let audio = document.getElementById(`button3_${song_id}`).nextElementSibling;
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                audio.currentTime = (clickX / width) * duration;
+            }
+
+            document.getElementById(`button3_${song_id}`).addEventListener('click', setProgress);
+            let value = document.getElementById(`button2_${song_id}`).innerText;
+
+            if (value === "Pause") {
+                audio.pause()
+                document.getElementById(`button2_${song_id}`).innerText = "Play";
+                currentlyPlaying = null;
+            }
+            if (value === "Play") {
+                if(currentlyPlaying) {
+                    currentlyPlaying.pause();
+                    const audio_id = currentlyPlaying.className;
+                    let button = document.getElementById(`button2_${audio_id}`);
+                    button.innerText = "Play";
+                }
+                audio.play()
+                document.getElementById(`button2_${song_id}`).innerText = "Pause";
+                currentlyPlaying = audio;
+            }
+        };
+        function playlist(song_id) {
+            selectedSong = song_id;
+            document.querySelector(".maine").style.display = "none";
+            document.querySelector(".add").style.display = null;
+            document.getElementById(`button1_${song_id}`).innerText = "Added to playlist";
+            document.getElementById(`button1_${song_id}`).classList.remove("is-outlined");
+            // document.getElementById(`button3_${song_id}`).style.borderColor = "#FF3860";
+            // let messageBox = document.getElementById(`button1_${song_id}`).parentNode.parentNode.parentNode;
+            document.getElementById(`button1_${song_id}`).removeAttribute("onclick");
+
+        }
+
         async function addSongToPlaylist(playlist_id) {
 
             const URL = `users/<%= user_id%>/playlists/${playlist_id}`;
