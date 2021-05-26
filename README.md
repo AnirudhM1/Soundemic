@@ -77,3 +77,52 @@ This page can only be accessed by the Logged in user from the Profile Page. The 
 <br>
 
 ![Screenshot (117)](https://user-images.githubusercontent.com/77532581/119692956-79d86380-be69-11eb-9359-31d70e4a43a2.png)
+  
+<br>
+<div>
+This application has been made by :-<div><br>
+1.<a href="https://github.com/AnirudhM1"> Anirudh Mukherjee</a><br><br>
+<div>Learnt:
+MongoDB,
+Gridfs
+Express,
+Auth,
+Sessions,
+Ejs,
+  Bulma. </div>
+  <br>
+
+<strong>Contributions:</strong>
+Whole backend.<br>
+Connecting backend with frontend via axios.<br>
+Helped with debugging some front end features. <br><br>
+  
+2.<a href="https://github.com/priyansh71"> Priyansh Vyas</a><br>
+<div>Learnt:
+Using Express in a project.<br>
+Using DOM manipulation and template literals.<br>
+Lightweight JavaScript libraries like ScrollReveal and Particles-Js.<br>
+Bulma CSS framework and EJS.<br>
+Implementing and working with full page background images, CSS transitions and json data for the first time.<br>
+How to solve merge conflicts using terminal.<br> </div>
+  <br>
+  <strong>Contributions:</strong>
+Music player controls and their styling across Playlist and Search pages.<br>
+Created the Landing, Profile, Playlist, Search pages and made them responsive.<br>
+Edited the layout and managed DOM manipulation of all pages. <br> <br>
+  
+3.<a href="https://github.com/amitav710"> Amitava Chakrabarti</a><br>
+<div>Learnt:
+New CSS features,
+New Bootstrap features,
+Javascript,
+Bulma,
+Working with ejs files.
+ <br>
+  <br>
+
+  <strong>Contributions:(Front-end)</strong>
+Sign up page,
+Login page,
+Styling and responsiveness of Songcards on Search page,
+Created and edited Profile page.
