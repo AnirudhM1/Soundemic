@@ -86,7 +86,7 @@ This application has been made by :-<div><br>
 1.<a href="https://github.com/AnirudhM1"> Anirudh Mukherjee</a><br>
 <div>Learnt:
 MongoDB,
-Gridfs
+Gridfs,
 Express,
 Auth,
 Sessions,
@@ -105,7 +105,8 @@ Using Express in a project.<br>
 Using DOM manipulation and template literals.<br>
 Lightweight JavaScript libraries like ScrollReveal and Particles-Js.<br>
 Bulma CSS framework and EJS.<br>
-Implementing and working with full page background images, CSS transitions and json data for the first time.<br>
+About some new CSS attributes, event listeners and DOM selectors.<br>
+Implementing and working with full page background images, CSS transitions and JSON data for the first time.<br>
 How to solve merge conflicts using terminal.<br> </div>
   <br>
   <strong>Contributions:</strong>
@@ -121,7 +122,7 @@ Javascript,
 Bulma,
 Working with ejs files.
  <br>
-  <br>
+ <br>
 
   <strong>Contributions:(Front-end)</strong>
 Sign up page,
