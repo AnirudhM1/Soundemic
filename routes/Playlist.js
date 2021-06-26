@@ -85,7 +85,7 @@ router.delete('/:id/playlists/:playlistId/:songId', async (req, res) => {
         } else {
             await Playlist.findByIdAndUpdate(playlistId, {$pull: { songs: songId } });
             res.send('Song deleted succesfully');
-        }  
+        }
     } catch(e) {
         console.error(e);
     }
